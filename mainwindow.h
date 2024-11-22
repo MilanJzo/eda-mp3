@@ -23,19 +23,34 @@ public:
     ~MainWindow();
 
 private slots:
+
     void on_pushButton_Play_clicked();
 
     void on_pushButton_Pause_clicked();
 
     void on_actionOpen_File_triggered();
 
-    void on_horizontalSlider_valueChanged(int value);
+    void on_verticalSlider_Volume_valueChanged(int value);
+
+    void on_pushButton_Seek_Backward_clicked();
+
+    void on_pushButton_Seek_Forward_clicked();
+
+    void on_horizontalSlider_Duration_valueChanged(int value);
+
+    void durationChanged(qint64 duration);
+    void positionChanged(qint64 progress);
+    void on_horizontalSlider_Duration_sliderMoved(int position);
 
 private:
+
     Ui::MainWindow *ui;
     QMediaPlayer *M_Player;
     QAudioOutput *audioOutput;
     qfloat16 vol;
+    qint64 Mduration;
+
+    void updateDuration(qint64 duration);
 
     //Open File: add action to button manually -yikes
     QAction *actionOpen_File;
