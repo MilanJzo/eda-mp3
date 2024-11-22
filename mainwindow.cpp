@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     audioOutput = new QAudioOutput();
-    vol = static_cast<qfloat16>(ui->horizontalSlider_Volume_Control->value()/100.0);
+    vol = static_cast<qfloat16>(ui->horizontalSlider_Volume_Control->value()/1000.0);
     audioOutput->setVolume(vol);
     M_Player->setAudioOutput(audioOutput);
 
@@ -61,7 +61,7 @@ void MainWindow::on_pushButton_Pause_clicked()
 
 void MainWindow::on_horizontalSlider_valueChanged(int value)
 {
-    vol = static_cast<qfloat16>(ui->horizontalSlider_Volume_Control->value()/100.0);
+    vol = static_cast<qfloat16>(ui->horizontalSlider_Volume_Control->value()/1000.0);
     qDebug() << "Setting volume to:" << vol;
     audioOutput->setVolume(vol);
     qDebug() << "Current volume:" << audioOutput->volume();
