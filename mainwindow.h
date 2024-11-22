@@ -37,7 +37,7 @@ private:
     QAudioOutput *audioOutput;
     qfloat16 vol;
 
-    //Open File: manuelle Action Zuweisung zum Button
+    //Open File: add action to button manually -yikes
     QAction *actionOpen_File;
 
 };
