@@ -40,7 +40,6 @@ private slots:
 
     void durationChanged(qint64 duration);
     void positionChanged(qint64 progress);
-    void on_horizontalSlider_Duration_sliderMoved(int position);
 
 private:
 

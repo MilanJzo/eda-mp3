@@ -34,8 +34,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(M_Player, &QMediaPlayer:: positionChanged, this, &MainWindow::positionChanged);
 
     ui->horizontalSlider_Duration->setRange(0, M_Player->duration() / 1000);
-
-    connect(ui->horizontalSlider_Duration, &QSlider::sliderMoved, this, &MainWindow::on_horizontalSlider_Duration_sliderMoved);
 }
 
 MainWindow::~MainWindow()
@@ -70,11 +68,6 @@ void MainWindow::positionChanged(qint64 progress)
     }
 
     updateDuration(progress / 1000);
-}
-
-void MainWindow::on_horizontalSlider_Duration_sliderMoved(int position)
-{
-    M_Player->setPosition(position * 1000);
 }
 
 void MainWindow::on_actionOpen_File_triggered()
@@ -119,7 +112,9 @@ void MainWindow::on_pushButton_Seek_Backward_clicked()
 
 void MainWindow::on_horizontalSlider_Duration_valueChanged(int value)
 {
-    // M_Player->setPosition(value * 1000);
+    if(ui->horizontalSlider_Duration->isSliderDown()) {
+        M_Player->setPosition(value * 1000);
+    }
 }
 
 
