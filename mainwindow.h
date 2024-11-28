@@ -24,9 +24,7 @@ public:
 
 private slots:
 
-    void on_pushButton_Play_clicked();
-
-    void on_pushButton_Pause_clicked();
+    void on_pushButton_Play_Pause_clicked();
 
     void on_actionOpen_File_triggered();
 
@@ -47,7 +45,9 @@ private:
     QMediaPlayer *M_Player;
     QAudioOutput *audioOutput;
     qfloat16 vol;
+    qfloat16 volScale;
     qint64 Mduration;
+    bool isPlaying;
 
     void updateDuration(qint64 duration);
 

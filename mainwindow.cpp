@@ -7,17 +7,18 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    isPlaying = false;
 
     M_Player = new QMediaPlayer();
 
-    ui->pushButton_Play->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
-    ui->pushButton_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
+    ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
     ui->pushButton_Seek_Forward->setIcon(style()->standardIcon(QStyle::SP_MediaSeekForward));
     ui->pushButton_Seek_Backward->setIcon(style()->standardIcon(QStyle::SP_MediaSeekBackward));
 
 
     audioOutput = new QAudioOutput();
-    vol = static_cast<qfloat16>(ui->verticalSlider_Volume->value()/1000.0);
+    volScale = 100;
+    vol = static_cast<qfloat16>(ui->verticalSlider_Volume->value()/volScale);
     audioOutput->setVolume(vol);
     M_Player->setAudioOutput(audioOutput);
 
@@ -66,35 +67,32 @@ void MainWindow::positionChanged(qint64 progress)
     if(!ui->horizontalSlider_Duration->isSliderDown()) {
         ui->horizontalSlider_Duration->setValue(progress / 1000);
     }
-
     updateDuration(progress / 1000);
 }
 
-void MainWindow::on_actionOpen_File_triggered()
-{
-    QString FileName = QFileDialog::getOpenFileName(this,tr("Select Audio File"),"",tr("MP3 Files (*.MP3)"));
+void MainWindow::on_actionOpen_File_triggered() {
+    QString FileName = QFileDialog::getOpenFileName(this, tr("Select Audio File"), "", tr("MP3 Files (*.MP3)"));
     M_Player->setSource(QUrl::fromLocalFile(FileName));
     QFileInfo File(FileName);
     ui->label_Value_File_Name->setText(File.fileName());
 }
 
-void MainWindow::on_pushButton_Play_clicked()
-{
-    // qDebug() << "is playing";
-    M_Player->play();
-}
-
-void MainWindow::on_pushButton_Pause_clicked()
-{
+void MainWindow::on_pushButton_Play_Pause_clicked() {
+    if (!isPlaying) {
+        ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
+        M_Player->play();
+        isPlaying = true;
+        return;
+    }
+    ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
     M_Player->pause();
+    isPlaying = false;
 }
 
 void MainWindow::on_verticalSlider_Volume_valueChanged(int value)
 {
-    vol = static_cast<qfloat16>(ui->verticalSlider_Volume->value()/1000.0);
-    // qDebug() << "Setting volume to:" << vol;
+    vol = static_cast<qfloat16>(ui->verticalSlider_Volume->value()/volScale);
     audioOutput->setVolume(vol);
-    // qDebug() << "Current volume:" << audioOutput->volume();
     M_Player->setAudioOutput(audioOutput);
 }
 
@@ -116,5 +114,3 @@ void MainWindow::on_horizontalSlider_Duration_valueChanged(int value)
         M_Player->setPosition(value * 1000);
     }
 }
-
-

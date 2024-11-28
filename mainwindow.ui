@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>795</width>
-    <height>588</height>
+    <width>1054</width>
+    <height>659</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -80,7 +80,7 @@ QLabel
      <string>FILE_NAME</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_Play">
+   <widget class="QPushButton" name="pushButton_Play_Pause">
     <property name="geometry">
      <rect>
       <x>230</x>
@@ -90,26 +90,7 @@ QLabel
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">
-</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_Pause">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>430</y>
-      <width>50</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">
-
-</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string/>
@@ -125,9 +106,7 @@ QLabel
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">
-
-</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>Open</string>
