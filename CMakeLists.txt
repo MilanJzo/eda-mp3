@@ -24,10 +24,6 @@ set(PROJECT_SOURCES
         mainwindow.h
         mainwindow.ui
         ${TS_FILES}
-        queue.cpp
-        queue.h
-        library.cpp
-        library.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
