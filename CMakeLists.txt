@@ -20,10 +20,18 @@ set(TS_FILES eda-mp3_en_US.ts)
 
 set(PROJECT_SOURCES
         main.cpp
-        mainwindow.cpp
-        mainwindow.h
+        mainwindow_deprecated.cpp
+        mainwindow_deprecated.h
         mainwindow.ui
         ${TS_FILES}
+        src/frontend/window.cpp
+        src/frontend/window.h
+        src/frontend/window.ui
+        src/backend/player.cpp
+        src/backend/player.h
+        src/frontend/controls.cpp
+        src/frontend/controls.h
+        src/frontend/controls.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

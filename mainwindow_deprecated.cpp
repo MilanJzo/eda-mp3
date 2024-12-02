@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "mainwindow_deprecated.h"
 #include "./ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -8,7 +8,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     isPlaying = false;
-
     M_Player = new QMediaPlayer();
 
     ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));

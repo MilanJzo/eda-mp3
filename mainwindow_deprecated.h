@@ -19,8 +19,8 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    explicit MainWindow(QWidget *parent = nullptr);
+    ~MainWindow() override;
 
 private slots:
 
@@ -46,7 +46,7 @@ private:
     QAudioOutput *audioOutput;
     qfloat16 vol;
     qfloat16 volScale;
-    qint64 Mduration;
+    qint64 Mduration{};
     bool isPlaying;
 
     void updateDuration(qint64 duration);
