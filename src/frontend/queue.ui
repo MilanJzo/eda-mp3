@@ -71,7 +71,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Playlists</string>
+           <string>Queue</string>
           </property>
          </widget>
         </item>
