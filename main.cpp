@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
             break;
         }
     }
-    QMainWindow w;
+    MainWindow w;
     w.show();
     return QApplication::exec();
 }

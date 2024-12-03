@@ -150,7 +150,7 @@
 	border-radius: 15px;
 }</string>
            </property>
-           <layout class="QVBoxLayout" name="verticalLayout_5">
+           <layout class="QVBoxLayout" name="queueHolderLayout">
             <property name="spacing">
              <number>0</number>
             </property>
