@@ -21,17 +21,32 @@ set(TS_FILES eda-mp3_en_US.ts)
 set(PROJECT_SOURCES
         main.cpp
         ${TS_FILES}
+
         src/backend/player.cpp
         src/backend/player.h
+
         src/frontend/mainwindow.cpp
         src/frontend/mainwindow.h
         src/frontend/mainwindow.ui
+        src/frontend/controls.cpp
+        src/frontend/controls.h
+        src/frontend/controls.ui
 )
+
+#qt_add_resources(eda-mp3 "eda-mp3_icons"
+#    PREFIX
+#        "/icons"
+#    FILES
+#        play.svg
+#        pause.svg
+#        volume-2.svg
+#        volume-x.svg
+#)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(eda-mp3
         MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
+            ${PROJECT_SOURCES}
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET eda-mp3 APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
