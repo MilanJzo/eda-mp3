@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include "controls.h"
+#include "library.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -10,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     ui->controlsHolder->layout()->addWidget(new controls(this));
+    ui->libraryEditorHolder->layout()->addWidget(new library(this));
 }
 
 MainWindow::~MainWindow()
