@@ -24,21 +24,19 @@ set(PROJECT_SOURCES
 
         src/backend/player.cpp
         src/backend/player.h
+        src/backend/libraryManager.cpp
+        src/backend/libraryManager.h
 
         src/frontend/mainwindow.cpp
         src/frontend/mainwindow.h
         src/frontend/mainwindow.ui
-<<<<<<< Updated upstream
         src/frontend/controls.cpp
         src/frontend/controls.h
         src/frontend/controls.ui
-=======
         src/frontend/library.cpp
         src/frontend/library.h
         src/frontend/library.ui
-        src/backend/libraryManager.cpp
-        src/backend/libraryManager.h
->>>>>>> Stashed changes
+
 )
 
 #qt_add_resources(eda-mp3 "eda-mp3_icons"
