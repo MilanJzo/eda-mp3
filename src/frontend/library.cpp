@@ -16,10 +16,3 @@ library::library(QWidget *parent) :
 library::~library() {
     delete ui;
 }
-
-void library::displayFiles(const QStringList &files) {
-    ui->listWidget->clear();
-    for (const auto &file : files) {
-        ui->listWidget->addItem(file);
-    }
-}

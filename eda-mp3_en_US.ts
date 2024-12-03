@@ -55,10 +55,31 @@
     </message>
 </context>
 <context>
+    <name>controls</name>
+    <message>
+        <location filename="src/frontend/controls.ui" line="14"/>
+        <location filename="cmake-build-debug/eda-mp3_autogen/include/ui_controls.h" line="217"/>
+        <source>controls</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/frontend/controls.ui" line="132"/>
+        <location filename="cmake-build-debug/eda-mp3_autogen/include/ui_controls.h" line="218"/>
+        <source>Song Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/frontend/controls.ui" line="139"/>
+        <location filename="cmake-build-debug/eda-mp3_autogen/include/ui_controls.h" line="219"/>
+        <source>Artist</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>library</name>
     <message>
-        <location filename="src/frontend/library.ui" line="17"/>
-        <location filename="cmake-build-debug/eda-mp3_autogen/include/ui_library.h" line="35"/>
+        <location filename="src/frontend/library.ui" line="14"/>
+        <location filename="cmake-build-debug/eda-mp3_autogen/include/ui_library.h" line="40"/>
         <source>library</source>
         <translation type="unfinished"></translation>
     </message>
