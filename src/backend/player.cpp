@@ -4,24 +4,28 @@
 
 #include "player.h"
 
-// hat Jojo so gesagt
+#include "../frontend/mainwindow.h"
+#include "../frontend/mainwindow.h"
+#include "../frontend/mainwindow.h"
+
+player::player(): M_Player(new QMediaPlayer()), audioOutput(new QAudioOutput()),isPlaying(false)
+{
+    M_Player->setAudioOutput(audioOutput);
+}
+
 player *player::instance = nullptr;
 
 void player::togglePlay()
 {
     if (isPlaying)
     {
-        M_PLayer->pause();
+        M_Player->pause();
     }
     else
     {
-        M_PLayer->play();
+        M_Player->play();
     }
     isPlaying = !isPlaying;
-}
-
-player::player(): M_PLayer(new QMediaPlayer()), isPlaying(false)
-{
 }
 
 player* player::getInstance()
@@ -29,4 +33,19 @@ player* player::getInstance()
     if (instance == nullptr){ instance = new player(); }
     return instance;
 }
+void player::setVolume(int volume) const
+{
+    audioOutput->setVolume(volume);
+}
+void player::setPosition(int value)
+{
+    M_Player->setPosition(value);
+}
+void player::skipToNextSong()
+{
+
+}
+
+
+
 

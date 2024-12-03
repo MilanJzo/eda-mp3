@@ -4,8 +4,11 @@
 
 #ifndef PLAYER_H
 #define PLAYER_H
-#include <QMediaPlayer>
 
+#include <QMediaPlayer>
+#include <QAudioOutput>
+#include <QFileDialog>
+#include <QStyle>
 
 class player {
 public:
@@ -13,11 +16,18 @@ public:
     static player* getInstance();
 
     void togglePlay();
+    void setVolume(int volume) const;
+    void skipToNextSong();
+    void skipToLastSong();
+    void setPosition(int value);
+
     [[nodiscard]] bool getPlaying() const { return isPlaying; }
 
 private:
-    QMediaPlayer* M_PLayer;
+    QMediaPlayer* M_Player;
     static player* instance;
+
+    QAudioOutput* audioOutput;
 
     bool isPlaying;
 
