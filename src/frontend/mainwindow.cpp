@@ -3,6 +3,8 @@
 
 #include "controls.h"
 #include "library.h"
+#include "playlists.h"
+#include "queue.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -12,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->controlsHolder->layout()->addWidget(new controls(this));
     ui->libraryEditorHolder->layout()->addWidget(new library(this));
+    ui->playlistHolder->layout()->addWidget(new playlists(this));
+    ui->queueHolder->layout()->addWidget(new queue(this));
 }
 
 MainWindow::~MainWindow()
