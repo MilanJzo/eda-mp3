@@ -4,6 +4,9 @@
 
 #include "player.h"
 
+// hat Jojo so gesagt
+player *player::instance = nullptr;
+
 void player::togglePlay()
 {
     if (isPlaying)

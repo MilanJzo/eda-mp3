@@ -1,4 +1,4 @@
-#include "./src/frontend/window.h"
+#include "./src/frontend/mainwindow.h"
 
 #include <QApplication>
 #include <QLocale>
@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
             break;
         }
     }
-    window w;
+    QMainWindow w;
     w.show();
     return QApplication::exec();
 }
