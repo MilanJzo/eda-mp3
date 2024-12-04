@@ -24,14 +24,14 @@ MainWindow::MainWindow(QWidget *parent)
 
     //Open File: add action to button manually -yikes
     actionOpen_File = new QAction(tr("Open File"),this);
-    connect(actionOpen_File,&QAction::triggered,this, &MainWindow::on_actionOpen_File_triggered);
+    connect(actionOpen_File, &QAction::triggered, this, &MainWindow::on_actionOpen_File_triggered);
     connect(ui->pushButton_Open_File, &QPushButton::clicked, actionOpen_File, &QAction::trigger);
 
 
     connect(ui->verticalSlider_Volume, &QSlider::valueChanged, this, &MainWindow::on_verticalSlider_Volume_valueChanged);
 
-    connect(M_Player, &QMediaPlayer:: durationChanged, this, &MainWindow::durationChanged);
-    connect(M_Player, &QMediaPlayer:: positionChanged, this, &MainWindow::positionChanged);
+    connect(M_Player, &QMediaPlayer::durationChanged, this, &MainWindow::durationChanged);
+    connect(M_Player, &QMediaPlayer::positionChanged, this, &MainWindow::positionChanged);
 
     ui->horizontalSlider_Duration->setRange(0, M_Player->duration() / 1000);
 }
