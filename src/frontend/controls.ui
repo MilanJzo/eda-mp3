@@ -157,80 +157,91 @@ QPushButton:hover {
        </widget>
       </item>
       <item>
-       <widget class="QWidget" name="songControls" native="true">
-        <layout class="QHBoxLayout" name="songControlsLayout">
-         <property name="spacing">
-          <number>20</number>
-         </property>
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <item>
-          <widget class="QPushButton" name="repeat">
-           <property name="text">
-            <string/>
+       <layout class="QVBoxLayout" name="songControls">
+        <item>
+         <widget class="QWidget" name="buttons" native="true">
+          <layout class="QHBoxLayout" name="songControlsLayout">
+           <property name="spacing">
+            <number>20</number>
            </property>
-           <property name="icon">
-            <iconset resource="../../icons/resources.qrc">
-             <normaloff>:/icon/repeat.svg</normaloff>:/icon/repeat.svg</iconset>
+           <property name="leftMargin">
+            <number>0</number>
            </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="skipBackwards">
-           <property name="text">
-            <string/>
+           <property name="topMargin">
+            <number>0</number>
            </property>
-           <property name="icon">
-            <iconset resource="../../icons/resources.qrc">
-             <normaloff>:/icon/skip-back.svg</normaloff>:/icon/skip-back.svg</iconset>
+           <property name="rightMargin">
+            <number>0</number>
            </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="playPause">
-           <property name="text">
-            <string/>
+           <property name="bottomMargin">
+            <number>0</number>
            </property>
-           <property name="icon">
-            <iconset resource="../../icons/resources.qrc">
-             <normaloff>:/icon/play.svg</normaloff>:/icon/play.svg</iconset>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="skipForwards">
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset resource="../../icons/resources.qrc">
-             <normaloff>:/icon/skip-forward.svg</normaloff>:/icon/skip-forward.svg</iconset>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="shuffle">
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset resource="../../icons/resources.qrc">
-             <normaloff>:/icon/shuffle.svg</normaloff>:/icon/shuffle.svg</iconset>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
+           <item>
+            <widget class="QPushButton" name="repeat">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="../../icons/resources.qrc">
+               <normaloff>:/icon/repeat.svg</normaloff>:/icon/repeat.svg</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="skipBackwards">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="../../icons/resources.qrc">
+               <normaloff>:/icon/skip-back.svg</normaloff>:/icon/skip-back.svg</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="playPause">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="../../icons/resources.qrc">
+               <normaloff>:/icon/play.svg</normaloff>:/icon/play.svg</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="skipForwards">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="../../icons/resources.qrc">
+               <normaloff>:/icon/skip-forward.svg</normaloff>:/icon/skip-forward.svg</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="shuffle">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="../../icons/resources.qrc">
+               <normaloff>:/icon/shuffle.svg</normaloff>:/icon/shuffle.svg</iconset>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSlider" name="progress">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item>
        <widget class="QWidget" name="areaRight" native="true">
@@ -246,7 +257,10 @@ QPushButton:hover {
           <height>16777215</height>
          </size>
         </property>
-        <layout class="QHBoxLayout" name="areaRightLayout">
+        <property name="layoutDirection">
+         <enum>Qt::LayoutDirection::RightToLeft</enum>
+        </property>
+        <layout class="QHBoxLayout" name="areaRightLayout" stretch="0">
          <property name="spacing">
           <number>10</number>
          </property>
@@ -263,24 +277,54 @@ QPushButton:hover {
           <number>0</number>
          </property>
          <item>
-          <widget class="QSlider" name="progress">
-           <property name="styleSheet">
-            <string notr="true"/>
+          <widget class="QWidget" name="horizontalWidget" native="true">
+           <property name="minimumSize">
+            <size>
+             <width>160</width>
+             <height>0</height>
+            </size>
            </property>
-           <property name="orientation">
-            <enum>Qt::Orientation::Horizontal</enum>
+           <property name="maximumSize">
+            <size>
+             <width>160</width>
+             <height>16777215</height>
+            </size>
            </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="volume">
-           <property name="text">
-            <string/>
+           <property name="layoutDirection">
+            <enum>Qt::LayoutDirection::LeftToRight</enum>
            </property>
-           <property name="icon">
-            <iconset resource="../../icons/resources.qrc">
-             <normaloff>:/icon/volume-on.svg</normaloff>:/icon/volume-on.svg</iconset>
-           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <property name="spacing">
+             <number>5</number>
+            </property>
+            <item>
+             <widget class="QPushButton" name="volumeButton">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="../../icons/resources.qrc">
+                <normaloff>:/icon/volume-on.svg</normaloff>:/icon/volume-on.svg</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSlider" name="volumeSlider">
+              <property name="maximumSize">
+               <size>
+                <width>125</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </item>
         </layout>
