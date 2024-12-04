@@ -32,14 +32,16 @@
    <item>
     <widget class="QWidget" name="content" native="true">
      <property name="styleSheet">
-      <string notr="true">#content {
-	border-radius: 15px;
-	background-color: rgb(35, 35, 35)
+      <string notr="true">* {
+	background-color: rgb(35, 35, 35);
 }
 
-#content QPushButton {
+#content {
+	border-radius: 15px;
+}
+
+#content QPushButton, #scrollArea {
 	border: none;
-	background-color: rgb(35, 35, 35);
 }</string>
      </property>
      <layout class="QVBoxLayout" name="contentLayout">
@@ -79,21 +81,18 @@
          <widget class="QPushButton" name="clearButton">
           <property name="minimumSize">
            <size>
-            <width>28</width>
+            <width>0</width>
             <height>24</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>28</width>
+            <width>70</width>
             <height>24</height>
            </size>
           </property>
           <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset theme="QIcon::ThemeIcon::WindowClose"/>
+           <string>clear queue</string>
           </property>
          </widget>
         </item>
@@ -109,8 +108,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>378</width>
-           <height>416</height>
+           <width>380</width>
+           <height>418</height>
           </rect>
          </property>
         </widget>
