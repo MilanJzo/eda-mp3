@@ -70,10 +70,12 @@ void MainWindow::positionChanged(qint64 progress)
 }
 
 void MainWindow::on_actionOpen_File_triggered() {
-    QString FileName = QFileDialog::getOpenFileName(this, tr("Select Audio File"), "", tr("MP3 Files (*.MP3)"));
-    M_Player->setSource(QUrl::fromLocalFile(FileName));
-    QFileInfo File(FileName);
-    ui->label_Value_File_Name->setText(File.fileName());
+//    QString FileName = QFileDialog::getOpenFileName(this, tr("Select Audio File"), "", tr("MP3 Files (*.MP3)"), QFileDialog::);
+//    M_Player->setSource(QUrl::fromLocalFile(FileName));
+//    QFileInfo File(FileName);
+//    ui->label_Value_File_Name->setText(File.fileName());
+    QString dir = QFileDialog::getExistingDirectory(this, tr("Open Directory"), "/home", QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+
 }
 
 void MainWindow::on_pushButton_Play_Pause_clicked() {

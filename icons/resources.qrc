@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>play.svg</file>
+        <file>pause.svg</file>
+
+        <file>repeat.svg</file>
+        <file>shuffle.svg</file>
+
+        <file>skip-forward.svg</file>
+        <file>skip-back.svg</file>
+
+        <file>shuffle.svg</file>
+        <file>shuffle.svg</file>
+
+
+    </qresource>
+</RCC>

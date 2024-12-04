@@ -1,4 +1,1 @@
-- custom icons on buttons
 - styling sliders
-- songlist import (multifileimport)
-- markus stinkt

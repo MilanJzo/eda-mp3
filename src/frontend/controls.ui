@@ -180,7 +180,8 @@ QPushButton:hover {
             <string/>
            </property>
            <property name="icon">
-            <iconset theme="QIcon::ThemeIcon::MediaPlaylistRepeat"/>
+            <iconset resource="../../icons/resources.qrc">
+             <normaloff>:/icon/shuffle.svg</normaloff>:/icon/shuffle.svg</iconset>
            </property>
           </widget>
          </item>
@@ -292,6 +293,8 @@ QPushButton:hover {
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../icons/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
