@@ -44,13 +44,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow_deprecated.cpp" line="73"/>
-        <source>Select Audio File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow_deprecated.cpp" line="73"/>
-        <source>MP3 Files (*.MP3)</source>
+        <location filename="mainwindow_deprecated.cpp" line="77"/>
+        <source>Open Directory</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -58,19 +53,22 @@
     <name>controls</name>
     <message>
         <location filename="src/frontend/controls.ui" line="14"/>
-        <location filename="cmake-build-debug/eda-mp3_autogen/include/ui_controls.h" line="217"/>
+        <location filename="build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/eda-mp3_autogen/include/ui_controls.h" line="227"/>
+        <location filename="cmake-build-debug/eda-mp3_autogen/include/ui_controls.h" line="231"/>
         <source>controls</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/frontend/controls.ui" line="132"/>
-        <location filename="cmake-build-debug/eda-mp3_autogen/include/ui_controls.h" line="218"/>
+        <location filename="src/frontend/controls.ui" line="143"/>
+        <location filename="build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/eda-mp3_autogen/include/ui_controls.h" line="228"/>
+        <location filename="cmake-build-debug/eda-mp3_autogen/include/ui_controls.h" line="232"/>
         <source>Song Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/frontend/controls.ui" line="139"/>
-        <location filename="cmake-build-debug/eda-mp3_autogen/include/ui_controls.h" line="219"/>
+        <location filename="src/frontend/controls.ui" line="150"/>
+        <location filename="build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/eda-mp3_autogen/include/ui_controls.h" line="229"/>
+        <location filename="cmake-build-debug/eda-mp3_autogen/include/ui_controls.h" line="233"/>
         <source>Artist</source>
         <translation type="unfinished"></translation>
     </message>
@@ -79,8 +77,50 @@
     <name>library</name>
     <message>
         <location filename="src/frontend/library.ui" line="14"/>
-        <location filename="cmake-build-debug/eda-mp3_autogen/include/ui_library.h" line="40"/>
+        <location filename="build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/eda-mp3_autogen/include/ui_library.h" line="141"/>
+        <location filename="cmake-build-debug/eda-mp3_autogen/include/ui_library.h" line="141"/>
         <source>library</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/frontend/library.ui" line="76"/>
+        <location filename="build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/eda-mp3_autogen/include/ui_library.h" line="142"/>
+        <location filename="cmake-build-debug/eda-mp3_autogen/include/ui_library.h" line="142"/>
+        <source>Library</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>playlists</name>
+    <message>
+        <location filename="src/frontend/playlists.ui" line="14"/>
+        <location filename="build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/eda-mp3_autogen/include/ui_playlists.h" line="104"/>
+        <location filename="cmake-build-debug/eda-mp3_autogen/include/ui_playlists.h" line="104"/>
+        <source>playlists</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/frontend/playlists.ui" line="74"/>
+        <location filename="build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/eda-mp3_autogen/include/ui_playlists.h" line="105"/>
+        <location filename="cmake-build-debug/eda-mp3_autogen/include/ui_playlists.h" line="105"/>
+        <source>Playlists</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>queue</name>
+    <message>
+        <location filename="src/frontend/queue.ui" line="14"/>
+        <location filename="build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/eda-mp3_autogen/include/ui_queue.h" line="104"/>
+        <location filename="cmake-build-debug/eda-mp3_autogen/include/ui_queue.h" line="104"/>
+        <source>queue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/frontend/queue.ui" line="74"/>
+        <location filename="build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/eda-mp3_autogen/include/ui_queue.h" line="105"/>
+        <location filename="cmake-build-debug/eda-mp3_autogen/include/ui_queue.h" line="105"/>
+        <source>Queue</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

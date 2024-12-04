@@ -7,23 +7,22 @@
 #include "library.h"
 #include "ui_library.h"
 #include <QDebug>
+#include "../backend/libraryManager.h"
 
 
 library::library(QWidget *parent) :
     QWidget(parent), ui(new Ui::library) {
     ui->setupUi(this);
+    connect(ui->addButton, &QPushButton::clicked, this, &library::on_addButton_clicked);
 }
 
 library::~library() {
     delete ui;
 }
 
-//nur zum Testen
-void library::displayFiles(const QStringList& files)
+void library::on_addButton_clicked()
 {
-    for (const QString &file : files)
-    {
-        qDebug() << file;
-    }
+    qDebug() << "addButton clicked";
+    libraryManager::addDirectory();
 }
 

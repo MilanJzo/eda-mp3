@@ -10,7 +10,8 @@
 
 class libraryManager {
 public:
-    static QStringList openFileDialog();
+    static void addDirectory();
+    static QStringList  getMP3Files(const QString &directory);
 };
 
 

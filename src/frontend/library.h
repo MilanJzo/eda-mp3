@@ -20,7 +20,8 @@ public:
     explicit library(QWidget *parent = nullptr);
     ~library() override;
 
-    void displayFiles(const QStringList &files);
+private slots:
+    void on_addButton_clicked();
 
 private:
     Ui::library *ui;
