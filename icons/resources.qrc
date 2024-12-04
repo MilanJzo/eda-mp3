@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/icon">
+        <file>add.svg</file>
+        <file>delete.svg</file>
+
         <file>play.svg</file>
         <file>pause.svg</file>
 
@@ -9,9 +12,7 @@
         <file>skip-forward.svg</file>
         <file>skip-back.svg</file>
 
-        <file>shuffle.svg</file>
-        <file>shuffle.svg</file>
-
-
+        <file>volume-off.svg</file>
+        <file>volume-on.svg</file>
     </qresource>
 </RCC>
