@@ -76,7 +76,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="addButton">
+         <widget class="QPushButton" name="clearButton">
           <property name="minimumSize">
            <size>
             <width>28</width>
@@ -93,7 +93,7 @@
            <string/>
           </property>
           <property name="icon">
-           <iconset theme="QIcon::ThemeIcon::ListAdd"/>
+           <iconset theme="QIcon::ThemeIcon::WindowClose"/>
           </property>
          </widget>
         </item>

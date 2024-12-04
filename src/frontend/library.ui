@@ -32,19 +32,16 @@
    <item>
     <widget class="QWidget" name="content" native="true">
      <property name="styleSheet">
-      <string notr="true">#content {
-	border-radius: 15px;
-	background-color: rgb(35, 35, 35);
-}
-
-#content QPushButton {
-	border: none;
+      <string notr="true">* {
 	background-color: rgb(35, 35, 35);
 }
 
 #content {
+	border-radius: 15px;
+}
+
+#content QPushButton, #scrollArea {
 	border: none;
-	background-color: rgb(35, 35, 35);
 }</string>
      </property>
      <layout class="QVBoxLayout" name="contentLayout">
@@ -106,24 +103,43 @@
       </item>
       <item>
        <widget class="QWidget" name="search" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#search {
+	border: 1px solid rgb(255, 255, 255) ;
+	border-radius: 15px;
+}</string>
+        </property>
         <layout class="QHBoxLayout" name="searchLayout">
          <property name="spacing">
           <number>10</number>
          </property>
          <property name="leftMargin">
-          <number>0</number>
+          <number>5</number>
          </property>
          <property name="topMargin">
-          <number>0</number>
+          <number>5</number>
          </property>
          <property name="rightMargin">
-          <number>0</number>
+          <number>5</number>
          </property>
          <property name="bottomMargin">
-          <number>0</number>
+          <number>5</number>
          </property>
          <item>
-          <widget class="QLineEdit" name="searchInput"/>
+          <widget class="QLineEdit" name="searchInput">
+           <property name="styleSheet">
+            <string notr="true">#searchInput {
+	border: none;
+	border-radius: 15px;
+}</string>
+           </property>
+          </widget>
          </item>
          <item>
           <widget class="QPushButton" name="searchButton">
@@ -148,8 +164,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>441</width>
-           <height>432</height>
+           <width>443</width>
+           <height>429</height>
           </rect>
          </property>
         </widget>

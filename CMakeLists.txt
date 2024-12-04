@@ -45,16 +45,6 @@ set(PROJECT_SOURCES
 
 )
 
-#qt_add_resources(eda-mp3 "eda-mp3_icons"
-#    PREFIX
-#        "/icons"
-#    FILES
-#        play.svg
-#        pause.svg
-#        volume-2.svg
-#        volume-x.svg
-#)
-
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(eda-mp3
         MANUAL_FINALIZATION
