@@ -49,7 +49,13 @@ void controls::on_progress_valueChanged(int value)
 }
 
 
-void controls::on_volume_clicked()
+void controls::on_volumeButton_clicked()
+{
+
+}
+
+
+void controls::on_volumeSlider_valueChanged(int value)
 {
 
 }
