@@ -35,7 +35,7 @@
       <property name="minimumSize">
        <size>
         <width>1080</width>
-        <height>720</height>
+        <height>600</height>
        </size>
       </property>
       <property name="styleSheet">
