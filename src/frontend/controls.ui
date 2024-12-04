@@ -264,17 +264,9 @@ QPushButton:hover {
          <item>
           <widget class="QSlider" name="progress">
            <property name="styleSheet">
-            <string notr="true">#progress {
-	pointer-events: none;
-}
-
-#progress:handle {
+            <string notr="true">#progress::handle {
 	border-radius: 10px;
 	background-color: rgb(255, 255, 255);
-}
-
-#progress:track {
-	background-color: rgb(140, 140, 140);
 }</string>
            </property>
            <property name="orientation">
