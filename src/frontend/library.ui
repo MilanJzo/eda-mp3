@@ -195,6 +195,14 @@ QPushButton:hover {
     </widget>
    </item>
   </layout>
+  <action name="actionTrigger">
+   <property name="text">
+    <string>Trigger</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="../../icons/resources.qrc"/>

@@ -17,14 +17,18 @@ void libraryManager::addDirectory() {
         return;
     }
 
-    QTextStream stream(&file);
-    stream << "something" << Qt::endl;
+    QTextStream writeStream(&file);
+    writeStream << "something" << Qt::endl;
     file.close();
 
-    qDebug() << "Wrote to file";
-    QTextStream stream2(&file);
-    while (!stream2.atEnd()) {
-        QString line = stream2.readLine();
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qWarning() << "Could not open file for reading";
+        return;
+    }
+
+    QTextStream readStream(&file);
+    while (!readStream.atEnd()) {
+        QString line = readStream.readLine();
         qDebug() << line;
     }
 

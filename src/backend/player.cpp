@@ -3,6 +3,8 @@
 //
 
 #include "player.h"
+#include <QMediaPlayer>
+#include <QAudioOutput>
 
 player::player(): M_Player(new QMediaPlayer()), audioOutput(new QAudioOutput()),isPlaying(false)
 {

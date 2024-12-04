@@ -21,10 +21,11 @@ public:
     ~library() override;
 
 private slots:
-    void on_addButton_clicked();
+    void on_actionTrigger_triggered();
 
 private:
     Ui::library *ui;
+    QAction *actionTrigger;
 };
 
 
