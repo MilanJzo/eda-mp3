@@ -4,10 +4,6 @@
 
 #include "player.h"
 
-#include "../frontend/mainwindow.h"
-#include "../frontend/mainwindow.h"
-#include "../frontend/mainwindow.h"
-
 player::player(): M_Player(new QMediaPlayer()), audioOutput(new QAudioOutput()),isPlaying(false)
 {
     M_Player->setAudioOutput(audioOutput);
@@ -33,17 +29,13 @@ player* player::getInstance()
     if (instance == nullptr){ instance = new player(); }
     return instance;
 }
-void player::setVolume(int volume) const
+void player::setVolume(const int volume) const
 {
     audioOutput->setVolume(volume);
 }
-void player::setPosition(int value)
+void player::setPosition(const int value) const
 {
     M_Player->setPosition(value);
-}
-void player::skipToNextSong()
-{
-
 }
 
 

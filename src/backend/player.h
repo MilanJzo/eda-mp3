@@ -19,7 +19,7 @@ public:
     void setVolume(int volume) const;
     void skipToNextSong();
     void skipToLastSong();
-    void setPosition(int value);
+    void setPosition(int value) const;
 
     [[nodiscard]] bool getPlaying() const { return isPlaying; }
 

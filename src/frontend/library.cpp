@@ -6,6 +6,7 @@
 
 #include "library.h"
 #include "ui_library.h"
+#include <QDebug>
 
 
 library::library(QWidget *parent) :
@@ -16,3 +17,13 @@ library::library(QWidget *parent) :
 library::~library() {
     delete ui;
 }
+
+//nur zum Testen
+void library::displayFiles(const QStringList& files)
+{
+    for (const QString &file : files)
+    {
+        qDebug() << file;
+    }
+}
+

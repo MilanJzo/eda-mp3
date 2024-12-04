@@ -19,6 +19,19 @@ public:
     explicit controls(QWidget *parent = nullptr);
     ~controls() override;
 
+private slots:
+    void on_playPause_clicked();
+
+    void on_skipBackwards_clicked();
+
+    void on_skipForwards_clicked();
+
+    void on_shuffle_clicked();
+
+    void on_progress_valueChanged(int value);
+
+    void on_volume_clicked();
+
 private:
     Ui::controls *ui;
 };
