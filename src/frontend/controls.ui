@@ -181,7 +181,7 @@ QPushButton:hover {
            </property>
            <property name="icon">
             <iconset resource="../../icons/resources.qrc">
-             <normaloff>:/icon/shuffle.svg</normaloff>:/icon/shuffle.svg</iconset>
+             <normaloff>:/icon/repeat.svg</normaloff>:/icon/repeat.svg</iconset>
            </property>
           </widget>
          </item>
@@ -191,8 +191,8 @@ QPushButton:hover {
             <string/>
            </property>
            <property name="icon">
-            <iconset theme="QIcon::ThemeIcon::MediaSkipBackward">
-             <normaloff>../../resources/skip-back.svg</normaloff>../../resources/skip-back.svg</iconset>
+            <iconset resource="../../icons/resources.qrc">
+             <normaloff>:/icon/skip-back.svg</normaloff>:/icon/skip-back.svg</iconset>
            </property>
           </widget>
          </item>
@@ -202,8 +202,8 @@ QPushButton:hover {
             <string/>
            </property>
            <property name="icon">
-            <iconset theme="QIcon::ThemeIcon::MediaPlaybackStart">
-             <normaloff>../../resources/play.svg</normaloff>../../resources/play.svg</iconset>
+            <iconset resource="../../icons/resources.qrc">
+             <normaloff>:/icon/play.svg</normaloff>:/icon/play.svg</iconset>
            </property>
           </widget>
          </item>
@@ -213,8 +213,8 @@ QPushButton:hover {
             <string/>
            </property>
            <property name="icon">
-            <iconset theme="QIcon::ThemeIcon::MediaSkipForward">
-             <normaloff>../../resources/skip-forward.svg</normaloff>../../resources/skip-forward.svg</iconset>
+            <iconset resource="../../icons/resources.qrc">
+             <normaloff>:/icon/skip-forward.svg</normaloff>:/icon/skip-forward.svg</iconset>
            </property>
           </widget>
          </item>
@@ -224,8 +224,8 @@ QPushButton:hover {
             <string/>
            </property>
            <property name="icon">
-            <iconset theme="QIcon::ThemeIcon::MediaPlaylistShuffle">
-             <normaloff>../../resources/shuffle.svg</normaloff>../../resources/shuffle.svg</iconset>
+            <iconset resource="../../icons/resources.qrc">
+             <normaloff>:/icon/shuffle.svg</normaloff>:/icon/shuffle.svg</iconset>
            </property>
           </widget>
          </item>
@@ -281,7 +281,8 @@ QPushButton:hover {
             <string/>
            </property>
            <property name="icon">
-            <iconset theme="QIcon::ThemeIcon::AudioVolumeMedium"/>
+            <iconset resource="../../icons/resources.qrc">
+             <normaloff>:/icon/volume-on.svg</normaloff>:/icon/volume-on.svg</iconset>
            </property>
           </widget>
          </item>
