@@ -30,10 +30,9 @@ private slots:
 
     void on_progress_valueChanged(int value);
 
-    void on_volumeButton_clicked();
+    void on_volumeButton_clicked() const;
 
     void on_volumeSlider_valueChanged(int value);
-
 private:
     Ui::controls *ui;
 };
