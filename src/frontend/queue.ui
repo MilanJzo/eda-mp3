@@ -96,15 +96,18 @@ QPushButton:hover {
          <widget class="QPushButton" name="clearButton">
           <property name="minimumSize">
            <size>
-            <width>30</width>
+            <width>80</width>
             <height>30</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>70</width>
+            <width>80</width>
             <height>30</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
           </property>
           <property name="text">
            <string>clear queue</string>
