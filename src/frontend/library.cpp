@@ -13,8 +13,8 @@
 #include "ui_library.h"
 #include "../backend/libraryManager.h"
 
-#include <taglib/fileref.h>
-#include <taglib/tag.h>
+// #include <taglib/fileref.h>
+// #include <taglib/tag.h>
 
 library::library(QWidget *parent) :
     QWidget(parent), ui(new Ui::library) {
@@ -34,11 +34,11 @@ void library::renderSongs(const QStringList &songs) {
         // QString artist = metaData.value(QMediaMetaData::Author).toString();
 
         qDebug() << "Rendering song: " << song;
-        TagLib::FileRef file((song.toStdString().c_str()));
-        QString title = file.tag()->title().toCString(true);
-        QString artist = file.tag()->artist().toCString(true);
-
-        ui->scrollArea->layout()->addWidget(new librarysong(this, title, artist));
+        // TagLib::FileRef file((song.toStdString().c_str()));
+        // QString title = file.tag()->title().toCString(true);
+        // QString artist = file.tag()->artist().toCString(true);
+        //
+        // ui->scrollArea->layout()->addWidget(new librarysong(this, title, artist));
     }
     qDebug() << "Rendered songs";
 }
