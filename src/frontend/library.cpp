@@ -22,6 +22,7 @@ library::~library() {
 
 void library::on_addButton_clicked()
 {
+    qDebug() << "addButton clicked";
     libraryManager::addDirectory();
 }
 

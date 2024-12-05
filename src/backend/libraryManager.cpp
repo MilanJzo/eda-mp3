@@ -9,34 +9,35 @@
 #include <QFile>
 
 void libraryManager::addDirectory() {
-    QString dir = QFileDialog::getExistingDirectory(nullptr, "Select Directory", QDir::homePath());
+    qDebug() << "addDirectory called";
 
     QFile file("./libraryDirectories.txt");
-    if (!file.open(QIODevice::ReadWrite | QIODevice::Text))
-    {
-        qWarning() << "Failed to open libraryDirectories.txt for writing";
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
+        qWarning() << "Could not open file for writing";
         return;
     }
 
-    QTextStream stream(&file);
-    while (!stream.atEnd())
-    {
-        QString line = stream.readLine();
-        qDebug() << line;
-        if (line.compare(dir) == 0)
-        {
-            qWarning() << "Directory already in libraryDirectories.txt";
-            return;
-        }
-        qDebug() << dir;
+    QTextStream writeStream(&file);
+    writeStream << "something" << Qt::endl;
+    file.close();
+
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qWarning() << "Could not open file for reading";
+        return;
     }
-    stream << dir << "\n";
+
+    QTextStream readStream(&file);
+    while (!readStream.atEnd()) {
+        QString line = readStream.readLine();
+        qDebug() << line;
+    }
+
     file.close();
 }
 
-QStringList libraryManager::getMP3FilesFromDirectory(const QString& pathToDir)
+QStringList libraryManager::getMP3Files(const QString& directory)
 {
-    const QDir dir(pathToDir);
+    const QDir dir(directory);
     QStringList filters;
     filters << "*.mp3";
     return dir.entryList(filters, QDir::Files);
