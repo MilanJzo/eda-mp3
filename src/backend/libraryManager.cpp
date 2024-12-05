@@ -9,7 +9,7 @@
 #include <QFile>
 
 void libraryManager::addDirectory() {
-    QString dir = QFileDialog::getExistingDirectory(nullptr, "Select Directory", QDir::homePath());
+    const QString dir = QFileDialog::getExistingDirectory(nullptr, "Select Directory", QDir::homePath());
 
     QFile file("./libraryDirectories.txt");
     if (!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
