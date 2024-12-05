@@ -8,6 +8,8 @@
 #include <QWidget>
 #include <QStringList>
 
+#include "../backend/libraryManager.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class library; }
@@ -25,6 +27,7 @@ private slots:
 
 private:
     Ui::library *ui;
+    libraryManager *manager;
 };
 
 

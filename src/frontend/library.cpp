@@ -12,6 +12,8 @@
 library::library(QWidget *parent) :
     QWidget(parent), ui(new Ui::library) {
     ui->setupUi(this);
+
+    manager = libraryManager::getInstance();
 }
 
 library::~library() {
