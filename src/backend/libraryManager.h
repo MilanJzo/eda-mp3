@@ -11,7 +11,7 @@
 class libraryManager {
 public:
     static void addDirectory();
-    static QStringList  getMP3Files(const QString &directory);
+    static QStringList  getMP3FilesFromDirectory(const QString &pathToDir);
 };
 
 

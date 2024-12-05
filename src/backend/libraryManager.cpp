@@ -32,9 +32,11 @@ void libraryManager::addDirectory() {
     qDebug() << "Added directory to library";
 }
 
-QStringList libraryManager::getMP3Files(const QString& directory)
+
+
+QStringList libraryManager::getMP3FilesFromDirectory(const QString& pathToDir)
 {
-    const QDir dir(directory);
+    const QDir dir(pathToDir);
     QStringList filters;
     filters << "*.mp3";
     return dir.entryList(filters, QDir::Files);
