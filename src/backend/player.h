@@ -12,7 +12,6 @@
 
 class player {
 public:
-    player();
     static player* getInstance();
 
 signals:
@@ -29,8 +28,10 @@ signals:
 
     [[nodiscard]] bool getIsPlaying() const { return isPlaying; }
     [[nodiscard]] bool getIsMuted() const {return isMuted; }
+    [[nodiscard]] qint64 getDuration() const { return M_Player->duration(); }
 
 private:
+    player();
     QMediaPlayer* M_Player;
     static player* instance;
     QAudioOutput* audioOutput;

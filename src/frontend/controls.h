@@ -28,7 +28,7 @@ private slots:
 
     void on_shuffle_clicked();
 
-    void on_progress_valueChanged(int value);
+    void on_progress_valueChanged(int value) const;
 
     void on_volumeButton_clicked() const;
 
