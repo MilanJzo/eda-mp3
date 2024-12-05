@@ -13,7 +13,7 @@ if (WIN32)
     set(CMAKE_PREFIX_PATH $ENV{QTDIR})
 endif()
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Widgets LinguistTools Multimedia)
+find_package(QT NAMES Qt6 REQUIRED COMPONENTS Core Widgets LinguistTools Multimedia)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Widgets LinguistTools Multimedia)
 
 set(TS_FILES eda-mp3_en_US.ts)
