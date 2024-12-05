@@ -13,9 +13,7 @@
 
 libraryManager *libraryManager::instance = nullptr;
 
-libraryManager::libraryManager()
-{
-    library = QStringList();
+libraryManager::libraryManager() : library(QStringList()) {
     loadLibrary();
 }
 

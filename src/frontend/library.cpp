@@ -20,8 +20,8 @@ library::~library() {
     delete ui;
 }
 
-void library::on_addButton_clicked()
+void library::on_addButton_clicked() const
 {
-    libraryManager::addDirectory();
+    manager->addDirectory();
 }
 

@@ -10,16 +10,16 @@
 
 class libraryManager {
 public:
-    static void addDirectory();
+    void addDirectory();
     static libraryManager* getInstance();
     static QStringList  getMP3FilesFromDirectory(const QString &pathToDir);
 
 private:
     static libraryManager* instance;
-    static QStringList library;
+    QStringList library;
 
     libraryManager();
-    static void loadLibrary();
+    void loadLibrary();
 
 };
 
