@@ -235,14 +235,32 @@ QPushButton:hover {
          </widget>
         </item>
         <item>
-         <widget class="QSlider" name="progress">
-          <property name="styleSheet">
-           <string notr="true"/>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Orientation::Horizontal</enum>
-          </property>
-         </widget>
+         <layout class="QHBoxLayout" name="progressLayout">
+          <item>
+           <widget class="QLabel" name="currentTime">
+            <property name="text">
+             <string>0:00</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSlider" name="progress">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="totalTime">
+            <property name="text">
+             <string>0:00</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </item>

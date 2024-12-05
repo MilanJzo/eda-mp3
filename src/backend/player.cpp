@@ -16,6 +16,13 @@ player::player(): M_Player(new QMediaPlayer()), audioOutput(new QAudioOutput()),
     M_Player->setAudioOutput(audioOutput);
 }
 
+
+void player::setSong(QString filePath) const
+{
+    M_Player->setSource(QUrl::fromLocalFile(filePath));
+}
+
+
 void player::togglePlay()
 {
     if (isPlaying)

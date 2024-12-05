@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(M_Player, &QMediaPlayer::durationChanged, this, &MainWindow::durationChanged);
     connect(M_Player, &QMediaPlayer::positionChanged, this, &MainWindow::positionChanged);
 
-//    ui->horizontalSlider_Duration->setRange(0, M_Player->duration() / 1000);
+    ui->horizontalSlider_Duration->setRange(0, M_Player->duration() / 1000);
 }
 
 MainWindow::~MainWindow()
