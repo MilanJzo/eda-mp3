@@ -9,30 +9,27 @@
 #include <QFile>
 
 void libraryManager::addDirectory() {
-    qDebug() << "addDirectory called";
+    QString dir = QFileDialog::getExistingDirectory(nullptr, "Select Directory", QDir::homePath());
 
     QFile file("./libraryDirectories.txt");
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
+    if (!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
         qWarning() << "Could not open file for writing";
         return;
     }
 
-    QTextStream writeStream(&file);
-    writeStream << "something" << Qt::endl;
-    file.close();
-
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qWarning() << "Could not open file for reading";
-        return;
+    QTextStream stream(&file);
+    while (!stream.atEnd()) {
+        if (stream.readLine().compare(dir) == 0)
+        {
+            qWarning() << "Directory already in library";
+            return;
+        }
     }
 
-    QTextStream readStream(&file);
-    while (!readStream.atEnd()) {
-        QString line = readStream.readLine();
-        qDebug() << line;
-    }
-
+    stream << dir << "\n";
     file.close();
+
+    qDebug() << "Added directory to library";
 }
 
 QStringList libraryManager::getMP3Files(const QString& directory)
