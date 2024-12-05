@@ -19,27 +19,36 @@ controls::~controls() {
     delete ui;
 }
 
-void controls::on_playPause_clicked()
+void controls::on_playPause_clicked() const
 {
     player::getInstance()->togglePlay();
+
+    if (player::getInstance()->getIsPlaying())
+    {
+        ui->playPause->setIcon(QIcon(":icon/pause.svg"));
+    }
+    else
+    {
+        ui->playPause->setIcon(QIcon(":icon/play.svg"));
+    }
 }
 
 
 void controls::on_skipBackwards_clicked()
 {
-
+    //player::getInstance()->skipToLastSong();
 }
 
 
 void controls::on_skipForwards_clicked()
 {
-
+    //player::getInstance()->skipToNextSong();
 }
 
 
 void controls::on_shuffle_clicked()
 {
-
+    //player::getInstance()->toggleShuffle();
 }
 
 
@@ -51,7 +60,16 @@ void controls::on_progress_valueChanged(int value)
 
 void controls::on_volumeButton_clicked()
 {
+    player::getInstance()->toggleMute();
 
+    if (player::getInstance()->getIsMuted())
+    {
+        ui->volumeButton->setIcon(QIcon(":icon/volume-on.svg"));
+    }
+    else
+    {
+        ui->volumeButton->setIcon(QIcon(":icon/volume-off.svg"));
+    }
 }
 
 

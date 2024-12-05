@@ -40,6 +40,31 @@ void player::setPosition(const int value) const
     M_Player->setPosition(value);
 }
 
+void player::skipToNextSong()
+{
+    //TODO: Implement
+}
+
+void player::skipToLastSong()
+{
+    //TODO: Implement
+}
+
+void player::toggleShuffle()
+{
+    //TODO: Implement
+}
+
+void player::toggleMute()
+{
+    isMuted = !isMuted;
+    audioOutput->setMuted(isMuted);
+}
+
+
+
+
+
 
 
 

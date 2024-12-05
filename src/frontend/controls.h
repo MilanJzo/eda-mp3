@@ -20,7 +20,7 @@ public:
     ~controls() override;
 
 private slots:
-    void on_playPause_clicked();
+    void on_playPause_clicked() const;
 
     void on_skipBackwards_clicked();
 

@@ -19,9 +19,12 @@ public:
     void setVolume(int volume) const;
     void skipToNextSong();
     void skipToLastSong();
+    void toggleShuffle();
+    void toggleMute();
     void setPosition(int value) const;
 
-    [[nodiscard]] bool getPlaying() const { return isPlaying; }
+    [[nodiscard]] bool getIsPlaying() const { return isPlaying; }
+    [[nodiscard]] bool getIsMuted() const {return isMuted; }
 
 private:
     QMediaPlayer* M_Player;
@@ -30,6 +33,7 @@ private:
     QAudioOutput* audioOutput;
 
     bool isPlaying;
+    bool isMuted;
 
 };
 
