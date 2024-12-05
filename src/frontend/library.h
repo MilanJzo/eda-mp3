@@ -20,14 +20,11 @@ public:
     explicit library(QWidget *parent = nullptr);
     ~library() override;
 
-void on_addButton_clicked();
-
 private slots:
-    // void on_actionTrigger_triggered();
+    void on_addButton_clicked();
 
 private:
     Ui::library *ui;
-    // QAction *actionTrigger;
 };
 
 
