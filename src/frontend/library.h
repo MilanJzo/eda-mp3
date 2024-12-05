@@ -8,6 +8,8 @@
 #include <QWidget>
 #include <QStringList>
 
+#include "../backend/libraryManager.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class library; }
@@ -21,10 +23,11 @@ public:
     ~library() override;
 
 private slots:
-    void on_addButton_clicked();
+    void on_addButton_clicked() const;
 
 private:
     Ui::library *ui;
+    libraryManager *manager;
 };
 
 

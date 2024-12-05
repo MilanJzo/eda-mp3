@@ -4,9 +4,41 @@
 
 #include "libraryManager.h"
 #include <QFileDialog>
-#include <QDir>
+#include <QTextStream>
 #include <QDebug>
 #include <QFile>
+#include <QDir>
+
+#include "player.h"
+
+libraryManager *libraryManager::instance = nullptr;
+
+libraryManager::libraryManager() : library(QStringList()) {
+    loadLibrary();
+}
+
+libraryManager* libraryManager::getInstance()
+{
+    if (instance == nullptr) { instance = new libraryManager(); }
+    return instance;
+}
+
+void libraryManager::loadLibrary()
+{
+    QFile file("./libraryDirectories.txt");
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qWarning() << "Could not open file for reading";
+        return;
+    }
+
+    QTextStream stream(&file);
+    while (!stream.atEnd()) {
+        library.append(getMP3FilesFromDirectory(stream.readLine()));
+    }
+
+    file.close();
+    qDebug() << "Loaded library";
+}
 
 void libraryManager::addDirectory() {
     const QString dir = QFileDialog::getExistingDirectory(nullptr, "Select Directory", QDir::homePath());
@@ -29,10 +61,9 @@ void libraryManager::addDirectory() {
     stream << dir << "\n";
     file.close();
 
+    library.append(getMP3FilesFromDirectory(dir));
     qDebug() << "Added directory to library";
 }
-
-
 
 QStringList libraryManager::getMP3FilesFromDirectory(const QString& pathToDir)
 {
@@ -41,4 +72,3 @@ QStringList libraryManager::getMP3FilesFromDirectory(const QString& pathToDir)
     filters << "*.mp3";
     return dir.entryList(filters, QDir::Files);
 }
-
