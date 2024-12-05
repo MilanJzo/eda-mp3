@@ -6,8 +6,11 @@
 #include <QMediaPlayer>
 #include <QAudioOutput>
 
-player::player(): M_Player(new QMediaPlayer()), audioOutput(new QAudioOutput()),isPlaying(false)
+player::player(): M_Player(new QMediaPlayer()), audioOutput(new QAudioOutput()),isPlaying(false), isMuted(false)
 {
+    volScale = 100;
+    vol = static_cast<qfloat16>(10/volScale);
+    audioOutput->setVolume(vol);
     M_Player->setAudioOutput(audioOutput);
 }
 
@@ -31,9 +34,11 @@ player* player::getInstance()
     if (instance == nullptr){ instance = new player(); }
     return instance;
 }
-void player::setVolume(const int volume) const
+void player::setVolume(const int value)
 {
-    audioOutput->setVolume(volume);
+    vol = static_cast<qfloat16>(value/volScale);
+    audioOutput->setVolume(vol);
+    M_Player->setAudioOutput(audioOutput);
 }
 void player::setPosition(const int value) const
 {
@@ -60,6 +65,17 @@ void player::toggleMute()
     isMuted = !isMuted;
     audioOutput->setMuted(isMuted);
 }
+
+void player::durationChanged(const qint64 duration)
+{
+    //TODO: Implement
+}
+
+void player::positionChanged(const qint64 progress)
+{
+    //TODO: Implement
+}
+
 
 
 

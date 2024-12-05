@@ -36,29 +36,29 @@ void controls::on_playPause_clicked() const
 
 void controls::on_skipBackwards_clicked()
 {
-    //player::getInstance()->skipToLastSong();
+    player::getInstance()->skipToLastSong();
 }
 
 
 void controls::on_skipForwards_clicked()
 {
-    //player::getInstance()->skipToNextSong();
+    player::getInstance()->skipToNextSong();
 }
 
 
 void controls::on_shuffle_clicked()
 {
-    //player::getInstance()->toggleShuffle();
+    player::getInstance()->toggleShuffle();
 }
 
 
-void controls::on_progress_valueChanged(int value)
+void controls::on_progress_valueChanged(const int value)
 {
     player::getInstance()->setPosition(value);
 }
 
 
-void controls::on_volumeButton_clicked()
+void controls::on_volumeButton_clicked() const
 {
     player::getInstance()->toggleMute();
 
@@ -73,8 +73,8 @@ void controls::on_volumeButton_clicked()
 }
 
 
-void controls::on_volumeSlider_valueChanged(int value)
+void controls::on_volumeSlider_valueChanged(const int value)
 {
-
+    player::getInstance()->setVolume(value);
 }
 
