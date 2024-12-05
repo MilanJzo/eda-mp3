@@ -26,8 +26,8 @@ libraryManager* libraryManager::getInstance()
 void libraryManager::loadLibrary()
 {
     QFile file("./libraryDirectories.txt");
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qWarning() << "Could not open file for reading";
+    if (!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
+        qWarning() << "Failed to open libraryDirectories.txt";
         return;
     }
 
@@ -45,7 +45,7 @@ void libraryManager::addDirectory() {
 
     QFile file("./libraryDirectories.txt");
     if (!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
-        qWarning() << "Could not open file for writing";
+        qWarning() << "Failed to open libraryDirectories.txt";
         return;
     }
 
@@ -53,7 +53,7 @@ void libraryManager::addDirectory() {
     while (!stream.atEnd()) {
         if (stream.readLine().compare(dir) == 0)
         {
-            qWarning() << "Directory already in library";
+            qWarning() << "Directory already in libraryDirectories.txt";
             return;
         }
     }

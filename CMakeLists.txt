@@ -42,6 +42,9 @@ set(PROJECT_SOURCES
         src/frontend/queue.cpp
         src/frontend/queue.h
         src/frontend/queue.ui
+        src/frontend/librarysong.cpp
+        src/frontend/librarysong.h
+        src/frontend/librarysong.ui
 
 )
 
