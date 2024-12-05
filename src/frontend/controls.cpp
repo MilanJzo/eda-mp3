@@ -13,8 +13,6 @@
 controls::controls(QWidget *parent) :
     QWidget(parent), ui(new Ui::controls) {
     ui->setupUi(this);
-
-    ui->progress->setRange(0, static_cast<int>(player::getInstance()->getDuration() / 1000));
 }
 
 controls::~controls() {

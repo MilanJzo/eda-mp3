@@ -22,6 +22,7 @@ signals:
     void toggleShuffle();
     void toggleMute();
     void setPosition(int value) const;
+    void setSong(QString filePath) const;
 
     void durationChanged(qint64 duration);
     void positionChanged(qint64 progress);
