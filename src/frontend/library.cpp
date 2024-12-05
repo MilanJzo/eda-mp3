@@ -15,19 +15,25 @@ library::library(QWidget *parent) :
     QWidget(parent), ui(new Ui::library) {
     ui->setupUi(this);
 
-    actionTrigger = new QAction(this);
-    connect(actionTrigger, &QAction::triggered, this, &library::on_actionTrigger_triggered);
-    connect(ui->addButton, &QPushButton::clicked, actionTrigger, &QAction::trigger);
+    // actionTrigger = new QAction(this);
+    // connect(actionTrigger, &QAction::triggered, this, &library::on_actionTrigger_triggered);
+    // connect(ui->addButton, &QPushButton::clicked, actionTrigger, &QAction::trigger);
 }
 
 library::~library() {
     delete ui;
 }
 
+//
+// void library::on_actionTrigger_triggered()
+// {
+//     qDebug() << "addButton clicked";
+//     libraryManager::addDirectory();
+// }
 
-void library::on_actionTrigger_triggered()
+
+void library::on_addButton_clicked()
 {
-    qDebug() << "addButton clicked";
-    libraryManager::addDirectory();
+    
 }
 
