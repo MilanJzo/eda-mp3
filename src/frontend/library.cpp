@@ -6,9 +6,7 @@
 
 #include "library.h"
 #include "ui_library.h"
-#include <QDebug>
 #include "../backend/libraryManager.h"
-#include <QAction>
 
 
 library::library(QWidget *parent) :
