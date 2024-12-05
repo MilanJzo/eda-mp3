@@ -37,6 +37,7 @@ void libraryManager::loadLibrary()
     }
 
     file.close();
+    qDebug() << "Loaded library";
 }
 
 void libraryManager::addDirectory() {
@@ -71,4 +72,3 @@ QStringList libraryManager::getMP3FilesFromDirectory(const QString& pathToDir)
     filters << "*.mp3";
     return dir.entryList(filters, QDir::Files);
 }
-
