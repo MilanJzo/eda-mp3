@@ -13,6 +13,7 @@ public:
     void addDirectory();
     static libraryManager* getInstance();
     static QStringList  getMP3FilesFromDirectory(const QString &pathToDir);
+    [[nodiscard]] QStringList getLibrary() const { return library; };
 
 private:
     static libraryManager* instance;

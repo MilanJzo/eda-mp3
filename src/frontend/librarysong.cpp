@@ -8,9 +8,11 @@
 #include "ui_librarysong.h"
 
 
-librarysong::librarysong(QWidget *parent) :
+librarysong::librarysong(QWidget *parent, const QString &title, const QString &artist) :
     QWidget(parent), ui(new Ui::librarysong) {
     ui->setupUi(this);
+    ui->title->setText(title);
+    ui->artist->setText(artist);
 }
 
 librarysong::~librarysong() {

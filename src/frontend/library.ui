@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>library</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
+  <layout class="QHBoxLayout" name="horizontalLayout_2">
    <property name="spacing">
     <number>0</number>
    </property>
@@ -188,6 +188,7 @@ QPushButton:hover {
            <height>415</height>
           </rect>
          </property>
+         <layout class="QVBoxLayout" name="verticalLayout"/>
         </widget>
        </widget>
       </item>

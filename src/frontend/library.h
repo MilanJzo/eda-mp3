@@ -22,12 +22,15 @@ public:
     explicit library(QWidget *parent = nullptr);
     ~library() override;
 
+
 private slots:
     void on_addButton_clicked() const;
 
 private:
     Ui::library *ui;
     libraryManager *manager;
+
+    void renderSongs(const QStringList &songs);
 };
 
 

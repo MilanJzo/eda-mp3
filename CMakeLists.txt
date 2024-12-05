@@ -15,6 +15,8 @@ endif()
 
 find_package(QT NAMES Qt6 REQUIRED COMPONENTS Core Widgets LinguistTools Multimedia)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Widgets LinguistTools Multimedia)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(TAGLIB REQUIRED IMPORTED_TARGET taglib)
 
 set(TS_FILES eda-mp3_en_US.ts)
 
@@ -76,7 +78,7 @@ else()
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()
 
-target_link_libraries(eda-mp3 PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Multimedia)
+target_link_libraries(eda-mp3 PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Multimedia ${TAGLIB_LIBRARIES})
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an

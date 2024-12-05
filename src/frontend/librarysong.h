@@ -16,7 +16,7 @@ class librarysong : public QWidget {
 Q_OBJECT
 
 public:
-    explicit librarysong(QWidget *parent = nullptr);
+    explicit librarysong(QWidget *parent = nullptr, const QString &title = "", const QString &artist = "");
     ~librarysong() override;
 
 private:

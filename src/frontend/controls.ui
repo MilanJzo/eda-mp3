@@ -182,7 +182,7 @@ QPushButton:hover {
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="../../icons/resources.qrc">
+              <iconset>
                <normaloff>:/icon/repeat.svg</normaloff>:/icon/repeat.svg</iconset>
              </property>
             </widget>
@@ -193,7 +193,7 @@ QPushButton:hover {
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="../../icons/resources.qrc">
+              <iconset>
                <normaloff>:/icon/skip-back.svg</normaloff>:/icon/skip-back.svg</iconset>
              </property>
             </widget>
@@ -204,7 +204,7 @@ QPushButton:hover {
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="../../icons/resources.qrc">
+              <iconset>
                <normaloff>:/icon/play.svg</normaloff>:/icon/play.svg</iconset>
              </property>
             </widget>
@@ -215,7 +215,7 @@ QPushButton:hover {
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="../../icons/resources.qrc">
+              <iconset>
                <normaloff>:/icon/skip-forward.svg</normaloff>:/icon/skip-forward.svg</iconset>
              </property>
             </widget>
@@ -226,7 +226,7 @@ QPushButton:hover {
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="../../icons/resources.qrc">
+              <iconset>
                <normaloff>:/icon/shuffle.svg</normaloff>:/icon/shuffle.svg</iconset>
              </property>
             </widget>
@@ -324,7 +324,7 @@ QPushButton:hover {
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="../../icons/resources.qrc">
+               <iconset>
                 <normaloff>:/icon/volume-on.svg</normaloff>:/icon/volume-on.svg</iconset>
               </property>
              </widget>
@@ -356,8 +356,6 @@ QPushButton:hover {
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../../icons/resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

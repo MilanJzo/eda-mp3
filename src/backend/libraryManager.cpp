@@ -69,6 +69,6 @@ QStringList libraryManager::getMP3FilesFromDirectory(const QString& pathToDir)
 {
     const QDir dir(pathToDir);
     QStringList filters;
-    filters << "*.mp3";
+    filters<< "*.mp3";
     return dir.entryList(filters, QDir::Files);
 }
