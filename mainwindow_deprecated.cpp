@@ -8,33 +8,26 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    isPlaying = false;
-    M_Player = new QMediaPlayer();
-
-    ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
-    ui->pushButton_Seek_Forward->setIcon(style()->standardIcon(QStyle::SP_MediaSeekForward));
-    ui->pushButton_Seek_Backward->setIcon(style()->standardIcon(QStyle::SP_MediaSeekBackward));
-
-
-    audioOutput = new QAudioOutput();
-    volScale = 100;
-    vol = static_cast<qfloat16>(ui->verticalSlider_Volume->value()/volScale);
-    audioOutput->setVolume(vol);
-    M_Player->setAudioOutput(audioOutput);
+//    isPlaying = false;
+//    M_Player = new QMediaPlayer();
+//
+//    ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
+//    ui->pushButton_Seek_Forward->setIcon(style()->standardIcon(QStyle::SP_MediaSeekForward));
+//    ui->pushButton_Seek_Backward->setIcon(style()->standardIcon(QStyle::SP_MediaSeekBackward));
 
 
-    //Open File: add action to button manually -yikes
-    actionOpen_File = new QAction(tr("Open File"),this);
-    connect(actionOpen_File, &QAction::triggered, this, &MainWindow::on_actionOpen_File_triggered);
-    connect(ui->pushButton_Open_File, &QPushButton::clicked, actionOpen_File, &QAction::trigger);
-
+//    audioOutput = new QAudioOutput();
+//    volScale = 100;
+//    vol = static_cast<qfloat16>(ui->verticalSlider_Volume->value()/volScale);
+//    audioOutput->setVolume(vol);
+//    M_Player->setAudioOutput(audioOutput);
 
     connect(ui->verticalSlider_Volume, &QSlider::valueChanged, this, &MainWindow::on_verticalSlider_Volume_valueChanged);
 
     connect(M_Player, &QMediaPlayer::durationChanged, this, &MainWindow::durationChanged);
     connect(M_Player, &QMediaPlayer::positionChanged, this, &MainWindow::positionChanged);
 
-    ui->horizontalSlider_Duration->setRange(0, M_Player->duration() / 1000);
+//    ui->horizontalSlider_Duration->setRange(0, M_Player->duration() / 1000);
 }
 
 MainWindow::~MainWindow()
@@ -79,40 +72,40 @@ void MainWindow::on_actionOpen_File_triggered() {
 
 }
 
-void MainWindow::on_pushButton_Play_Pause_clicked() {
-    if (!isPlaying) {
-        ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
-        M_Player->play();
-        isPlaying = true;
-        return;
-    }
-    ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
-    M_Player->pause();
-    isPlaying = false;
-}
+//void MainWindow::on_pushButton_Play_Pause_clicked() {
+//    if (!isPlaying) {
+//        ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
+//        M_Player->play();
+//        isPlaying = true;
+//        return;
+//    }
+//    ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
+//    M_Player->pause();
+//    isPlaying = false;
+//}
 
-void MainWindow::on_verticalSlider_Volume_valueChanged(int value)
-{
-    vol = static_cast<qfloat16>(ui->verticalSlider_Volume->value()/volScale);
-    audioOutput->setVolume(vol);
-    M_Player->setAudioOutput(audioOutput);
-}
+//void MainWindow::on_verticalSlider_Volume_valueChanged(int value)
+//{
+//    vol = static_cast<qfloat16>(ui->verticalSlider_Volume->value()/volScale);
+//    audioOutput->setVolume(vol);
+//    M_Player->setAudioOutput(audioOutput);
+//}
 
-void MainWindow::on_pushButton_Seek_Forward_clicked()
-{
-    ui->horizontalSlider_Duration->setValue(ui->horizontalSlider_Duration->value() + 30);
-    M_Player->setPosition(ui->horizontalSlider_Duration->value()*1000);
-}
+//void MainWindow::on_pushButton_Seek_Forward_clicked()
+//{
+//    ui->horizontalSlider_Duration->setValue(ui->horizontalSlider_Duration->value() + 30);
+//    M_Player->setPosition(ui->horizontalSlider_Duration->value()*1000);
+//}
+//
+//void MainWindow::on_pushButton_Seek_Backward_clicked()
+//{
+//    ui->horizontalSlider_Duration->setValue(ui->horizontalSlider_Duration->value() - 30);
+//    M_Player->setPosition(ui->horizontalSlider_Duration->value()*1000);
+//}
 
-void MainWindow::on_pushButton_Seek_Backward_clicked()
-{
-    ui->horizontalSlider_Duration->setValue(ui->horizontalSlider_Duration->value() - 30);
-    M_Player->setPosition(ui->horizontalSlider_Duration->value()*1000);
-}
-
-void MainWindow::on_horizontalSlider_Duration_valueChanged(int value)
-{
-    if(ui->horizontalSlider_Duration->isSliderDown()) {
-        M_Player->setPosition(value * 1000);
-    }
-}
+//void MainWindow::on_horizontalSlider_Duration_valueChanged(int value)
+//{
+//    if(ui->horizontalSlider_Duration->isSliderDown()) {
+//        M_Player->setPosition(value * 1000);
+//    }
+//}

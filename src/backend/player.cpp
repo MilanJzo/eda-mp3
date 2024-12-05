@@ -6,6 +6,8 @@
 #include <QMediaPlayer>
 #include <QAudioOutput>
 
+player *player::instance = nullptr;
+
 player::player(): M_Player(new QMediaPlayer()), audioOutput(new QAudioOutput()),isPlaying(false), isMuted(false)
 {
     volScale = 100;
@@ -13,8 +15,6 @@ player::player(): M_Player(new QMediaPlayer()), audioOutput(new QAudioOutput()),
     audioOutput->setVolume(vol);
     M_Player->setAudioOutput(audioOutput);
 }
-
-player *player::instance = nullptr;
 
 void player::togglePlay()
 {
@@ -42,7 +42,7 @@ void player::setVolume(const int value)
 }
 void player::setPosition(const int value) const
 {
-    M_Player->setPosition(value);
+    M_Player->setPosition(value * 1000);
 }
 
 void player::skipToNextSong()

@@ -13,6 +13,8 @@
 controls::controls(QWidget *parent) :
     QWidget(parent), ui(new Ui::controls) {
     ui->setupUi(this);
+
+    ui->progress->setRange(0, static_cast<int>(player::getInstance()->getDuration() / 1000));
 }
 
 controls::~controls() {
@@ -52,9 +54,12 @@ void controls::on_shuffle_clicked()
 }
 
 
-void controls::on_progress_valueChanged(const int value)
+void controls::on_progress_valueChanged(const int value) const
 {
-    player::getInstance()->setPosition(value);
+    if (ui->progress->isSliderDown())
+    {
+        player::getInstance()->setPosition(value);
+    }
 }
 
 
