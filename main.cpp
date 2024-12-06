@@ -1,6 +1,7 @@
 #include "./src/frontend/mainwindow.h"
 
 #include <QApplication>
+#include <QFile>
 #include <QLocale>
 #include <QTranslator>
 
@@ -8,14 +9,10 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    QTranslator translator;
-    const QStringList uiLanguages = QLocale::system().uiLanguages();
-    for (const QString &locale : uiLanguages) {
-        if (const QString baseName = "eda-mp3_" + QLocale(locale).name(); translator.load(":/i18n/" + baseName)) {
-            QApplication::installTranslator(&translator);
-            break;
-        }
-    }
+    QFile styleSheet(":styles/style.qss");
+    styleSheet.open(QFile::ReadOnly);
+    a.setStyleSheet(styleSheet.readAll());
+
     MainWindow w;
     w.show();
     return QApplication::exec();

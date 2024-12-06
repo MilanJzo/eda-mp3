@@ -31,7 +31,7 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="QWidget" name="content" native="true">
+     <widget class="QWidget" name="mainContent" native="true">
       <property name="minimumSize">
        <size>
         <width>1080</width>
@@ -39,9 +39,7 @@
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">#content {
-	background-color: rgb(53, 53, 53);
-}</string>
+       <string notr="true"/>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <property name="spacing">
@@ -79,10 +77,7 @@
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">#playlistHolder {
-	background-color: rgb(35, 35, 35);
-	border-radius: 15px;
-}</string>
+            <string notr="true"/>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_6">
             <property name="spacing">
@@ -106,10 +101,7 @@
          <item>
           <widget class="QWidget" name="libraryEditorHolder" native="true">
            <property name="styleSheet">
-            <string notr="true">#libraryEditorHolder {
-	background-color: rgb(35, 35, 35);
-	border-radius: 15px;
-}</string>
+            <string notr="true"/>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_4">
             <property name="spacing">
@@ -145,10 +137,7 @@
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">#queueHolder {
-	background-color: rgb(35, 35, 35);
-	border-radius: 15px;
-}</string>
+            <string notr="true"/>
            </property>
            <layout class="QVBoxLayout" name="y21">
             <property name="spacing">
@@ -186,10 +175,7 @@
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">#controlsHolder {
-	background-color: rgb(35, 35, 35);
-	border-radius: 15px;
-}</string>
+          <string notr="true"/>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_7">
           <property name="spacing">
