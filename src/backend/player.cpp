@@ -14,6 +14,10 @@ player::player(): M_Player(new QMediaPlayer()), audioOutput(new QAudioOutput()),
     vol = static_cast<qfloat16>(10/volScale);
     audioOutput->setVolume(vol);
     M_Player->setAudioOutput(audioOutput);
+
+    //Nur zu Testzwecken
+    const QString filePath = QDir::homePath() + "/Desktop/song.mp3";
+    setSong(filePath);
 }
 
 
@@ -41,15 +45,15 @@ player* player::getInstance()
     if (instance == nullptr){ instance = new player(); }
     return instance;
 }
-void player::setVolume(const int value)
+void player::setVolume(const int volume)
 {
-    vol = static_cast<qfloat16>(value/volScale);
+    vol = static_cast<qfloat16>(volume/volScale);
     audioOutput->setVolume(vol);
     M_Player->setAudioOutput(audioOutput);
 }
-void player::setPosition(const int value) const
+void player::setPosition(const int position) const
 {
-    M_Player->setPosition(value * 1000);
+    M_Player->setPosition(position * 1000);
 }
 
 void player::skipToNextSong()
@@ -73,15 +77,11 @@ void player::toggleMute()
     audioOutput->setMuted(isMuted);
 }
 
-void player::durationChanged(const qint64 duration)
+void player::updatePosition() const
 {
-    //TODO: Implement
+    emit setPosition(static_cast<int>(M_Player->position()));
 }
 
-void player::positionChanged(const qint64 progress)
-{
-    //TODO: Implement
-}
 
 
 

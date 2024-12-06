@@ -16,16 +16,17 @@ public:
 
 signals:
     void togglePlay();
-    void setVolume(int value);
+    void setVolume(int volume);
     void skipToNextSong();
     void skipToLastSong();
     void toggleShuffle();
     void toggleMute();
-    void setPosition(int value) const;
+    void setPosition(int position) const;
     void setSong(QString filePath) const;
+    void updatePosition() const;
 
-    void durationChanged(qint64 duration);
     void positionChanged(qint64 progress);
+    void setDuration(int duration);
 
     [[nodiscard]] bool getIsPlaying() const { return isPlaying; }
     [[nodiscard]] bool getIsMuted() const {return isMuted; }
@@ -36,9 +37,9 @@ private:
     QMediaPlayer* M_Player;
     static player* instance;
     QAudioOutput* audioOutput;
+
     qfloat16 vol;
     qfloat16 volScale;
-
 
     bool isPlaying;
     bool isMuted;

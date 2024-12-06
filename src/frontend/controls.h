@@ -12,7 +12,7 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class controls; }
 QT_END_NAMESPACE
 
-class controls : public QWidget {
+class controls final : public QWidget {
 Q_OBJECT
 
 public:
@@ -30,11 +30,15 @@ private slots:
 
     void on_progress_valueChanged(int value) const;
 
+    void setProgressRange(int value) const;
+
+    void updateTimeLabels(int progress) const;
+
     void on_volumeButton_clicked() const;
 
     void on_volumeSlider_valueChanged(int value);
 
-
+    void on_progress_sliderReleased() const;
 private:
     Ui::controls *ui;
 };
