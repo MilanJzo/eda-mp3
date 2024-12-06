@@ -47,6 +47,8 @@ set(PROJECT_SOURCES
         src/frontend/librarysong.cpp
         src/frontend/librarysong.h
         src/frontend/librarysong.ui
+        src/backend/song.cpp
+        src/backend/song.h
 
 )
 
@@ -96,7 +98,9 @@ set_target_properties(eda-mp3 PROPERTIES
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     MACOSX_BUNDLE TRUE
-    WIN32_EXECUTABLE TRUE
+
+    # TODO might have to turn this on some time later, but for now it should be off so console output is visible on windows
+    WIN32_EXECUTABLE OFF
 )
 
 include(GNUInstallDirs)

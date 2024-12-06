@@ -13,7 +13,7 @@
 
 libraryManager *libraryManager::instance = nullptr;
 
-libraryManager::libraryManager() : library(QStringList()) {
+libraryManager::libraryManager() : library(QVector<song>()) {
     loadLibrary();
 }
 
@@ -21,6 +21,17 @@ libraryManager* libraryManager::getInstance()
 {
     if (instance == nullptr) { instance = new libraryManager(); }
     return instance;
+}
+
+void libraryManager::loadDirIntoLibrary(const QString &dir)
+{
+    QMediaPlayer temporaryPlayer(new QMediaPlayer());
+    QStringList mp3Files = getMP3FilenamesFromDirectory(dir);
+
+    for (const auto& mp3_file: mp3Files) {
+        library.append(song(QUrl::fromLocalFile(dir + "/" + mp3_file), mp3_file, "Unknown", "Unknown"));
+    }
+
 }
 
 void libraryManager::loadLibrary()
@@ -33,7 +44,7 @@ void libraryManager::loadLibrary()
 
     QTextStream stream(&file);
     while (!stream.atEnd()) {
-        library.append(getMP3FilesFromDirectory(stream.readLine()));
+        loadDirIntoLibrary(stream.readLine());
     }
 
     file.close();
@@ -61,11 +72,11 @@ void libraryManager::addDirectory() {
     stream << dir << "\n";
     file.close();
 
-    library.append(getMP3FilesFromDirectory(dir));
+    loadDirIntoLibrary(dir);
     qDebug() << "Added directory to library";
 }
 
-QStringList libraryManager::getMP3FilesFromDirectory(const QString& pathToDir)
+QStringList libraryManager::getMP3FilenamesFromDirectory(const QString& pathToDir)
 {
     const QDir dir(pathToDir);
     QStringList filters;

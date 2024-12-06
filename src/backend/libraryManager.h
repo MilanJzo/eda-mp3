@@ -7,20 +7,23 @@
 
 #include <QStringList>
 
+#include "song.h"
+
 
 class libraryManager {
 public:
     void addDirectory();
     static libraryManager* getInstance();
-    static QStringList  getMP3FilesFromDirectory(const QString &pathToDir);
-    [[nodiscard]] QStringList getLibrary() const { return library; };
+    static QStringList  getMP3FilenamesFromDirectory(const QString &pathToDir);
+    [[nodiscard]] QVector<song> getLibrary() const { return library; };
 
 private:
     static libraryManager* instance;
-    QStringList library;
+    QVector<song> library;
 
     libraryManager();
     void loadLibrary();
+    void loadDirIntoLibrary(const QString &dir);
 
 };
 

@@ -13,8 +13,7 @@
 #include "ui_library.h"
 #include "../backend/libraryManager.h"
 
-// #include <taglib/fileref.h>
-// #include <taglib/tag.h>
+
 
 library::library(QWidget *parent) :
     QWidget(parent), ui(new Ui::library) {
@@ -24,21 +23,15 @@ library::library(QWidget *parent) :
     renderSongs(manager->getLibrary());
 }
 
-void library::renderSongs(const QStringList &songs) {
+void library::renderSongs(const QVector<song> &songs) {
     QMediaPlayer temporaryPlayer;
-    foreach (const QString &song, songs)
-    {
-        // temporaryPlayer.setSource(QUrl::fromLocalFile(song));
-        // QMediaMetaData metaData = temporaryPlayer.metaData();
-        // QString title = metaData.value(QMediaMetaData::Title).toString();
-        // QString artist = metaData.value(QMediaMetaData::Author).toString();
+    for (auto &song: songs) {
+        const auto item = new QListWidgetItem();
+        const auto songWidget = new librarysong(this, song.getTitle(), song.getArtist());
+        item->setSizeHint(songWidget->sizeHint());
 
-        qDebug() << "Rendering song: " << song;
-        // TagLib::FileRef file((song.toStdString().c_str()));
-        // QString title = file.tag()->title().toCString(true);
-        // QString artist = file.tag()->artist().toCString(true);
-        //
-        // ui->scrollArea->layout()->addWidget(new librarysong(this, title, artist));
+        ui->songList->addItem(item);
+        ui->songList->setItemWidget(item, songWidget);
     }
     qDebug() << "Rendered songs";
 }

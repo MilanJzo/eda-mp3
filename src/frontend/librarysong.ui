@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>547</width>
+    <width>400</width>
     <height>80</height>
    </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>16777215</height>
+   </size>
   </property>
   <property name="font">
    <font>
@@ -51,7 +57,10 @@
      <property name="styleSheet">
       <string notr="true">#content {
 	border-radius: 15px;
-	background-color: rgb(35, 35, 35);
+}
+
+#content:hover {
+	background-color: rgb(53, 53, 53);
 }
 
 QPushButton {
@@ -62,8 +71,6 @@ QPushButton {
 
 	border: none;
 	border-radius: 15px;
-
-	background-color: rgb(35, 35, 35);
 }
 
 QPushButton:hover {
@@ -103,30 +110,32 @@ QPushButton:hover {
        </widget>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="metaLayout">
-        <property name="spacing">
-         <number>0</number>
-        </property>
-        <item>
-         <widget class="QLabel" name="title">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Song-Title</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="artist">
-          <property name="text">
-           <string>Artist</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+       <widget class="QWidget" name="meta" native="true">
+        <layout class="QVBoxLayout" name="metaLayout">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="title">
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Song-Title</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="artist">
+           <property name="text">
+            <string>Artist</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </item>
       <item>
        <widget class="QWidget" name="buttons" native="true">
