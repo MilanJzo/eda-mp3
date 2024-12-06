@@ -49,11 +49,11 @@ void MainWindow::updateDuration(qint64 duration)
     }
 }
 
-void MainWindow::durationChanged(qint64 duration)
-{
-    Mduration = duration / 1000;
-    ui->horizontalSlider_Duration->setMaximum(Mduration);
-}
+//void MainWindow::durationChanged(qint64 duration)
+//{
+//    Mduration = duration / 1000;
+//    ui->horizontalSlider_Duration->setMaximum(Mduration);
+//}
 
 void MainWindow::positionChanged(qint64 progress)
 {
@@ -61,6 +61,13 @@ void MainWindow::positionChanged(qint64 progress)
         ui->horizontalSlider_Duration->setValue(progress / 1000);
     }
     updateDuration(progress / 1000);
+}
+
+void MainWindow::on_horizontalSlider_Duration_valueChanged(int value)
+{
+    if(ui->horizontalSlider_Duration->isSliderDown()) {
+        M_Player->setPosition(value * 1000);
+    }
 }
 
 void MainWindow::on_actionOpen_File_triggered() {
@@ -103,9 +110,4 @@ void MainWindow::on_actionOpen_File_triggered() {
 //    M_Player->setPosition(ui->horizontalSlider_Duration->value()*1000);
 //}
 
-//void MainWindow::on_horizontalSlider_Duration_valueChanged(int value)
-//{
-//    if(ui->horizontalSlider_Duration->isSliderDown()) {
-//        M_Player->setPosition(value * 1000);
-//    }
-//}
+
