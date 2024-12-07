@@ -22,10 +22,12 @@ signals:
     void toggleShuffle();
     void toggleMute();
     void setPosition(int position) const;
-    void setSong(QString filePath) const;
+    void setSong(QUrl fileUrl) const;
     void updatePosition() const;
 
     void positionChanged(qint64 progress);
+    void durationChanged(qint64 duration) const;
+
     void setDuration(int duration);
 
     [[nodiscard]] bool getIsPlaying() const { return isPlaying; }

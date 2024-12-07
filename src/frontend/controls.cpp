@@ -16,8 +16,9 @@ controls::controls(QWidget *parent) :
 
     Player = player::getInstance();
 
-    // connect(M_Player, &player::positionChanged, this, &controls::updateTimeLabels);
-    // connect(M_Player, &player::setDuration, this, &controls::setProgressRange);
+    // connect(Player, &player::durationChanged, this, &controls::setProgressSliderRange);
+    // connect(Player, &player::positionChanged, this, &controls::updateTimeLabels);
+    // connect(Player, &player::setDuration, this, &controls::setProgressRange);
 }
 
 controls::~controls() {

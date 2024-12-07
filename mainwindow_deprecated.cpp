@@ -22,7 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
 //    audioOutput->setVolume(vol);
 //    M_Player->setAudioOutput(audioOutput);
 
-    connect(ui->verticalSlider_Volume, &QSlider::valueChanged, this, &MainWindow::on_verticalSlider_Volume_valueChanged);
+//    connect(ui->verticalSlider_Volume, &QSlider::valueChanged, this, &MainWindow::on_verticalSlider_Volume_valueChanged);
 
     connect(M_Player, &QMediaPlayer::durationChanged, this, &MainWindow::durationChanged);
     connect(M_Player, &QMediaPlayer::positionChanged, this, &MainWindow::positionChanged);

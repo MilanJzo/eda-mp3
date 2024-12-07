@@ -17,13 +17,15 @@ player::player(): M_Player(new QMediaPlayer()), audioOutput(new QAudioOutput()),
 
     //Nur zu Testzwecken
     const QString filePath = QDir::homePath() + "/Desktop/song.mp3";
+    QUrl fileUrl = QUrl::fromLocalFile(filePath);
     setSong(filePath);
 }
 
 
-void player::setSong(QString filePath) const
+void player::setSong(QUrl fileUrl) const
 {
-    M_Player->setSource(QUrl::fromLocalFile(filePath));
+    M_Player->setSource(fileUrl);
+    // emit durationChanged(M_Player->duration());
 }
 
 
@@ -75,11 +77,6 @@ void player::toggleMute()
 {
     isMuted = !isMuted;
     audioOutput->setMuted(isMuted);
-}
-
-void player::updatePosition() const
-{
-    emit setPosition(static_cast<int>(M_Player->position()));
 }
 
 
