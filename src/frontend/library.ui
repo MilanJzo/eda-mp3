@@ -32,32 +32,7 @@
    <item>
     <widget class="QWidget" name="content" native="true">
      <property name="styleSheet">
-      <string notr="true">* {
-	background-color: rgb(35, 35, 35);
-}
-
-#content {
-	border-radius: 15px;
-}
-
-#scrollArea {
-	border: none;
-}
-
-QPushButton {
-	min-width: 30px;
-	min-height: 30px;
-	max-height: 30px;
-
-	border: none;
-	border-radius: 15px;
-
-	background-color: rgb(35, 35, 35);
-}
-
-QPushButton:hover {
-	background-color: rgb(53, 53, 53);
-}</string>
+      <string notr="true"/>
      </property>
      <layout class="QVBoxLayout" name="contentLayout">
       <property name="spacing">
@@ -96,21 +71,21 @@ QPushButton:hover {
          <widget class="QPushButton" name="addButton">
           <property name="minimumSize">
            <size>
-            <width>30</width>
-            <height>30</height>
+            <width>0</width>
+            <height>0</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
             <width>28</width>
-            <height>30</height>
+            <height>16777215</height>
            </size>
           </property>
           <property name="text">
            <string/>
           </property>
           <property name="icon">
-           <iconset resource="../../icons/resources.qrc">
+           <iconset resource="../../resources/resources.qrc">
             <normaloff>:/icon/add.svg</normaloff>:/icon/add.svg</iconset>
           </property>
          </widget>
@@ -126,10 +101,7 @@ QPushButton:hover {
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">#search {
-	border: 1px solid rgb(255, 255, 255) ;
-	border-radius: 15px;
-}</string>
+         <string notr="true"/>
         </property>
         <layout class="QHBoxLayout" name="searchLayout">
          <property name="spacing">
@@ -150,10 +122,7 @@ QPushButton:hover {
          <item>
           <widget class="QLineEdit" name="searchInput">
            <property name="styleSheet">
-            <string notr="true">#searchInput {
-	border: none;
-	border-radius: 15px;
-}</string>
+            <string notr="true"/>
            </property>
            <property name="placeholderText">
             <string>find your favorite Song...</string>
@@ -166,7 +135,7 @@ QPushButton:hover {
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="../../icons/resources.qrc">
+            <iconset resource="../../resources/resources.qrc">
              <normaloff>:/icon/search.svg</normaloff>:/icon/search.svg</iconset>
            </property>
           </widget>
@@ -201,7 +170,7 @@ QPushButton:hover {
          <enum>QAbstractItemView::ScrollMode::ScrollPerPixel</enum>
         </property>
         <property name="resizeMode">
-         <enum>QListView::ResizeMode::Adjust</enum>
+         <enum>QListView::ResizeMode::Fixed</enum>
         </property>
        </widget>
       </item>
@@ -219,7 +188,7 @@ QPushButton:hover {
   </action>
  </widget>
  <resources>
-  <include location="../../icons/resources.qrc"/>
+  <include location="../../resources/resources.qrc"/>
  </resources>
  <connections/>
 </ui>

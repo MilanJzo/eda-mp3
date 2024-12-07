@@ -1,0 +1,57 @@
+/* Main window style */
+QMainWindow {
+    background-color: #353535;
+}
+
+/* Central widget style */
+#content {
+    border-radius: 15px;
+    background-color: #232323;
+}
+
+#songContent {
+    border-radius: 15px;
+    background-color: #232323;
+}
+
+#songContent:hover {
+    background-color: #353535;
+}
+
+/* styles by element */
+QListWidget {
+    border: 0px;
+    background-color: #232323;
+}
+
+QPushButton {
+    padding: 5px;
+
+    border: 0px;
+    border-radius: 10px;
+}
+
+QPushButton:hover {
+    background-color: #353535;
+}
+
+#playDirectly:hover, #addToQueue:hover, #addToPlaylist:hover {
+    background-color: #232323;
+}
+
+/* Slider styles */
+QSlider::groove:horizontal {
+
+}
+
+QSlider::handle:horizontal {
+
+}
+
+QSlider::handle:horizontal:hover {
+    background: #45a049;
+}
+
+QSlider::handle:horizontal:pressed {
+
+}

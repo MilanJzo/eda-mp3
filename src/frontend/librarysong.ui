@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>334</width>
     <height>80</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="maximumSize">
    <size>
@@ -41,7 +47,13 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QWidget" name="content" native="true">
+    <widget class="QWidget" name="songContent" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -55,27 +67,7 @@
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">#content {
-	border-radius: 15px;
-}
-
-#content:hover {
-	background-color: rgb(53, 53, 53);
-}
-
-QPushButton {
-	min-width: 30px;
-	max-width: 30px;
-	min-height: 30px;
-	max-height: 30px;
-
-	border: none;
-	border-radius: 15px;
-}
-
-QPushButton:hover {
-	background-color: rgb(53, 53, 53);
-}</string>
+      <string notr="true"/>
      </property>
      <layout class="QHBoxLayout" name="contentLayout">
       <property name="spacing">
@@ -111,12 +103,24 @@ QPushButton:hover {
       </item>
       <item>
        <widget class="QWidget" name="meta" native="true">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <layout class="QVBoxLayout" name="metaLayout">
          <property name="spacing">
           <number>0</number>
          </property>
          <item>
           <widget class="QLabel" name="title">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="font">
             <font>
              <pointsize>12</pointsize>
@@ -125,10 +129,19 @@ QPushButton:hover {
            <property name="text">
             <string>Song-Title</string>
            </property>
+           <property name="textFormat">
+            <enum>Qt::TextFormat::AutoText</enum>
+           </property>
           </widget>
          </item>
          <item>
           <widget class="QLabel" name="artist">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="text">
             <string>Artist</string>
            </property>
@@ -150,12 +163,12 @@ QPushButton:hover {
           <number>10</number>
          </property>
          <item>
-          <widget class="QPushButton" name="playDirexctly">
+          <widget class="QPushButton" name="playDirectly">
            <property name="text">
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="../../icons/resources.qrc">
+            <iconset resource="../../resources/resources.qrc">
              <normaloff>:/icon/play.svg</normaloff>:/icon/play.svg</iconset>
            </property>
           </widget>
@@ -166,18 +179,18 @@ QPushButton:hover {
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="../../icons/resources.qrc">
+            <iconset resource="../../resources/resources.qrc">
              <normaloff>:/icon/list-music.svg</normaloff>:/icon/list-music.svg</iconset>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="addToLibrary">
+          <widget class="QPushButton" name="addToPlaylist">
            <property name="text">
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="../../icons/resources.qrc">
+            <iconset resource="../../resources/resources.qrc">
              <normaloff>:/icon/disc.svg</normaloff>:/icon/disc.svg</iconset>
            </property>
           </widget>
@@ -191,7 +204,7 @@ QPushButton:hover {
   </layout>
  </widget>
  <resources>
-  <include location="../../icons/resources.qrc"/>
+  <include location="../../resources/resources.qrc"/>
  </resources>
  <connections/>
 </ui>

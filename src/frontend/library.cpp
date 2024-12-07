@@ -24,9 +24,8 @@ library::library(QWidget *parent) :
 }
 
 void library::renderSongs(const QVector<song> &songs) {
-    QMediaPlayer temporaryPlayer;
     for (auto &song: songs) {
-        const auto item = new QListWidgetItem();
+        const auto item = new QListWidgetItem(ui->songList);
         const auto songWidget = new librarysong(this, song.getTitle(), song.getArtist());
         item->setSizeHint(songWidget->sizeHint());
 

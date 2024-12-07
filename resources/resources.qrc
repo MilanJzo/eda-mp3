@@ -20,4 +20,7 @@
         <file>volume-off.svg</file>
         <file>volume-on.svg</file>
     </qresource>
+    <qresource prefix="/styles">
+        <file>style.qss</file>
+    </qresource>
 </RCC>
