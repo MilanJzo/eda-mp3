@@ -12,7 +12,7 @@ player::player(): M_Player(new QMediaPlayer()), audioOutput(new QAudioOutput()),
 {
     volScale = 100;
     vol = static_cast<qfloat16>(10/volScale);
-    audioOutput->setVolume(vol);
+    audioOutput->setVolume(static_cast<float>(vol));
     M_Player->setAudioOutput(audioOutput);
 
     //Nur zu Testzwecken

@@ -66,11 +66,11 @@ void controls::on_volumeButton_clicked() const
 
     if (Player->getIsMuted())
     {
-        ui->volumeButton->setIcon(QIcon(":icon/volume-on.svg"));
+        ui->volumeButton->setIcon(QIcon(":icon/volume-off.svg"));
     }
     else
     {
-        ui->volumeButton->setIcon(QIcon(":icon/volume-off.svg"));
+        ui->volumeButton->setIcon(QIcon(":icon/volume-on.svg"));
     }
 }
 
