@@ -21,9 +21,7 @@ public:
     explicit librarysong(QWidget *parent = nullptr, const song &s = song(QUrl(), "Unknown", "Unknown"));
     ~librarysong() override;
 
-void on_playDirectly_clicked();
-
-void onPlayDirectlyClicked();
+    void on_playDirectly_clicked() const;
 
 private:
     Ui::librarysong *ui;

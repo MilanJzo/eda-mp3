@@ -24,20 +24,7 @@ librarysong::~librarysong() {
     delete ui;
 }
 
-// void librarysong::on_playDirectly_clicked()
-// {
-//     qDebug() << "Playing song directly";
-//
-//     player *player = player::getInstance();
-//     player->setSong(thisSong.getUrl().toString());
-//     player->togglePlay();
-//
-//     qDebug() << "Playing song: " << thisSong.getTitle();
-// }
-
-
-void librarysong::on_playDirectly_clicked()
-{
+void librarysong::on_playDirectly_clicked() const {
     qDebug() << "Playing song directly";
 
     player *player = player::getInstance();
