@@ -14,8 +14,10 @@ controls::controls(QWidget *parent) :
     QWidget(parent), ui(new Ui::controls) {
     ui->setupUi(this);
 
-    // connect(player::getInstance(), &player::positionChanged, this, &controls::updateTimeLabels);
-    // connect(player::getInstance(), &player::setDuration, this, &controls::setProgressRange);
+    Player = player::getInstance();
+
+    // connect(M_Player, &player::positionChanged, this, &controls::updateTimeLabels);
+    // connect(M_Player, &player::setDuration, this, &controls::setProgressRange);
 }
 
 controls::~controls() {
@@ -24,9 +26,9 @@ controls::~controls() {
 
 void controls::on_playPause_clicked() const
 {
-    player::getInstance()->togglePlay();
+    Player->togglePlay();
 
-    if (player::getInstance()->getIsPlaying())
+    if (Player->getIsPlaying())
     {
         ui->playPause->setIcon(QIcon(":icon/pause.svg"));
     }
@@ -40,29 +42,29 @@ void controls::on_playPause_clicked() const
 void controls::on_skipBackwards_clicked()
 {
     //TODO: Implement
-    player::getInstance()->skipToLastSong();
+    Player->skipToLastSong();
 }
 
 
 void controls::on_skipForwards_clicked()
 {
     //TODO: Implement
-    player::getInstance()->skipToNextSong();
+    Player->skipToNextSong();
 }
 
 
 void controls::on_shuffle_clicked()
 {
     //TODO: Implement
-    player::getInstance()->toggleShuffle();
+    Player->toggleShuffle();
 }
 
 
 void controls::on_volumeButton_clicked() const
 {
-    player::getInstance()->toggleMute();
+    Player->toggleMute();
 
-    if (player::getInstance()->getIsMuted())
+    if (Player->getIsMuted())
     {
         ui->volumeButton->setIcon(QIcon(":icon/volume-on.svg"));
     }
@@ -75,7 +77,7 @@ void controls::on_volumeButton_clicked() const
 
 void controls::on_volumeSlider_valueChanged(const int value)
 {
-    player::getInstance()->setVolume(value);
+    Player->setVolume(value);
 }
 
 
@@ -83,7 +85,7 @@ void controls::on_progress_valueChanged(const int value) const
 {
     if (ui->progress->isSliderDown())
     {
-        player::getInstance()->setPosition(value);
+        Player->setPosition(value);
     }
     else
     {
@@ -101,7 +103,7 @@ void controls::setProgressRange(const int value) const
 void controls::updateTimeLabels(const int progress) const
 {
     const QTime currentTime((progress/3600) % 60,(progress/60) % 60,progress % 60,(progress * 1000) % 1000);
-    const int duration = static_cast<int>(player::getInstance()->getDuration());
+    const int duration = static_cast<int>(Player->getDuration());
     const QTime totalTime((duration/3600) % 60,(duration/60) % 60,duration % 60,(duration * 1000) % 1000);
     QString format = "mm:ss";
     if (duration > 3600)
@@ -113,6 +115,6 @@ void controls::updateTimeLabels(const int progress) const
 
 void controls::on_progress_sliderReleased() const
 {
-    player::getInstance()->setPosition(ui->progress->value());
+    Player->setPosition(ui->progress->value());
 }
 

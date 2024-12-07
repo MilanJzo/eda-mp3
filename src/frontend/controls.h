@@ -8,6 +8,7 @@
 #include <QWidget>
 
 
+class player;
 QT_BEGIN_NAMESPACE
 namespace Ui { class controls; }
 QT_END_NAMESPACE
@@ -41,6 +42,7 @@ private slots:
     void on_progress_sliderReleased() const;
 private:
     Ui::controls *ui;
+    player* Player;
 };
 
 
