@@ -23,10 +23,11 @@ library::library(QWidget *parent) :
     renderSongs(manager->getLibrary());
 }
 
-void library::renderSongs(const QVector<song> &songs) {
-    for (auto &song: songs) {
+void library::renderSongs(QVector<song> songs) {
+    for (const song &song: songs) {
         const auto item = new QListWidgetItem(ui->songList);
-        const auto songWidget = new librarysong(this, song.getTitle(), song.getArtist());
+        const auto songWidget = new librarysong(this, song);
+
         item->setSizeHint(songWidget->sizeHint());
 
         ui->songList->addItem(item);

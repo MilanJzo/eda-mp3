@@ -6,15 +6,44 @@
 
 #include "librarysong.h"
 #include "ui_librarysong.h"
+#include "../backend/player.h"
 
 
-librarysong::librarysong(QWidget *parent, const QString &title, const QString &artist) :
-    QWidget(parent), ui(new Ui::librarysong) {
+librarysong::librarysong(QWidget *parent, const song &s) :
+    QWidget(parent), ui(new Ui::librarysong), thisSong(s) {
+
     ui->setupUi(this);
-    ui->title->setText(title);
-    ui->artist->setText(artist);
+
+    ui->title->setText(s.getTitle());
+    ui->artist->setText(s.getArtist());
+
+    connect(ui->playDirectly, &QPushButton::clicked, this, &librarysong::on_playDirectly_clicked);
 }
 
 librarysong::~librarysong() {
     delete ui;
 }
+
+// void librarysong::on_playDirectly_clicked()
+// {
+//     qDebug() << "Playing song directly";
+//
+//     player *player = player::getInstance();
+//     player->setSong(thisSong.getUrl().toString());
+//     player->togglePlay();
+//
+//     qDebug() << "Playing song: " << thisSong.getTitle();
+// }
+
+
+void librarysong::on_playDirectly_clicked()
+{
+    qDebug() << "Playing song directly";
+
+    player *player = player::getInstance();
+    player->setSong(thisSong.getUrl().toString());
+    player->togglePlay();
+
+    qDebug() << "Playing song: " << thisSong.getTitle();
+}
+

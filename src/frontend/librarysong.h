@@ -7,6 +7,8 @@
 
 #include <QWidget>
 
+#include "../backend/song.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class librarysong; }
@@ -16,11 +18,16 @@ class librarysong : public QWidget {
 Q_OBJECT
 
 public:
-    explicit librarysong(QWidget *parent = nullptr, const QString &title = "", const QString &artist = "");
+    explicit librarysong(QWidget *parent = nullptr, const song &s = song(QUrl(), "Unknown", "Unknown"));
     ~librarysong() override;
+
+void on_playDirectly_clicked();
+
+void onPlayDirectlyClicked();
 
 private:
     Ui::librarysong *ui;
+    song thisSong;
 };
 
 

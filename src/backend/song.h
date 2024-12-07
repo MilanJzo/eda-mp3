@@ -9,7 +9,7 @@
 
 class song {
 public:
-    song(QUrl url, QString title, QString artist, QString album);
+    song(QUrl url, QString title, QString artist);
     ~song();
 
     [[nodiscard]] QUrl getUrl() const { return url; }

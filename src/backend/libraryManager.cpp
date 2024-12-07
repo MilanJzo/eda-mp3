@@ -29,7 +29,7 @@ void libraryManager::loadDirIntoLibrary(const QString &dir)
     QStringList mp3Files = getMP3FilenamesFromDirectory(dir);
 
     for (const auto& mp3_file: mp3Files) {
-        library.append(song(QUrl::fromLocalFile(dir + "/" + mp3_file), mp3_file, "Unknown", "Unknown"));
+        library.append(song(QUrl::fromLocalFile(dir + "/" + mp3_file), mp3_file, "Unknown"));
     }
 }
 

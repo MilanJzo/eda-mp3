@@ -9,13 +9,12 @@
 song::song(
     QUrl url,
     QString title,
-    QString artist,
-    QString album
+    QString artist
     ) :
 url(std::move(url)),
 title(std::move(title.slice(0, title.lastIndexOf('.')))),
-artist(std::move(artist)),
-album(std::move(album)) {
+artist(std::move(artist))
+{
 
 
 

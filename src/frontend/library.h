@@ -30,7 +30,7 @@ private:
     Ui::library *ui;
     libraryManager *manager;
 
-    void renderSongs(const QVector<song> &songs);
+    void renderSongs(QVector<song> songs);
 };
 
 
