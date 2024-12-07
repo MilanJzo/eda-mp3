@@ -29,9 +29,9 @@ private slots:
 
     void on_shuffle_clicked();
 
-    void on_progress_valueChanged(int value) const;
+    void on_progressSlider_valueChanged(int value) const;
 
-    void setProgressRange(int value) const;
+    void setProgressSliderRange(int value) const;
 
     void updateTimeLabels(int progress) const;
 
@@ -39,7 +39,7 @@ private slots:
 
     void on_volumeSlider_valueChanged(int value);
 
-    void on_progress_sliderReleased() const;
+    void on_progressSlider_sliderReleased() const;
 private:
     Ui::controls *ui;
     player* Player;

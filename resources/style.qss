@@ -49,7 +49,7 @@ QSlider::handle:horizontal {
 }
 
 QSlider::handle:horizontal:hover {
-    background: #45a049;
+
 }
 
 QSlider::handle:horizontal:pressed {

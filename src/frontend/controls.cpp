@@ -81,22 +81,22 @@ void controls::on_volumeSlider_valueChanged(const int value)
 }
 
 
-void controls::on_progress_valueChanged(const int value) const
+void controls::on_progressSlider_valueChanged(const int value) const
 {
-    if (ui->progress->isSliderDown())
+    if (ui->progressSlider->isSliderDown())
     {
         Player->setPosition(value);
     }
     else
     {
-        ui->progress->setValue(value);
+        ui->progressSlider->setValue(value);
     }
 }
 
 
-void controls::setProgressRange(const int value) const
+void controls::setProgressSliderRange(const int value) const
 {
-    ui->progress->setMaximum(value / 1000);
+    ui->progressSlider->setMaximum(value / 1000);
 }
 
 
@@ -113,8 +113,8 @@ void controls::updateTimeLabels(const int progress) const
 }
 
 
-void controls::on_progress_sliderReleased() const
+void controls::on_progressSlider_sliderReleased() const
 {
-    Player->setPosition(ui->progress->value());
+    Player->setPosition(ui->progressSlider->value());
 }
 
