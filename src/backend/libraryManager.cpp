@@ -72,6 +72,7 @@ void libraryManager::addDirectory() {
     file.close();
 
     loadDirIntoLibrary(dir);
+    emit libraryChanged();
     qDebug() << "Added directory to library";
 }
 

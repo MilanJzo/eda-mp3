@@ -15,7 +15,7 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class library; }
 QT_END_NAMESPACE
 
-class library : public QWidget {
+class library final : public QWidget {
 Q_OBJECT
 
 public:
@@ -25,6 +25,7 @@ public:
 
 private slots:
     void on_addButton_clicked() const;
+    void on_libraryChanged();
 
 private:
     Ui::library *ui;

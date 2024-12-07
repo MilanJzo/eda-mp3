@@ -16,6 +16,10 @@ public:
     [[nodiscard]] QString getTitle() const { return title; }
     [[nodiscard]] QString getArtist() const { return artist; }
 
+    QString toSaveString() const {
+        return url.toString() + ";" + title + ";" + artist;
+    }
+
 private:
     QUrl url;
     QString title;

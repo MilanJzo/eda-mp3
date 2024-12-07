@@ -21,9 +21,17 @@ library::library(QWidget *parent) :
 
     manager = libraryManager::getInstance();
     renderSongs(manager->getLibrary());
+
+    connect(manager, &libraryManager::libraryChanged, this, &library::on_libraryChanged);
+}
+
+void library::on_libraryChanged() {
+    renderSongs(manager->getLibrary());
 }
 
 void library::renderSongs(QVector<song> songs) {
+    ui->songList->clear();
+
     for (const song &song: songs) {
         const auto item = new QListWidgetItem(ui->songList);
         const auto songWidget = new librarysong(this, song);

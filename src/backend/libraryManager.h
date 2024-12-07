@@ -5,17 +5,22 @@
 #ifndef LIBRARYMANAGER_H
 #define LIBRARYMANAGER_H
 
+#include <QObject>
 #include <QStringList>
 
 #include "song.h"
 
 
-class libraryManager {
+class libraryManager final : public QObject {
+    Q_OBJECT
 public:
     void addDirectory();
     static libraryManager* getInstance();
     static QStringList  getMP3FilenamesFromDirectory(const QString &pathToDir);
     [[nodiscard]] QVector<song> getLibrary() const { return library; };
+
+signals:
+    void libraryChanged();
 
 private:
     static libraryManager* instance;
