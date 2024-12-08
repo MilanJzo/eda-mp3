@@ -26,9 +26,14 @@ void queue::onQueueChanged() {
 void queue::renderSongs() {
     ui->listWidget->clear();
 
-    for (const song &song: queueManager::getInstance()->getQueue()) {
+    auto queue = queueManager::getInstance()->getQueue();
+    for (int i = 0; i < queue.size(); i++) {
         const auto item = new QListWidgetItem(ui->listWidget);
-        const auto songWidget = new queueSong(this, song);
+        const auto songWidget = new queueSong(this, queue.at(i), i);
+
+        if (i == 0) {
+            songWidget->setStyleSheet("#songContent { background-color: #1A574B; }");
+        }
 
         item->setSizeHint(songWidget->sizeHint());
 

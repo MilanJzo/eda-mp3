@@ -9,8 +9,8 @@
 #include "../backend/queueManager.h"
 
 
-queueSong::queueSong(QWidget *parent, const song &s) :
-    QWidget(parent), ui(new Ui::queueSong), thisSong(s) {
+queueSong::queueSong(QWidget *parent, const song &s, const int index) :
+    QWidget(parent), ui(new Ui::queueSong), thisSong(s), index(index) {
     ui->setupUi(this);
 
     ui->cover->setPixmap(QPixmap::fromImage(s.getCover()));
@@ -22,7 +22,7 @@ queueSong::queueSong(QWidget *parent, const song &s) :
 }
 
 void queueSong::onRemoveFromQueueClicked() {
-    emit removeFromQueue(thisSong);
+    emit removeFromQueue(index);
 }
 
 queueSong::~queueSong() {

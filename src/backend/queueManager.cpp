@@ -51,19 +51,17 @@ void queueManager::prepend(const QVector<song> &s)
     emit queueChanged();
 }
 
-void queueManager::remove(const song &s)
+void queueManager::remove(const int index)
 {
-    for (int i = 0; i < queue.size(); i++)
+    queue.remove(index);
+    if (index == 0 && !queue.isEmpty())
     {
-        if (queue.at(i).getId() != s.getId()) continue;
-
-        queue.remove(i);
-
-        if (queue.isEmpty()) {
-            player::getInstance()->setSource(QUrl());
-            player::getInstance()->stop();
-        }
-        break;
+        player::getInstance()->setSource(queue.first().getUrl());
+        player::getInstance()->play();
+    } else if (queue.isEmpty())
+    {
+        player::getInstance()->stop();
+        player::getInstance()->setSource(QUrl());
     }
     emit queueChanged();
 }
@@ -153,7 +151,7 @@ void queueManager::onClearQueue()
     emit queueChanged();
 }
 
-void queueManager::onRemoveFromQueue(const song &s)
+void queueManager::onRemoveFromQueue(const int index)
 {
-    remove(s);
+    remove(index);
 }

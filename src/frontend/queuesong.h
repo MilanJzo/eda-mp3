@@ -18,18 +18,19 @@ class queueSong : public QWidget {
 Q_OBJECT
 
 public:
-    explicit queueSong(QWidget *parent = nullptr, const song &s = song(QUrl(), QImage(), "Unknown", "Unknown"));
+    explicit queueSong(QWidget *parent = nullptr, const song &s = song(QUrl(), QImage(), "Unknown", "Unknown"), int index = 0);
     ~queueSong() override;
 
 private slots:
     void onRemoveFromQueueClicked();
 
 signals:
-    void removeFromQueue(const song &s) const;
+    void removeFromQueue(int entryNum) const;
 
 private:
     Ui::queueSong *ui;
     song thisSong;
+    int index;
 };
 
 

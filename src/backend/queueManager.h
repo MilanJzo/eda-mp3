@@ -23,7 +23,7 @@ public:
     void append(const QVector<song> &s);
     void prepend(const song &s);
     void prepend(const QVector<song> &s);
-    void remove(const song &s);
+    void remove(int index);
 
     void skipForward();
     void skipBackward();
@@ -40,7 +40,7 @@ public slots:
     void onSkipForward();
     void onSkipBackward();
     void onClearQueue();
-    void onRemoveFromQueue(const song &s);
+    void onRemoveFromQueue(int index);
 
 signals:
     void queueChanged();
