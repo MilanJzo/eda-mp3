@@ -56,6 +56,9 @@ set(PROJECT_SOURCES
         src/backend/song.h
         src/backend/queueManager.cpp
         src/backend/queueManager.h
+        src/frontend/queuesong.cpp
+        src/frontend/queuesong.h
+        src/frontend/queuesong.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

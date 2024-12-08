@@ -22,14 +22,12 @@ public:
     explicit library(QWidget *parent = nullptr);
     ~library() override;
 
-
 private slots:
     void on_addButton_clicked() const;
     void on_libraryChanged();
 
 private:
     Ui::library *ui;
-    libraryManager *manager;
 
     void renderSongs(QVector<song> songs);
 };

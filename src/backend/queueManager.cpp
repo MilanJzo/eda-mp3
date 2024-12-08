@@ -17,37 +17,83 @@ queueManager *queueManager::getInstance()
 
 queueManager::queueManager() : queue(QVector<song>())
 {
-    Player = player::getInstance();
-
-    connect(Player, &QMediaPlayer::mediaStatusChanged, this, &queueManager::onMediaStatusChanged);
+    connect(player::getInstance(), QMediaPlayer::mediaStatusChanged, this, &queueManager::onMediaStatusChanged);
 }
 
 void queueManager::append(const song &s)
 {
     queue.append(s);
+    emit queueChanged();
 }
 
 void queueManager::prepend(const song &s)
 {
-    queue.prepend(s);
+    if (queue.isEmpty()) queue.append(s);
+    else queue.insert(1, s);
+    emit queueChanged();
 }
 
-QUrl queueManager::pop()
+void queueManager::skipForward()
 {
-    if (queue.isEmpty())
+    if (queue.size() > 1)
     {
-        return QUrl();
+        history.append(queue.first());
+        queue.removeFirst();
+        player::getInstance()->setSource(queue.first().getUrl());
+        player::getInstance()->play();
+        emit queueChanged();
     }
-    QUrl url = queue.first().getUrl();
-    queue.removeFirst();
-    return url;
+}
+
+void queueManager::skipBackward()
+{
+    if (!history.isEmpty())
+    {
+        queue.prepend(history.last());
+        history.removeLast();
+        player::getInstance()->setSource(queue.first().getUrl());
+        player::getInstance()->play();
+        emit queueChanged();
+    }
 }
 
 void queueManager::onMediaStatusChanged(const QMediaPlayer::MediaStatus status)
 {
-    if (status == QMediaPlayer::MediaStatus::EndOfMedia && !queue.isEmpty()) {
-        Player->setSource(pop());
-        Player->play();
+    if (status == QMediaPlayer::MediaStatus::EndOfMedia) {
+        skipForward();
     }
 }
 
+void queueManager::onPlayDirectly(const song &s)
+{
+    prepend(s);
+    if (queue.size() == 1)
+    {
+        player::getInstance()->setSource(queue.first().getUrl());
+        player::getInstance()->play();
+        return;
+    }
+    skipForward();
+}
+
+void queueManager::onAddToQueue(const song &s)
+{
+    append(s);
+}
+
+void queueManager::onSkipForward() {
+    skipForward();
+}
+
+void queueManager::onSkipBackward() {
+    skipBackward();
+}
+
+void queueManager::onClearQueue()
+{
+    queue.clear();
+    history.clear();
+    player::getInstance()->stop();
+    player::getInstance()->setSource(QUrl());
+    emit queueChanged();
+}

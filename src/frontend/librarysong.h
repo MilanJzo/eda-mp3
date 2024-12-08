@@ -22,7 +22,12 @@ public:
     ~librarysong() override;
 
 private slots:
-    void onPlayDirectlyClicked() const;
+    void onPlayDirectlyClicked();
+    void onAddToQueueClicked();
+
+signals:
+    void playDirectly(const song &s) const;
+    void addToQueue(const song &s) const;
 
 private:
     Ui::librarysong *ui;

@@ -124,14 +124,14 @@
               </font>
              </property>
              <property name="text">
-              <string>Song Title</string>
+              <string>Unknoen Song</string>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QLabel" name="artist">
              <property name="text">
-              <string>Artist</string>
+              <string>Unknown Artist</string>
              </property>
             </widget>
            </item>
