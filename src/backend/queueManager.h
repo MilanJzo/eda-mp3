@@ -20,7 +20,9 @@ public:
     [[nodiscard]] const QVector<song> &getQueue() const { return queue; }
 
     void append(const song &s);
+    void append(const QVector<song> &s);
     void prepend(const song &s);
+    void remove(const song &s);
 
     void skipForward();
     void skipBackward();
@@ -34,7 +36,7 @@ public slots:
     void onSkipForward();
     void onSkipBackward();
     void onClearQueue();
-    void onRemoveFromQueue(const int index);
+    void onRemoveFromQueue(const song &s);
 
 signals:
     void queueChanged();

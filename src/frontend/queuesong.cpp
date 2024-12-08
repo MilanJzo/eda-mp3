@@ -6,6 +6,7 @@
 
 #include "queuesong.h"
 #include "ui_queueSong.h"
+#include "../backend/queueManager.h"
 
 
 queueSong::queueSong(QWidget *parent, const song &s) :
@@ -17,6 +18,7 @@ queueSong::queueSong(QWidget *parent, const song &s) :
     ui->artist->setText(s.getArtist());
 
     connect(ui->removeFromQueue, QPushButton::clicked, this, &queueSong::onRemoveFromQueueClicked);
+    connect(this, removeFromQueue, queueManager::getInstance(), &queueManager::onRemoveFromQueue);
 }
 
 void queueSong::onRemoveFromQueueClicked() {
