@@ -37,7 +37,7 @@ controls::controls(QWidget *parent) :
     connect(ui->progressSlider, QSlider::sliderReleased, this, &controls::onProgressSliderReleased);
     connect(ui->progressSlider, QSlider::valueChanged, this, &controls::onProgressSliderValueChanged);
 
-    ui->volumeSlider->setValue(10);
+    ui->volumeSlider->setValue(50); // 5% volume
 }
 
 void controls::onDurationChanged(const qint64 duration) const

@@ -18,7 +18,7 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Widgets LinguistTool
 
 
 ## Add the path to the TagLib source code
-#set(TAGLIB_DIR "${CMAKE_SOURCE_DIR}/3rdparty/taglib-2.0.2")
+#set(TAGLIB_DIR "${CMAKE_SOURCE_DIR}/3rdpartyLibs/taglib-2.0.2")
 #add_subdirectory(
 #        ${TAGLIB_DIR}
 #)
@@ -54,6 +54,8 @@ set(PROJECT_SOURCES
         src/frontend/librarysong.ui
         src/backend/song.cpp
         src/backend/song.h
+        src/backend/queueManager.cpp
+        src/backend/queueManager.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

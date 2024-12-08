@@ -8,7 +8,7 @@
 #include <QDebug>
 #include <QFile>
 #include <QDir>
-#include <qeventloop.h>
+
 
 #include "player.h"
 
