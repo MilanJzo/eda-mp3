@@ -17,9 +17,7 @@ queueManager *queueManager::getInstance()
 
 queueManager::queueManager() : queue(QVector<song>())
 {
-    Player = player::getInstance();
-
-    connect(Player, QMediaPlayer::mediaStatusChanged, this, &queueManager::onMediaStatusChanged);
+    connect(player::getInstance(), QMediaPlayer::mediaStatusChanged, this, &queueManager::onMediaStatusChanged);
 }
 
 void queueManager::append(const song &s)
@@ -35,35 +33,67 @@ void queueManager::prepend(const song &s)
     emit queueChanged();
 }
 
-void queueManager::playNext()
+void queueManager::skipForward()
 {
     if (queue.size() > 1)
     {
         history.append(queue.first());
         queue.removeFirst();
-        Player->setSource(queue.first().getUrl());
-        Player->play();
+        player::getInstance()->setSource(queue.first().getUrl());
+        player::getInstance()->play();
         emit queueChanged();
     }
+}
 
-    Player->setSource(queue.first().getUrl());
-    Player->play();
+void queueManager::skipBackward()
+{
+    if (!history.isEmpty())
+    {
+        queue.prepend(history.last());
+        history.removeLast();
+        player::getInstance()->setSource(queue.first().getUrl());
+        player::getInstance()->play();
+        emit queueChanged();
+    }
 }
 
 void queueManager::onMediaStatusChanged(const QMediaPlayer::MediaStatus status)
 {
     if (status == QMediaPlayer::MediaStatus::EndOfMedia) {
-        playNext();
+        skipForward();
     }
 }
 
 void queueManager::onPlayDirectly(const song &s)
 {
     prepend(s);
-    playNext();
+    if (queue.size() == 1)
+    {
+        player::getInstance()->setSource(queue.first().getUrl());
+        player::getInstance()->play();
+        return;
+    }
+    skipForward();
 }
 
 void queueManager::onAddToQueue(const song &s)
 {
     append(s);
+}
+
+void queueManager::onSkipForward() {
+    skipForward();
+}
+
+void queueManager::onSkipBackward() {
+    skipBackward();
+}
+
+void queueManager::onClearQueue()
+{
+    queue.clear();
+    history.clear();
+    player::getInstance()->stop();
+    player::getInstance()->setSource(QUrl());
+    emit queueChanged();
 }

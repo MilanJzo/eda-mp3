@@ -11,6 +11,7 @@
 #include "ui_controls.h"
 
 #include "../backend/player.h"
+#include "../backend/queueManager.h"
 
 
 controls::controls(QWidget *parent) :
@@ -31,6 +32,8 @@ controls::controls(QWidget *parent) :
     // Button connects
     connect(ui->playPause, QPushButton::clicked, this, &controls::onPlayPauseClicked);
     connect(ui->volumeButton, QPushButton::clicked, this, &controls::onVolumeButtonClicked);
+    connect(ui->skipForwards, QPushButton::clicked, queueManager::getInstance(), &queueManager::onSkipForward);
+    connect(ui->skipBackwards, QPushButton::clicked, queueManager::getInstance(), &queueManager::onSkipBackward);
 
     // Slider connects
     connect(ui->volumeSlider, QSlider::valueChanged, this, &controls::onVolumeSliderValueChanged);

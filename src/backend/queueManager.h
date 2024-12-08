@@ -22,7 +22,8 @@ public:
     void append(const song &s);
     void prepend(const song &s);
 
-    void playNext();
+    void skipForward();
+    void skipBackward();
 
 private slots:
     void onMediaStatusChanged(QMediaPlayer::MediaStatus status);
@@ -30,6 +31,9 @@ private slots:
 public slots:
     void onPlayDirectly(const song &s);
     void onAddToQueue(const song &s);
+    void onSkipForward();
+    void onSkipBackward();
+    void onClearQueue();
 
 signals:
     void queueChanged();
@@ -38,7 +42,6 @@ private:
     static queueManager *instance;
     queueManager();
 
-    player *Player;
     QVector<song> queue;
     QVector<song> history;
 };
