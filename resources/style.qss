@@ -59,17 +59,17 @@ QPushButton:hover {
 
 /* Slider styles */
 QSlider::groove:horizontal {
+    height: 8px;
 
+    border-radius: 4px;
+
+    background: #454545;
 }
 
-QSlider::handle:horizontal {
+QSlider::sub-page:horizontal {
+    height: 8px;
 
-}
+    border-radius: 4px;
 
-QSlider::handle:horizontal:hover {
-
-}
-
-QSlider::handle:horizontal:pressed {
-
+    background: #e5e5e5;
 }
