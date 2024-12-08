@@ -1,6 +1,7 @@
 /* Main window style */
 QMainWindow {
     background-color: #353535;
+    color: #ffffff;
 }
 
 /* Central widget style */
