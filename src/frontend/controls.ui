@@ -354,13 +354,13 @@
           <widget class="QWidget" name="horizontalWidget" native="true">
            <property name="minimumSize">
             <size>
-             <width>160</width>
+             <width>250</width>
              <height>0</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>160</width>
+             <width>250</width>
              <height>16777215</height>
             </size>
            </property>
@@ -369,10 +369,28 @@
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout">
             <property name="spacing">
-             <number>5</number>
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
             </property>
             <item>
              <widget class="QPushButton" name="volumeButton">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="text">
                <string/>
               </property>
@@ -386,7 +404,7 @@
              <widget class="QSlider" name="volumeSlider">
               <property name="maximumSize">
                <size>
-                <width>125</width>
+                <width>16777215</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -394,13 +412,19 @@
                <string notr="true"/>
               </property>
               <property name="maximum">
-               <number>100</number>
+               <number>1000</number>
+              </property>
+              <property name="singleStep">
+               <number>1</number>
+              </property>
+              <property name="pageStep">
+               <number>1</number>
               </property>
               <property name="value">
-               <number>1</number>
+               <number>0</number>
               </property>
               <property name="sliderPosition">
-               <number>1</number>
+               <number>0</number>
               </property>
               <property name="orientation">
                <enum>Qt::Orientation::Horizontal</enum>
