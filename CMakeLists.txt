@@ -16,6 +16,7 @@ endif()
 find_package(QT NAMES Qt6 REQUIRED COMPONENTS Core Widgets LinguistTools Multimedia)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Widgets LinguistTools Multimedia)
 
+
 ## Add the path to the TagLib source code
 #set(TAGLIB_DIR "${CMAKE_SOURCE_DIR}/3rdparty/taglib-2.0.2")
 #add_subdirectory(
@@ -53,11 +54,6 @@ set(PROJECT_SOURCES
         src/frontend/librarysong.ui
         src/backend/song.cpp
         src/backend/song.h
-
-        3rdparty/libmp3-master/mp3.cpp
-        3rdparty/libmp3-master/mp3.h
-        3rdparty/libmp3-master/mp3frame.cpp
-        3rdparty/libmp3-master/mp3frame.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -93,8 +89,8 @@ target_link_libraries(eda-mp3
         PRIVATE Qt${QT_VERSION_MAJOR}::Core
         PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
         PRIVATE Qt${QT_VERSION_MAJOR}::Multimedia
-#        PRIVATE tag  # Link the TagLib library
 )
+
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an

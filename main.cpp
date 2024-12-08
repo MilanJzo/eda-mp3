@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.setWindowIcon(QIcon(":/icon/logo.svg"));
     w.setWindowTitle("EDA MP3 - We died developing this.");
-    w.setWindowOpacity(0.8);
+    // w.setWindowOpacity(0.8);
     w.show();
     return QApplication::exec();
 }

@@ -12,8 +12,6 @@
 
 #include "player.h"
 
-#include "../../3rdparty/libmp3-master/mp3.h"
-
 libraryManager *libraryManager::instance = nullptr;
 
 libraryManager::libraryManager() : library(QVector<song>()){
