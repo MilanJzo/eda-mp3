@@ -36,6 +36,8 @@ controls::controls(QWidget *parent) :
     connect(ui->volumeSlider, QSlider::valueChanged, this, &controls::onVolumeSliderValueChanged);
     connect(ui->progressSlider, QSlider::sliderReleased, this, &controls::onProgressSliderReleased);
     connect(ui->progressSlider, QSlider::valueChanged, this, &controls::onProgressSliderValueChanged);
+
+    ui->volumeSlider->setValue(5);
 }
 
 void controls::onDurationChanged(const qint64 duration) const
@@ -46,7 +48,7 @@ void controls::onDurationChanged(const qint64 duration) const
     ui->totalTime->setText(QTime(0, 0).addMSecs(static_cast<int>(duration)).toString(format));
 }
 
-void controls::onPlaybackStateChanged(QMediaPlayer::PlaybackState state) const
+void controls::onPlaybackStateChanged(const QMediaPlayer::PlaybackState state) const
 {
     if (state == QMediaPlayer::PlayingState)
     {

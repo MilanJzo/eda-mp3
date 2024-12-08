@@ -11,7 +11,7 @@ player *player::instance = nullptr;
 player::player() {
 
     setAudioOutput(new QAudioOutput);
-    audioOutput()->setVolume(0.1);
+    audioOutput()->setVolume(0.05);
 }
 
 player *player::getInstance() {
