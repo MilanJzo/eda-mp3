@@ -26,6 +26,9 @@ public:
 private slots:
     void onMediaStatusChanged(QMediaPlayer::MediaStatus status);
 
+signals:
+    void queueChanged();
+
 private:
     static queueManager *instance;
     queueManager();
