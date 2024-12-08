@@ -7,27 +7,20 @@
 
 #include <QWidget>
 
-#include "../backend/queueManager.h"
-
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class queue; }
 QT_END_NAMESPACE
 
-class queue final : public QWidget {
+class queue : public QWidget {
 Q_OBJECT
 
 public:
     explicit queue(QWidget *parent = nullptr);
     ~queue() override;
 
-private slots:
-    void onQueueChanged();
-
 private:
     Ui::queue *ui;
-
-    void renderQueue();
 };
 
 

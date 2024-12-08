@@ -24,13 +24,14 @@ public:
 
 
 private slots:
-    void onAddButtonClicked() const;
-    void onLibraryChanged();
+    void on_addButton_clicked() const;
+    void on_libraryChanged();
 
 private:
     Ui::library *ui;
+    libraryManager *manager;
 
-    void renderSongs();
+    void renderSongs(QVector<song> songs);
 };
 
 

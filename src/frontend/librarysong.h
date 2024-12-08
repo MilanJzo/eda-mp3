@@ -7,7 +7,6 @@
 
 #include <QWidget>
 
-#include "../backend/queueManager.h"
 #include "../backend/song.h"
 
 
@@ -19,12 +18,11 @@ class librarysong : public QWidget {
 Q_OBJECT
 
 public:
-    explicit librarysong(QWidget *parent = nullptr, const song &s);
+    explicit librarysong(QWidget *parent = nullptr, const song &s = song(QUrl(), QImage(), "Unknown", "Unknown"));
     ~librarysong() override;
 
 private slots:
     void onPlayDirectlyClicked() const;
-    void onAddToQueueClicked() const;
 
 private:
     Ui::librarysong *ui;

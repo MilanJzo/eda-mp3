@@ -17,21 +17,20 @@ controls::controls(QWidget *parent) :
     QWidget(parent), ui(new Ui::controls) {
     ui->setupUi(this);
 
+    Player = player::getInstance();
+
     // Player connects
-    connect(player::getInstance(), QMediaPlayer::durationChanged, this, &controls::onDurationChanged);
-    connect(player::getInstance(), QMediaPlayer::playbackStateChanged, this, &controls::onPlaybackStateChanged);
-    connect(player::getInstance(), QMediaPlayer::positionChanged, this, &controls::onPositionChanged);
-    connect(player::getInstance(), QMediaPlayer::metaDataChanged, this, &controls::onMetaDataChanged);
+    connect(Player, QMediaPlayer::durationChanged, this, &controls::onDurationChanged);
+    connect(Player, QMediaPlayer::playbackStateChanged, this, &controls::onPlaybackStateChanged);
+    connect(Player, QMediaPlayer::positionChanged, this, &controls::onPositionChanged);
+    connect(Player, QMediaPlayer::metaDataChanged, this, &controls::onMetaDataChanged);
 
     // Audio output connects
-    connect(player::getInstance()->audioOutput(), QAudioOutput::mutedChanged, this, &controls::onMutedChanged);
+    connect(Player->audioOutput(), QAudioOutput::mutedChanged, this, &controls::onMutedChanged);
 
     // Button connects
     connect(ui->playPause, QPushButton::clicked, this, &controls::onPlayPauseClicked);
     connect(ui->volumeButton, QPushButton::clicked, this, &controls::onVolumeButtonClicked);
-    connect(ui->skipForwards, QPushButton::clicked, queueManager::getInstance(), &queueManager::onSkipForwardClicked);
-    connect(ui->skipBackwards, QPushButton::clicked, queueManager::getInstance(), &queueManager::onSkipBackwardClicked);
-
 
     // Slider connects
     connect(ui->volumeSlider, QSlider::valueChanged, this, &controls::onVolumeSliderValueChanged);
@@ -83,26 +82,26 @@ void controls::onMutedChanged(const bool muted) const
 
 void controls::onPlayPauseClicked() const
 {
-    if (player::getInstance()->isPlaying()) {
-        player::getInstance()->pause();
+    if (Player->isPlaying()) {
+        Player->pause();
     } else {
-        player::getInstance()->play();
+        Player->play();
     }
 }
 
 void controls::onVolumeButtonClicked() const
 {
-    player::getInstance()->toggleMute();
+    Player->toggleMute();
 }
 
 void controls::onVolumeSliderValueChanged(const int value) const
 {
-    player::getInstance()->audioOutput()->setVolume(static_cast<float>(value / 1000.0));
+    Player->audioOutput()->setVolume(static_cast<float>(value / 1000.0));
 }
 
 void controls::onProgressSliderReleased() const
 {
-    player::getInstance()->setPosition(ui->progressSlider->value());
+    Player->setPosition(ui->progressSlider->value());
 }
 
 void controls::onProgressSliderValueChanged(const int value) const
@@ -113,7 +112,7 @@ void controls::onProgressSliderValueChanged(const int value) const
 
 void controls::onMetaDataChanged() const
 {
-    const QMediaMetaData metaData = player::getInstance()->metaData();
+    const QMediaMetaData metaData = Player->metaData();
     const QString title = metaData.value(QMediaMetaData::Title).toString();
     const QString artist = metaData.value(QMediaMetaData::ContributingArtist).toString();
 

@@ -53,7 +53,7 @@ QPushButton:hover {
     background-color: #353535;
 }
 
-#playDirectly:hover, #addToQueue:hover, #addToPlaylist:hover, #removeFromQueue:hover {
+#playDirectly:hover, #addToQueue:hover, #addToPlaylist:hover {
     background-color: #232323;
 }
 
