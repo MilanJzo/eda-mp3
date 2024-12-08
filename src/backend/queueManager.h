@@ -34,6 +34,7 @@ public slots:
     void onSkipForward();
     void onSkipBackward();
     void onClearQueue();
+    void onRemoveFromQueue(const int index);
 
 signals:
     void queueChanged();
