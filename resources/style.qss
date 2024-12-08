@@ -38,6 +38,7 @@ QMainWindow {
 /* styles by element */
 QListWidget {
     border: 0px;
+    border-radius: 15px;
     background-color: #232323;
 }
 
