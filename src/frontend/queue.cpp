@@ -33,6 +33,13 @@ void queue::renderSongs() {
 
         if (i == 0) {
             songWidget->setStyleSheet("#songContent { background-color: #1A574B; }");
+
+            const auto textItem = new QListWidgetItem(ui->listWidget);
+            const auto label = new QLabel(this);
+            label->setText("Up Next");
+            textItem->setSizeHint(QSize(0, 30));
+            ui->listWidget->addItem(textItem);
+            ui->listWidget->setItemWidget(textItem, label);
         }
 
         item->setSizeHint(songWidget->sizeHint());

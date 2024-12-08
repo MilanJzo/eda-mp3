@@ -28,7 +28,6 @@ QMainWindow {
 }
 
 #songContent {
-    border-radius: 15px;
     background-color: #232323;
 }
 
