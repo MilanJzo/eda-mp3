@@ -68,7 +68,7 @@ void controls::onPositionChanged(const qint64 progress) const
     }
 }
 
-void controls::onMutedChanged(bool muted) const
+void controls::onMutedChanged(const bool muted) const
 {
     if (muted)
     {
@@ -96,7 +96,7 @@ void controls::onVolumeButtonClicked() const
 
 void controls::onVolumeSliderValueChanged(const int value) const
 {
-    Player->audioOutput()->setVolume(value / 100.0);
+    Player->audioOutput()->setVolume(static_cast<float>(value / 100.0));
 }
 
 void controls::onProgressSliderReleased() const
@@ -112,7 +112,7 @@ void controls::onProgressSliderValueChanged(const int value) const
 
 void controls::onMetaDataChanged() const
 {
-    QMediaMetaData metaData = Player->metaData();
+    const QMediaMetaData metaData = Player->metaData();
     const QString title = metaData.value(QMediaMetaData::Title).toString();
     const QString artist = metaData.value(QMediaMetaData::ContributingArtist).toString();
 
