@@ -19,7 +19,7 @@ player *player::getInstance() {
     return instance;
 }
 
-void player::toggleMute() {
+void player::toggleMute() const {
     audioOutput()->setMuted(!audioOutput()->isMuted());
 }
 

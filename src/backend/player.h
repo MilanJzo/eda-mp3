@@ -16,7 +16,7 @@ class player final : public QMediaPlayer
 public:
     static player* getInstance();
 
-    void toggleMute();
+    void toggleMute() const;
 
 private:
     explicit player();

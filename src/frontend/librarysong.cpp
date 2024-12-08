@@ -23,7 +23,7 @@ librarysong::librarysong(QWidget *parent, const song &s) :
     ui->title->setText(s.getTitle());
     ui->artist->setText(s.getArtist());
 
-    connect(ui->playDirectly, &QPushButton::clicked, this, &librarysong::onPlayDirectlyClicked);
+    connect(ui->playDirectly, QPushButton::clicked, this, &librarysong::onPlayDirectlyClicked);
 }
 
 librarysong::~librarysong() {
