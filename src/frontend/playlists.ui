@@ -85,7 +85,7 @@
            <string/>
           </property>
           <property name="icon">
-           <iconset resource="../../icons/resources.qrc">
+           <iconset>
             <normaloff>:/icon/add.svg</normaloff>:/icon/add.svg</iconset>
           </property>
          </widget>
@@ -93,15 +93,20 @@
        </layout>
       </item>
       <item>
-       <widget class="QListWidget" name="playlistList"/>
+       <widget class="QListWidget" name="playlistList">
+        <property name="verticalScrollBarPolicy">
+         <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOn</enum>
+        </property>
+        <property name="horizontalScrollBarPolicy">
+         <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../../icons/resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

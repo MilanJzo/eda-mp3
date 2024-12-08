@@ -25,6 +25,11 @@ librarysong::librarysong(QWidget *parent, const song &s) :
     ui->artist->setText(s.getArtist());
 
     connect(ui->playDirectly, QPushButton::clicked, this, &librarysong::onPlayDirectlyClicked);
+    connect(ui->playDirectly, QPushButton::clicked, queueManager::getInstance(), &queueManager::onPlayDirectlyClicked);
+
+    connect(ui->addToQueue, QPushButton::clicked, this, &librarysong::onAddToQueueClicked);
+    connect(ui->addToQueue, QPushButton::clicked, queueManager::getInstance(), &queueManager::onAddToQueueClicked);
+
 }
 
 librarysong::~librarysong() {
@@ -32,11 +37,12 @@ librarysong::~librarysong() {
 }
 
 void librarysong::onPlayDirectlyClicked() const {
-    // player *Player = player::getInstance();
-    // Player->setSource(thisSong.getUrl().toString());
-    // Player->play();
-
-    queueManager *QueueManager = queueManager::getInstance();
-    QueueManager->prepend(thisSong);
+    queueManager::getInstance()->prepend(thisSong);
 }
+
+void librarysong::onAddToQueueClicked() const {
+    queueManager::getInstance()->append(thisSong);
+}
+
+
 

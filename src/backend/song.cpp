@@ -8,7 +8,7 @@
 
 song::song(
     QUrl url,
-    QImage cover,
+    const QImage& cover,
     QString title,
     QString artist
     ) :
@@ -17,6 +17,7 @@ cover(std::move(cover.scaled(55, 55))),
 title(std::move(title.slice(0, title.lastIndexOf('.')))),
 artist(std::move(artist)) {
 
+    id = QUuid::createUuid();
 }
 
 song::~song() = default;

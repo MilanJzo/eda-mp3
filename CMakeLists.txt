@@ -6,7 +6,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 if (WIN32)
@@ -56,6 +56,9 @@ set(PROJECT_SOURCES
         src/backend/song.h
         src/backend/queueManager.cpp
         src/backend/queueManager.h
+        src/frontend/queuesong.cpp
+        src/frontend/queuesong.h
+        src/frontend/queuesong.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

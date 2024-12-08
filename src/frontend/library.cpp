@@ -13,40 +13,39 @@
 #include "ui_library.h"
 #include "../backend/libraryManager.h"
 
-
-
 library::library(QWidget *parent) :
     QWidget(parent), ui(new Ui::library) {
     ui->setupUi(this);
 
-    manager = libraryManager::getInstance();
-    renderSongs(manager->getLibrary());
+    renderSongs();
 
-    connect(manager, &libraryManager::libraryChanged, this, &library::on_libraryChanged);
+    connect(libraryManager::getInstance(), libraryManager::libraryChanged, this, &library::onLibraryChanged);
 }
 
-void library::on_libraryChanged() {
-    renderSongs(manager->getLibrary());
+void library::onLibraryChanged() {
+    renderSongs();
 }
 
-void library::renderSongs(QVector<song> songs) {
+void library::renderSongs() {
+    auto songs = libraryManager::getInstance()->getLibrary();
+
     ui->songList->clear();
 
-    for (const song &song: songs) {
+    for (song song: songs) {
         const auto item = new QListWidgetItem(ui->songList);
-        const auto songWidget = new librarysong(this, song);
+        const auto songWidget = new librarysong(this, &song);
 
         item->setSizeHint(songWidget->sizeHint());
 
         ui->songList->addItem(item);
         ui->songList->setItemWidget(item, songWidget);
     }
-    qDebug() << "Rendered songs";
+    qDebug() << "Rendered Library";
 }
 
-void library::on_addButton_clicked() const
+void library::onAddButtonClicked() const
 {
-    manager->addDirectory();
+    libraryManager::getInstance()->addDirectory();
 }
 
 library::~library() {

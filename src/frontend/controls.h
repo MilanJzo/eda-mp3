@@ -8,6 +8,8 @@
 #include <QMediaPlayer>
 #include <QWidget>
 
+#include "../backend/queueManager.h"
+
 
 class player;
 QT_BEGIN_NAMESPACE
@@ -38,7 +40,6 @@ private slots:
 
 private:
     Ui::controls *ui;
-    player* Player;
 };
 
 
