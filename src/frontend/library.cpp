@@ -19,14 +19,14 @@ library::library(QWidget *parent) :
     QWidget(parent), ui(new Ui::library) {
     ui->setupUi(this);
 
-    manager = libraryManager::getInstance();
+    auto manager = libraryManager::getInstance();
     renderSongs(manager->getLibrary());
 
-    connect(manager, &libraryManager::libraryChanged, this, &library::on_libraryChanged);
+    connect(manager, libraryManager::libraryChanged, this, &library::on_libraryChanged);
 }
 
 void library::on_libraryChanged() {
-    renderSongs(manager->getLibrary());
+    renderSongs(libraryManager::getInstance()->getLibrary());
 }
 
 void library::renderSongs(QVector<song> songs) {
@@ -46,7 +46,7 @@ void library::renderSongs(QVector<song> songs) {
 
 void library::on_addButton_clicked() const
 {
-    manager->addDirectory();
+    libraryManager::getInstance()->addDirectory();
 }
 
 library::~library() {

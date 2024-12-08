@@ -25,18 +25,45 @@ queueManager::queueManager() : queue(QVector<song>())
 void queueManager::append(const song &s)
 {
     queue.append(s);
+    emit queueChanged();
 }
 
 void queueManager::prepend(const song &s)
 {
-    queue.prepend(s);
+    if (queue.isEmpty()) queue.append(s);
+    else queue.insert(1, s);
+    emit queueChanged();
+}
+
+void queueManager::playNext()
+{
+    if (queue.size() > 1)
+    {
+        history.append(queue.first());
+        queue.removeFirst();
+        Player->setSource(queue.first().getUrl());
+        Player->play();
+        emit queueChanged();
+    }
+
+    Player->setSource(queue.first().getUrl());
+    Player->play();
 }
 
 void queueManager::onMediaStatusChanged(const QMediaPlayer::MediaStatus status)
 {
-    if (status == QMediaPlayer::MediaStatus::EndOfMedia && !queue.isEmpty()) {
-        Player->setSource(pop());
-        Player->play();
+    if (status == QMediaPlayer::MediaStatus::EndOfMedia) {
+        playNext();
     }
 }
 
+void queueManager::onPlayDirectly(const song &s)
+{
+    prepend(s);
+    playNext();
+}
+
+void queueManager::onAddToQueue(const song &s)
+{
+    append(s);
+}

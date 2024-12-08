@@ -17,14 +17,19 @@ class queueManager final : public QObject
 
 public:
     static queueManager *getInstance();
+    [[nodiscard]] const QVector<song> &getQueue() const { return queue; }
 
     void append(const song &s);
     void prepend(const song &s);
 
-    QUrl pop();
+    void playNext();
 
 private slots:
     void onMediaStatusChanged(QMediaPlayer::MediaStatus status);
+
+public slots:
+    void onPlayDirectly(const song &s);
+    void onAddToQueue(const song &s);
 
 signals:
     void queueChanged();
@@ -35,6 +40,7 @@ private:
 
     player *Player;
     QVector<song> queue;
+    QVector<song> history;
 };
 
 
