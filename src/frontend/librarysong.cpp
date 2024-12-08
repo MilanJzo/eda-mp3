@@ -12,6 +12,7 @@
 
 #include "ui_librarysong.h"
 #include "../backend/player.h"
+#include "../backend/queueManager.h"
 
 
 librarysong::librarysong(QWidget *parent, const song &s) :
@@ -31,8 +32,11 @@ librarysong::~librarysong() {
 }
 
 void librarysong::onPlayDirectlyClicked() const {
-    player *Player = player::getInstance();
-    Player->setSource(thisSong.getUrl().toString());
-    Player->play();
+    // player *Player = player::getInstance();
+    // Player->setSource(thisSong.getUrl().toString());
+    // Player->play();
+
+    queueManager *QueueManager = queueManager::getInstance();
+    QueueManager->prepend(thisSong);
 }
 

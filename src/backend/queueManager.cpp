@@ -43,7 +43,7 @@ QUrl queueManager::pop()
     return url;
 }
 
-void queueManager::onMediaStatusChanged(QMediaPlayer::MediaStatus status)
+void queueManager::onMediaStatusChanged(const QMediaPlayer::MediaStatus status)
 {
     if (status == QMediaPlayer::MediaStatus::EndOfMedia && !queue.isEmpty()) {
         Player->setSource(pop());

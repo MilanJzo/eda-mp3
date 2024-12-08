@@ -21,6 +21,7 @@ public:
     explicit librarysong(QWidget *parent = nullptr, const song &s = song(QUrl(), QImage(), "Unknown", "Unknown"));
     ~librarysong() override;
 
+private slots:
     void onPlayDirectlyClicked() const;
 
 private:
