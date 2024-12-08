@@ -17,7 +17,7 @@ find_package(QT NAMES Qt6 REQUIRED COMPONENTS Core Widgets LinguistTools Multime
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Widgets LinguistTools Multimedia)
 
 ## Add the path to the TagLib source code
-#set(TAGLIB_DIR "${CMAKE_SOURCE_DIR}/3rdparty/taglib-1.13.1")
+#set(TAGLIB_DIR "${CMAKE_SOURCE_DIR}/3rdparty/taglib-2.0.2")
 #add_subdirectory(
 #        ${TAGLIB_DIR}
 #)

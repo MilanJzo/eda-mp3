@@ -26,8 +26,8 @@
 #ifndef TAGLIB_FILEREF_H
 #define TAGLIB_FILEREF_H
 
-#include "tfile.h"
-#include "tstringlist.h"
+#include "toolkit/tfile.h"
+#include "toolkit/tstringlist.h"
 
 #include "taglib_export.h"
 #include "audioproperties.h"
