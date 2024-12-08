@@ -23,4 +23,8 @@
     <qresource prefix="/styles">
         <file>style.qss</file>
     </qresource>
+    <qresource prefix="/image">
+        <file>placeholder.png</file>
+    </qresource>
+
 </RCC>

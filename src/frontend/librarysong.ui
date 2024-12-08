@@ -86,7 +86,13 @@
        <number>10</number>
       </property>
       <item>
-       <widget class="QGraphicsView" name="songIcon">
+       <widget class="QLabel" name="cover">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="minimumSize">
          <size>
           <width>55</width>
@@ -98,6 +104,12 @@
           <width>55</width>
           <height>55</height>
          </size>
+        </property>
+        <property name="lineWidth">
+         <number>0</number>
+        </property>
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </item>

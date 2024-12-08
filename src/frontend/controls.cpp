@@ -5,6 +5,9 @@
 // You may need to build the project (run Qt uic code generator) to get "ui_controls.h" resolved
 
 #include "controls.h"
+
+#include <QMediaMetaData>
+
 #include "ui_controls.h"
 
 #include "../backend/player.h"
@@ -16,20 +19,36 @@ controls::controls(QWidget *parent) :
 
     Player = player::getInstance();
 
-    // connect(Player, &player::durationChanged, this, &controls::setProgressSliderRange);
-    // connect(Player, &player::positionChanged, this, &controls::updateTimeLabels);
-    // connect(Player, &player::setDuration, this, &controls::setProgressRange);
+    // Player connects
+    connect(Player, QMediaPlayer::durationChanged, this, &controls::onDurationChanged);
+    connect(Player, QMediaPlayer::playbackStateChanged, this, &controls::onPlaybackStateChanged);
+    connect(Player, QMediaPlayer::positionChanged, this, &controls::onPositionChanged);
+    connect(Player, QMediaPlayer::metaDataChanged, this, &controls::onMetaDataChanged);
+
+    // Audio output connects
+    connect(Player->audioOutput(), QAudioOutput::mutedChanged, this, &controls::onMutedChanged);
+
+    // Button connects
+    connect(ui->playPause, QPushButton::clicked, this, &controls::onPlayPauseClicked);
+    connect(ui->volumeButton, QPushButton::clicked, this, &controls::onVolumeButtonClicked);
+
+    // Slider connects
+    connect(ui->volumeSlider, QSlider::valueChanged, this, &controls::onVolumeSliderValueChanged);
+    connect(ui->progressSlider, QSlider::sliderReleased, this, &controls::onProgressSliderReleased);
+    connect(ui->progressSlider, QSlider::valueChanged, this, &controls::onProgressSliderValueChanged);
 }
 
-controls::~controls() {
-    delete ui;
-}
-
-void controls::on_playPause_clicked() const
+void controls::onDurationChanged(const qint64 duration) const
 {
-    Player->togglePlay();
+    ui->progressSlider->setMaximum(static_cast<int>(duration));
 
-    if (Player->getIsPlaying())
+    const QString format = duration > 3600000 ? "hh:mm:ss" : "mm:ss";
+    ui->totalTime->setText(QTime(0, 0).addMSecs(static_cast<int>(duration)).toString(format));
+}
+
+void controls::onPlaybackStateChanged(QMediaPlayer::PlaybackState state) const
+{
+    if (state == QMediaPlayer::PlayingState)
     {
         ui->playPause->setIcon(QIcon(":icon/pause.svg"));
     }
@@ -39,33 +58,17 @@ void controls::on_playPause_clicked() const
     }
 }
 
-
-void controls::on_skipBackwards_clicked()
+void controls::onPositionChanged(const qint64 progress) const
 {
-    //TODO: Implement
-    Player->skipToLastSong();
+    if (!ui->progressSlider->isSliderDown())
+    {
+        ui->progressSlider->setValue(static_cast<int>(progress));
+    }
 }
 
-
-void controls::on_skipForwards_clicked()
+void controls::onMutedChanged(bool muted) const
 {
-    //TODO: Implement
-    Player->skipToNextSong();
-}
-
-
-void controls::on_shuffle_clicked()
-{
-    //TODO: Implement
-    Player->toggleShuffle();
-}
-
-
-void controls::on_volumeButton_clicked() const
-{
-    Player->toggleMute();
-
-    if (Player->getIsMuted())
+    if (muted)
     {
         ui->volumeButton->setIcon(QIcon(":icon/volume-off.svg"));
     }
@@ -75,47 +78,47 @@ void controls::on_volumeButton_clicked() const
     }
 }
 
-
-void controls::on_volumeSlider_valueChanged(const int value)
+void controls::onPlayPauseClicked() const
 {
-    Player->setVolume(value);
-}
-
-
-void controls::on_progressSlider_valueChanged(const int value) const
-{
-    if (ui->progressSlider->isSliderDown())
-    {
-        Player->setPosition(value);
-    }
-    else
-    {
-        ui->progressSlider->setValue(value);
+    if (Player->isPlaying()) {
+        Player->pause();
+    } else {
+        Player->play();
     }
 }
 
-
-void controls::setProgressSliderRange(const int value) const
+void controls::onVolumeButtonClicked() const
 {
-    ui->progressSlider->setMaximum(value / 1000);
+    Player->toggleMute();
 }
 
-
-void controls::updateTimeLabels(const int progress) const
+void controls::onVolumeSliderValueChanged(const int value) const
 {
-    const QTime currentTime((progress/3600) % 60,(progress/60) % 60,progress % 60,(progress * 1000) % 1000);
-    const int duration = static_cast<int>(Player->getDuration());
-    const QTime totalTime((duration/3600) % 60,(duration/60) % 60,duration % 60,(duration * 1000) % 1000);
-    QString format = "mm:ss";
-    if (duration > 3600)
-        format = "hh:mm:ss";
-    ui->currentTime->setText(currentTime.toString(format));
-    ui->totalTime->setText(totalTime.toString(format));
+    Player->audioOutput()->setVolume(value / 100.0);
 }
 
-
-void controls::on_progressSlider_sliderReleased() const
+void controls::onProgressSliderReleased() const
 {
     Player->setPosition(ui->progressSlider->value());
 }
 
+void controls::onProgressSliderValueChanged(const int value) const
+{
+    const QString format = value > 3600000 ? "hh:mm:ss" : "mm:ss";
+    ui->currentTime->setText(QTime(0, 0).addMSecs(static_cast<int>(value)).toString(format));
+}
+
+void controls::onMetaDataChanged() const
+{
+    QMediaMetaData metaData = Player->metaData();
+    const QString title = metaData.value(QMediaMetaData::Title).toString();
+    const QString artist = metaData.value(QMediaMetaData::ContributingArtist).toString();
+
+    // TODO set cover but it no works :(
+    ui->title->setText(title != "" ? title : "Unknown Title");
+    ui->artist->setText(artist != "" ? artist : "Unknown Artist");
+}
+
+controls::~controls() {
+    delete ui;
+}

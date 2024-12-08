@@ -8,12 +8,15 @@
 #include <QDebug>
 #include <QFile>
 #include <QDir>
+#include <qeventloop.h>
 
 #include "player.h"
 
+#include "../../3rdparty/libmp3-master/mp3.h"
+
 libraryManager *libraryManager::instance = nullptr;
 
-libraryManager::libraryManager() : library(QVector<song>()) {
+libraryManager::libraryManager() : library(QVector<song>()){
     loadLibrary();
 }
 
@@ -25,11 +28,16 @@ libraryManager* libraryManager::getInstance()
 
 void libraryManager::loadDirIntoLibrary(const QString &dir)
 {
-    QMediaPlayer temporaryPlayer(new QMediaPlayer());
-    QStringList mp3Files = getMP3FilenamesFromDirectory(dir);
+    const QStringList mp3Files = getMP3FilenamesFromDirectory(dir);
+    for (const QString &file : mp3Files) {
 
-    for (const auto& mp3_file: mp3Files) {
-        library.append(song(QUrl::fromLocalFile(dir + "/" + mp3_file), mp3_file, "Unknown"));
+        const QUrl url("file:///" + dir + "/" + file);
+        const QImage cover(":/image/placeholder.png");
+        const QString title = file;
+        const QString artist = "Unknown Artist";
+
+        library.append(song(url, cover, title, artist));
+        emit libraryChanged();
     }
 }
 

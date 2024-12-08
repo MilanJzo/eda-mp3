@@ -5,6 +5,7 @@
 #ifndef LIBRARYMANAGER_H
 #define LIBRARYMANAGER_H
 
+#include <QMediaPlayer>
 #include <QObject>
 #include <QStringList>
 

@@ -5,6 +5,7 @@
 #ifndef CONTROLS_H
 #define CONTROLS_H
 
+#include <QMediaPlayer>
 #include <QWidget>
 
 
@@ -21,25 +22,20 @@ public:
     ~controls() override;
 
 private slots:
-    void on_playPause_clicked() const;
+    void onDurationChanged(qint64 duration) const;
+    void onPlaybackStateChanged(QMediaPlayer::PlaybackState state) const;
+    void onPositionChanged(qint64 progress) const;
+    void onMetaDataChanged() const;
 
-    void on_skipBackwards_clicked();
+    void onMutedChanged(bool muted) const;
 
-    void on_skipForwards_clicked();
+    void onPlayPauseClicked() const;
+    void onVolumeButtonClicked() const;
 
-    void on_shuffle_clicked();
+    void onVolumeSliderValueChanged(int value) const;
+    void onProgressSliderReleased() const;
+    void onProgressSliderValueChanged(int value) const;
 
-    void on_progressSlider_valueChanged(int value) const;
-
-    void setProgressSliderRange(int value) const;
-
-    void updateTimeLabels(int progress) const;
-
-    void on_volumeButton_clicked() const;
-
-    void on_volumeSlider_valueChanged(int value);
-
-    void on_progressSlider_sliderReleased() const;
 private:
     Ui::controls *ui;
     player* Player;

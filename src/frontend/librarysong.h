@@ -18,10 +18,10 @@ class librarysong : public QWidget {
 Q_OBJECT
 
 public:
-    explicit librarysong(QWidget *parent = nullptr, const song &s = song(QUrl(), "Unknown", "Unknown"));
+    explicit librarysong(QWidget *parent = nullptr, const song &s = song(QUrl(), QImage(), "Unknown", "Unknown"));
     ~librarysong() override;
 
-    void on_playDirectly_clicked() const;
+    void onPlayDirectlyClicked() const;
 
 private:
     Ui::librarysong *ui;
