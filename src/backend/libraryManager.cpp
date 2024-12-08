@@ -31,16 +31,6 @@ void libraryManager::loadDirIntoLibrary(const QString &dir)
     const QStringList mp3Files = getMP3FilenamesFromDirectory(dir);
     for (const QString &file : mp3Files) {
 
-        TagLib::FileRef f((dir + "/" + file).toStdString().c_str());
-        QString title = QString::fromStdString(f.tag()->title().to8Bit(true));
-        QString artist = QString::fromStdString(f.tag()->artist().to8Bit(true));
-        QImage cover(":/image/placeholder.png"); // Placeholder for cover image
-
-        const QUrl url("file:///" + dir + "/" + file);
-        library.append(song(url, cover, title, artist));
-        emit libraryChanged();
-
-
         const QUrl url("file:///" + dir + "/" + file);
         const QImage cover(":/image/placeholder.png");
         const QString title = file;
