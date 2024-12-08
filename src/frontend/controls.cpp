@@ -34,6 +34,7 @@ controls::controls(QWidget *parent) :
     connect(ui->volumeButton, QPushButton::clicked, this, &controls::onVolumeButtonClicked);
     connect(ui->skipForwards, QPushButton::clicked, queueManager::getInstance(), &queueManager::onSkipForward);
     connect(ui->skipBackwards, QPushButton::clicked, queueManager::getInstance(), &queueManager::onSkipBackward);
+    connect(ui->repeat, QPushButton::clicked, this, &controls::onLoopStateToggled);
 
     // Slider connects
     connect(ui->volumeSlider, QSlider::valueChanged, this, &controls::onVolumeSliderValueChanged);
@@ -122,6 +123,27 @@ void controls::onMetaDataChanged() const
     // TODO set cover but it no works :(
     ui->title->setText(title != "" ? title : "Unknown Title");
     ui->artist->setText(artist != "" ? artist : "Unknown Artist");
+}
+
+void controls::onLoopStateToggled() {
+    if (loopState == LoopingState::None)
+    {
+        loopState = LoopingState::Loop;
+        queueManager::getInstance()->setLooping(true);
+        ui->repeat->setIcon(QIcon(":icon/list-repeat.svg"));
+    }
+    else if (loopState == LoopingState::Loop)
+    {
+        loopState = LoopingState::LoopOne;
+        player::getInstance()->setLoops(QMediaPlayer::Infinite);
+        ui->repeat->setIcon(QIcon(":icon/repeat-1.svg"));
+    }
+    else
+    {
+        loopState = LoopingState::None;
+        player::getInstance()->setLoops(1);
+        ui->repeat->setIcon(QIcon(":icon/list.svg"));
+    }
 }
 
 controls::~controls() {

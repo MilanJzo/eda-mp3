@@ -28,6 +28,7 @@ private slots:
     void onMetaDataChanged() const;
 
     void onMutedChanged(bool muted) const;
+    void onLoopStateToggled();
 
     void onPlayPauseClicked() const;
     void onVolumeButtonClicked() const;
@@ -39,6 +40,14 @@ private slots:
 private:
     Ui::controls *ui;
     player* Player;
+
+
+    enum class LoopingState {
+        None,
+        Loop,
+        LoopOne
+    };
+    LoopingState loopState = LoopingState::None;
 };
 
 

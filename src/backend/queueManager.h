@@ -22,10 +22,14 @@ public:
     void append(const song &s);
     void append(const QVector<song> &s);
     void prepend(const song &s);
+    void prepend(const QVector<song> &s);
     void remove(const song &s);
 
     void skipForward();
     void skipBackward();
+
+    void setLooping(const bool loop) { looping = loop; }
+    [[nodiscard]] bool isLooping() const { return looping; }
 
 private slots:
     void onMediaStatusChanged(QMediaPlayer::MediaStatus status);
@@ -44,6 +48,7 @@ signals:
 private:
     static queueManager *instance;
     queueManager();
+    bool looping = false;
 
     QVector<song> queue;
     QVector<song> history;

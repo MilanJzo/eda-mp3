@@ -39,6 +39,18 @@ void queueManager::prepend(const song &s)
     emit queueChanged();
 }
 
+void queueManager::prepend(const QVector<song> &s)
+{
+    if (queue.isEmpty()) queue.append(s);
+    else {
+        for (int i = 0; i < s.size(); i++)
+        {
+            queue.insert(i + 1, s.at(i));
+        }
+    }
+    emit queueChanged();
+}
+
 void queueManager::remove(const song &s)
 {
     for (int i = 0; i < queue.size(); i++)
@@ -82,7 +94,15 @@ void queueManager::skipBackward()
 
 void queueManager::onMediaStatusChanged(const QMediaPlayer::MediaStatus status)
 {
-    if (status == QMediaPlayer::MediaStatus::EndOfMedia) {
+    if (status == QMediaPlayer::MediaStatus::EndOfMedia && isLooping() && queue.size() == 1) {
+        history.append(queue.first());
+        prepend(history);
+        history.clear();
+        queue.removeFirst();
+        player::getInstance()->setSource(queue.first().getUrl());
+        player::getInstance()->play();
+        emit queueChanged();
+    } else if (status == QMediaPlayer::MediaStatus::EndOfMedia && player::getInstance()->loops() != QMediaPlayer::Infinite){
         skipForward();
     }
 }
@@ -102,10 +122,22 @@ void queueManager::onPlayDirectly(const song &s)
 void queueManager::onAddToQueue(const song &s)
 {
     append(s);
+    if (queue.size() == 1) {
+        player::getInstance()->setSource(queue.first().getUrl());
+        player::getInstance()->play();
+    }
 }
 
 void queueManager::onSkipForward() {
-    skipForward();
+    if (isLooping() && queue.size() == 1) {
+        history.append(queue.first());
+        prepend(history);
+        history.clear();
+        queue.removeFirst();
+        player::getInstance()->setSource(queue.first().getUrl());
+        player::getInstance()->play();
+        emit queueChanged();
+    } else skipForward();
 }
 
 void queueManager::onSkipBackward() {

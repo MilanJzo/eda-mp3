@@ -197,7 +197,7 @@
                 </property>
                 <property name="icon">
                  <iconset resource="../../resources/resources.qrc">
-                  <normaloff>:/icon/repeat.svg</normaloff>:/icon/repeat.svg</iconset>
+                  <normaloff>:/icon/list.svg</normaloff>:/icon/list.svg</iconset>
                 </property>
                </widget>
               </item>
