@@ -28,27 +28,29 @@ libraryManager* libraryManager::getInstance()
     return instance;
 }
 
-void libraryManager::loadDirIntoLibrary(const QString &dir)
-{
-    const auto player = player::getInstance();
-    auto mdHelper = metaDataHelper(this, player);
-    auto urls = QVector<QUrl>();
 
-    const QStringList mp3Files = getMP3FilenamesFromDirectory(dir);
-    for (const QString &file : mp3Files) {
-        const QUrl url("file:///" + dir + "/" + file);
-        player->setSource(url);
-        urls.append(url);
-    }
-
-    auto songs = mdHelper.getMetaData();
-    for (int i = 0; i < songs.size(); i++) {
-        songs[i].setUrl(urls[i]);
-    }
-
-    library.append(songs);
-    emit libraryChanged();
-}
+//// another Try didn't work
+// void libraryManager::loadDirIntoLibrary(const QString &dir)
+// {
+//     const auto player = player::getInstance();
+//     auto mdHelper = metaDataHelper(this, player);
+//     auto urls = QVector<QUrl>();
+//
+//     const QStringList mp3Files = getMP3FilenamesFromDirectory(dir);
+//     for (const QString &file : mp3Files) {
+//         const QUrl url("file:///" + dir + "/" + file);
+//         player->setSource(url);
+//         urls.append(url);
+//     }
+//
+//     auto songs = mdHelper.getMetaData();
+//     for (int i = 0; i < songs.size(); i++) {
+//         songs[i].setUrl(urls[i]);
+//     }
+//
+//     library.append(songs);
+//     emit libraryChanged();
+// }
 
 void libraryManager::loadLibrary()
 {
