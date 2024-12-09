@@ -39,7 +39,6 @@ private slots:
 
 private:
     Ui::controls *ui;
-    player* Player;
 
 
     enum class LoopingState {

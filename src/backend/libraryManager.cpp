@@ -28,6 +28,7 @@ libraryManager* libraryManager::getInstance()
     return instance;
 }
 
+//// dumb version without metadata: works at least
 void libraryManager::loadDirIntoLibrary(const QString &dir)
 {
     const QStringList mp3Files = getMP3FilenamesFromDirectory(dir);
@@ -91,9 +92,6 @@ void libraryManager::loadDirIntoLibrary(const QString &dir)
 //         });
 //     }
 // }
-
-
-
 
 //// tried to load metadata in a separate "thread" but it didn't work
 // void libraryManager::loadDirIntoLibrary(const QString &dir)

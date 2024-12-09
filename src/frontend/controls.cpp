@@ -18,16 +18,14 @@ controls::controls(QWidget *parent) :
     QWidget(parent), ui(new Ui::controls) {
     ui->setupUi(this);
 
-    Player = player::getInstance();
-
     // Player connects
-    connect(Player, QMediaPlayer::durationChanged, this, &controls::onDurationChanged);
-    connect(Player, QMediaPlayer::playbackStateChanged, this, &controls::onPlaybackStateChanged);
-    connect(Player, QMediaPlayer::positionChanged, this, &controls::onPositionChanged);
-    connect(Player, QMediaPlayer::metaDataChanged, this, &controls::onMetaDataChanged);
+    connect(player::getInstance(), QMediaPlayer::durationChanged, this, &controls::onDurationChanged);
+    connect(player::getInstance(), QMediaPlayer::playbackStateChanged, this, &controls::onPlaybackStateChanged);
+    connect(player::getInstance(), QMediaPlayer::positionChanged, this, &controls::onPositionChanged);
+    connect(player::getInstance(), QMediaPlayer::metaDataChanged, this, &controls::onMetaDataChanged);
 
     // Audio output connects
-    connect(Player->audioOutput(), QAudioOutput::mutedChanged, this, &controls::onMutedChanged);
+    connect(player::getInstance()->audioOutput(), QAudioOutput::mutedChanged, this, &controls::onMutedChanged);
 
     // Button connects
     connect(ui->playPause, QPushButton::clicked, this, &controls::onPlayPauseClicked);
@@ -42,6 +40,7 @@ controls::controls(QWidget *parent) :
     connect(ui->progressSlider, QSlider::valueChanged, this, &controls::onProgressSliderValueChanged);
 
     ui->volumeSlider->setValue(50); // 5% volume
+    ui->cover->setPixmap(QPixmap(":image/placeholder.png").scaled(55, 55));
 }
 
 void controls::onDurationChanged(const qint64 duration) const
@@ -86,6 +85,7 @@ void controls::onMutedChanged(const bool muted) const
 
 void controls::onPlayPauseClicked() const
 {
+    auto Player = player::getInstance();
     if (Player->isPlaying()) {
         Player->pause();
     } else {
@@ -95,17 +95,17 @@ void controls::onPlayPauseClicked() const
 
 void controls::onVolumeButtonClicked() const
 {
-    Player->toggleMute();
+    player::getInstance()->toggleMute();
 }
 
 void controls::onVolumeSliderValueChanged(const int value) const
 {
-    Player->audioOutput()->setVolume(static_cast<float>(value / 1000.0));
+    player::getInstance()->audioOutput()->setVolume(static_cast<float>(value / 1000.0));
 }
 
 void controls::onProgressSliderReleased() const
 {
-    Player->setPosition(ui->progressSlider->value());
+    player::getInstance()->setPosition(ui->progressSlider->value());
 }
 
 void controls::onProgressSliderValueChanged(const int value) const
@@ -116,7 +116,15 @@ void controls::onProgressSliderValueChanged(const int value) const
 
 void controls::onMetaDataChanged() const
 {
-    const QMediaMetaData metaData = Player->metaData();
+    if (player::getInstance()->source() == QUrl()) {
+        ui->cover->setPixmap(QPixmap(":/image/placeholder.png").scaled(55, 55));
+        ui->title->setText("Select some Media");
+        ui->artist->setText("NA");
+        ui->time->setText(" - NA");
+        return;
+    }
+
+    const QMediaMetaData metaData = player::getInstance()->metaData();
     const auto cover = metaData.value(QMediaMetaData::ThumbnailImage).value<QPixmap>();
     const auto title = metaData.value(QMediaMetaData::Title).toString();
     const auto artist = metaData.value(QMediaMetaData::ContributingArtist).toString();

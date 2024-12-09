@@ -130,7 +130,7 @@
               </font>
              </property>
              <property name="text">
-              <string>Unknown Song</string>
+              <string>Select some Media</string>
              </property>
             </widget>
            </item>
@@ -167,7 +167,7 @@
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string>Unknown Artist</string>
+                 <string>NA</string>
                 </property>
                </widget>
               </item>
@@ -180,7 +180,7 @@
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string>00:00</string>
+                 <string> - NA</string>
                 </property>
                </widget>
               </item>
