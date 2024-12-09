@@ -4,8 +4,6 @@
 
 #include "song.h"
 
-#include <utility>
-
 song::song(
     QUrl url,
     QPixmap cover,
@@ -14,7 +12,7 @@ song::song(
     ) :
 url(std::move(url)),
 cover(std::move(cover.scaled(55, 55))),
-title(std::move(title.slice(0, title.lastIndexOf('.')))),
+title(title.chopped(4)),
 artist(std::move(artist)) {
     id = QUuid::createUuid();
 }
