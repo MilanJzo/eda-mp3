@@ -20,7 +20,7 @@ librarysong::librarysong(QWidget *parent, const song &s) :
 
     ui->setupUi(this);
 
-    ui->cover->setPixmap(QPixmap::fromImage(s.getCover()));
+    ui->cover->setPixmap(s.getCover());
     ui->title->setText(s.getTitle());
     ui->artist->setText(s.getArtist());
 

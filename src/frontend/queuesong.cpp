@@ -13,7 +13,7 @@ queueSong::queueSong(QWidget *parent, const song &s, const int index) :
     QWidget(parent), ui(new Ui::queueSong), thisSong(s), index(index) {
     ui->setupUi(this);
 
-    ui->cover->setPixmap(QPixmap::fromImage(s.getCover()));
+    ui->cover->setPixmap(s.getCover());
     ui->title->setText(s.getTitle());
     ui->artist->setText(s.getArtist());
 

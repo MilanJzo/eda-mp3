@@ -18,7 +18,7 @@ class queueSong : public QWidget {
 Q_OBJECT
 
 public:
-    explicit queueSong(QWidget *parent = nullptr, const song &s = song(QUrl(), QImage(), "Unknown", "Unknown"), int index = 0);
+    explicit queueSong(QWidget *parent = nullptr, const song &s = song(QUrl(), QPixmap(), "Unknown", "Unknown"), int index = 0);
     ~queueSong() override;
 
 private slots:

@@ -8,7 +8,7 @@
 
 song::song(
     QUrl url,
-    QImage cover,
+    QPixmap cover,
     QString title,
     QString artist
     ) :

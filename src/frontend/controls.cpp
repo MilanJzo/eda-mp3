@@ -117,12 +117,19 @@ void controls::onProgressSliderValueChanged(const int value) const
 void controls::onMetaDataChanged() const
 {
     const QMediaMetaData metaData = Player->metaData();
-    const QString title = metaData.value(QMediaMetaData::Title).toString();
-    const QString artist = metaData.value(QMediaMetaData::ContributingArtist).toString();
+    const auto cover = metaData.value(QMediaMetaData::ThumbnailImage).value<QPixmap>();
+    const auto title = metaData.value(QMediaMetaData::Title).toString();
+    const auto artist = metaData.value(QMediaMetaData::ContributingArtist).toString();
+    const auto duration = metaData.stringValue(QMediaMetaData::Duration);
 
-    // TODO set cover but it no works :(
+    if (!cover.isNull()) {
+        ui->cover->setPixmap(cover.scaled(55, 55));
+    } else {
+        ui->cover->setPixmap(QPixmap(":image/placeholder.png").scaled(55, 55));
+    }
     ui->title->setText(title != "" ? title : "Unknown Title");
     ui->artist->setText(artist != "" ? artist : "Unknown Artist");
+    ui->time->setText(duration != "" ? " - " + duration : " - 00:00");
 }
 
 void controls::onLoopStateToggled() {
@@ -136,6 +143,7 @@ void controls::onLoopStateToggled() {
     {
         loopState = LoopingState::LoopOne;
         player::getInstance()->setLoops(QMediaPlayer::Infinite);
+        queueManager::getInstance()->setLooping(false);
         ui->repeat->setIcon(QIcon(":icon/repeat-1.svg"));
     }
     else

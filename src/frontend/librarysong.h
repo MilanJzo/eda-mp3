@@ -18,7 +18,7 @@ class librarysong : public QWidget {
 Q_OBJECT
 
 public:
-    explicit librarysong(QWidget *parent = nullptr, const song &s = song(QUrl(), QImage(), "Unknown", "Unknown"));
+    explicit librarysong(QWidget *parent = nullptr, const song &s = song(QUrl(), QPixmap(), "Unknown", "Unknown"));
     ~librarysong() override;
 
 private slots:

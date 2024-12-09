@@ -8,9 +8,13 @@
 #include <QDebug>
 #include <QFile>
 #include <QDir>
+#include <QMediaMetaData>
+#include <thread>
 
 
+#include "metaDataHelper.h"
 #include "player.h"
+#include "../frontend/library.h"
 
 libraryManager *libraryManager::instance = nullptr;
 
@@ -26,17 +30,24 @@ libraryManager* libraryManager::getInstance()
 
 void libraryManager::loadDirIntoLibrary(const QString &dir)
 {
+    const auto player = player::getInstance();
+    auto mdHelper = metaDataHelper(this, player);
+    auto urls = QVector<QUrl>();
+
     const QStringList mp3Files = getMP3FilenamesFromDirectory(dir);
     for (const QString &file : mp3Files) {
-
         const QUrl url("file:///" + dir + "/" + file);
-        const QImage cover(":/image/placeholder.png");
-        const QString title = file;
-        const QString artist = "Unknown Artist";
-
-        library.append(song(url, cover, title, artist));
-        emit libraryChanged();
+        player->setSource(url);
+        urls.append(url);
     }
+
+    auto songs = mdHelper.getMetaData();
+    for (int i = 0; i < songs.size(); i++) {
+        songs[i].setUrl(urls[i]);
+    }
+
+    library.append(songs);
+    emit libraryChanged();
 }
 
 void libraryManager::loadLibrary()

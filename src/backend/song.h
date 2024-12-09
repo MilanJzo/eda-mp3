@@ -5,18 +5,20 @@
 #ifndef SONG_H
 #define SONG_H
 
-#include <QImage>
+#include <QPixmap>
 #include <QUrl>
 #include <QUuid>
 
 class song {
 public:
-    song(QUrl url, QImage cover, QString title, QString artist);
+    song(QUrl url, QPixmap cover, QString title, QString artist);
     ~song();
+
+    void setUrl(const QUrl& url) { this->url = url; }
 
     [[nodiscard]] QUuid getId() const { return id; }
     [[nodiscard]] QUrl getUrl() const { return url; }
-    [[nodiscard]] QImage getCover() const { return cover; }
+    [[nodiscard]] QPixmap getCover() const { return cover; }
     [[nodiscard]] QString getTitle() const { return title; }
     [[nodiscard]] QString getArtist() const { return artist; }
     [[nodiscard]] QString toSaveString() const {
@@ -26,10 +28,9 @@ public:
 private:
     QUuid id;
     QUrl url;
-    QImage cover;
+    QPixmap cover;
     QString title;
     QString artist;
-    QString album;
 };
 
 #endif //SONG_H
