@@ -36,7 +36,7 @@ void libraryManager::loadDirIntoLibrary(const QString &dir)
 
         // TODO get actual metadata
 
-        auto cover = QPixmap(":/image/placeholder.png").scaled(55, 55);
+        auto cover = QPixmap(":/image/placeholder.png");
         auto title = file;
         auto artist = "Unknown Artist";
 
@@ -45,8 +45,57 @@ void libraryManager::loadDirIntoLibrary(const QString &dir)
     emit libraryChanged();
 }
 
+//// tried loading metadata after sleeping for x msecs, but it didn't work
+// void libraryManager::loadDirIntoLibrary(const QString &dir)
+// {
+//     const auto player = player::getInstance();
+//
+//     const QStringList mp3Files = getMP3FilenamesFromDirectory(dir);
+//     for (const QString &file : mp3Files) {
+//         const QUrl url("file:///" + dir + "/" + file);
+//         player->setSource(url);
+//
+//         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+//
+//         auto metadata = player->metaData();
+//
+//         auto cover = metadata.value(QMediaMetaData::ThumbnailImage).value<QPixmap>();
+//         auto title = metadata.value(QMediaMetaData::Title).toString();
+//         auto artist = metadata.value(QMediaMetaData::AlbumArtist).toString();
+//
+//         library.append(song(url, cover, title, artist));
+//     }
+//     emit libraryChanged();
+//     player->setSource(QUrl());
+// }
 
-//// another Try didn't work
+//// tried loading metadata with a closure, but it didn't work
+// void libraryManager::loadDirIntoLibrary(const QString &dir)
+// {
+//     const auto player = player::getInstance();
+//
+//     const QStringList mp3Files = getMP3FilenamesFromDirectory(dir);
+//     for (const QString &file : mp3Files) {
+//         const QUrl url("file:///" + dir + "/" + file);
+//
+//         player->setSource(url);
+//
+//         connect(player, player::metaDataChanged, this, [this, player, url](){
+//             const auto metadata = player->metaData();
+//             const auto cover = metadata.value(QMediaMetaData::ThumbnailImage).value<QPixmap>();
+//             const auto title = metadata.value(QMediaMetaData::Title).toString();
+//             const auto artist = metadata.value(QMediaMetaData::AlbumArtist).toString();
+//
+//             library.append(song(url, cover, title, artist));
+//             emit libraryChanged();
+//         });
+//     }
+// }
+
+
+
+
+//// tried to load metadata in a separate "thread" but it didn't work
 // void libraryManager::loadDirIntoLibrary(const QString &dir)
 // {
 //     const auto player = player::getInstance();
@@ -83,7 +132,6 @@ void libraryManager::loadLibrary()
     }
 
     file.close();
-    qDebug() << "Loaded library";
 }
 
 void libraryManager::addDirectory() {
