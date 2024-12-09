@@ -28,6 +28,23 @@ libraryManager* libraryManager::getInstance()
     return instance;
 }
 
+void libraryManager::loadDirIntoLibrary(const QString &dir)
+{
+    const QStringList mp3Files = getMP3FilenamesFromDirectory(dir);
+    for (const QString &file : mp3Files) {
+        const QUrl url("file:///" + dir + "/" + file);
+
+        // TODO get actual metadata
+
+        auto cover = QPixmap(":/image/placeholder.png").scaled(55, 55);
+        auto title = file;
+        auto artist = "Unknown Artist";
+
+        library.append(song(url, cover, title, artist));
+    }
+    emit libraryChanged();
+}
+
 
 //// another Try didn't work
 // void libraryManager::loadDirIntoLibrary(const QString &dir)
