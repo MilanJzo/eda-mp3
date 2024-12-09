@@ -57,6 +57,10 @@ QPushButton:hover {
     background-color: #232323;
 }
 
+#artist, #time {
+    color: #a0a0a0;
+}
+
 /* Slider styles */
 QSlider::groove:horizontal {
     height: 8px;

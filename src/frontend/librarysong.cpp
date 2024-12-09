@@ -24,6 +24,7 @@ librarysong::librarysong(QWidget *parent, const song &s) :
     ui->cover->setPixmap(s.getCover());
     ui->title->setText(s.getTitle());
     ui->artist->setText(s.getArtist());
+    ui->time->setText(" - " + s.getDuration());
 
     connect(ui->playDirectly, &QPushButton::clicked, this, &librarysong::onPlayDirectlyClicked);
     connect(this, &librarysong::playDirectly, queueManager::getInstance(), &queueManager::onPlayDirectly);

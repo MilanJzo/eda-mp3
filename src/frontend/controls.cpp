@@ -120,7 +120,6 @@ void controls::onMetaDataChanged() const
         ui->cover->setPixmap(QPixmap(":/image/placeholder.png").scaled(55, 55));
         ui->title->setText("Select some Media");
         ui->artist->setText("NA");
-        ui->time->setText(" - NA");
         return;
     }
 
@@ -128,7 +127,6 @@ void controls::onMetaDataChanged() const
     const auto cover = metaData.value(QMediaMetaData::ThumbnailImage).value<QPixmap>();
     const auto title = metaData.value(QMediaMetaData::Title).toString();
     const auto artist = metaData.value(QMediaMetaData::ContributingArtist).toString();
-    const auto duration = metaData.stringValue(QMediaMetaData::Duration);
 
     if (!cover.isNull()) {
         ui->cover->setPixmap(cover.scaled(55, 55));
@@ -137,7 +135,6 @@ void controls::onMetaDataChanged() const
     }
     ui->title->setText(title != "" ? title : "Unknown Title");
     ui->artist->setText(artist != "" ? artist : "Unknown Artist");
-    ui->time->setText(duration != "" ? " - " + duration : " - 00:00");
 }
 
 void controls::onLoopStateToggled() {

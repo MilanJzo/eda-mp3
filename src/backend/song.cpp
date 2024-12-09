@@ -4,17 +4,22 @@
 
 #include "song.h"
 
+#include <utility>
+
 song::song(
     QUrl url,
-    QPixmap cover,
+    const QPixmap& cover,
     QString title,
-    QString artist
+    QString artist,
+    QString duration
     ) :
 url(std::move(url)),
 cover(std::move(cover.scaled(55, 55))),
-title(title.chopped(4)),
-artist(std::move(artist)) {
+title(std::move(title)),
+artist(std::move(artist)),
+duration(std::move(duration)){
     id = QUuid::createUuid();
 }
+
 
 song::~song() = default;

@@ -11,7 +11,7 @@
 
 class song {
 public:
-    song(QUrl url, QPixmap cover, QString title, QString artist);
+    song(QUrl url, const QPixmap& cover, QString title, QString artist, QString duration);
     ~song();
 
     void setUrl(const QUrl& url) { this->url = url; }
@@ -21,6 +21,7 @@ public:
     [[nodiscard]] QPixmap getCover() const { return cover; }
     [[nodiscard]] QString getTitle() const { return title; }
     [[nodiscard]] QString getArtist() const { return artist; }
+    [[nodiscard]] QString getDuration() const { return duration; }
     [[nodiscard]] QString toSaveString() const {
         return url.toString() + ";" + title + ";" + artist;
     }
@@ -31,6 +32,7 @@ private:
     QPixmap cover;
     QString title;
     QString artist;
+    QString duration;
 };
 
 #endif //SONG_H

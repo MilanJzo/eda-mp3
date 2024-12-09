@@ -12,7 +12,6 @@
 #include <thread>
 
 
-#include "metaDataHelper.h"
 #include "player.h"
 #include "../frontend/library.h"
 
@@ -28,7 +27,6 @@ libraryManager* libraryManager::getInstance()
     return instance;
 }
 
-//// dumb version without metadata: works at least
 void libraryManager::loadDirIntoLibrary(const QString &dir)
 {
     const QStringList mp3Files = getMP3FilenamesFromDirectory(dir);
@@ -36,15 +34,47 @@ void libraryManager::loadDirIntoLibrary(const QString &dir)
         const QUrl url("file:///" + dir + "/" + file);
 
         // TODO get actual metadata
+        auto tempPlayer = new QMediaPlayer();
+        tempPlayer->setSource(url);
 
-        auto cover = QPixmap(":/image/placeholder.png");
-        auto title = file;
-        auto artist = "Unknown Artist";
+        connect(tempPlayer, &QMediaPlayer::metaDataChanged, this, [this, tempPlayer, url, file](){
+            const auto metadata = tempPlayer->metaData();
+            const auto cover = metadata.value(QMediaMetaData::ThumbnailImage).value<QPixmap>().isNull() ? QPixmap(":/image/placeholder.png") : metadata.value(QMediaMetaData::ThumbnailImage).value<QPixmap>();
+            const auto title = metadata.stringValue(QMediaMetaData::Title) == "" ? file.chopped(4) : metadata.stringValue(QMediaMetaData::Title);
+            const auto artist = metadata.stringValue(QMediaMetaData::ContributingArtist) == "" ? "Unknown Artist" : metadata.stringValue(QMediaMetaData::ContributingArtist);
+            const auto duration = metadata.stringValue(QMediaMetaData::Duration) == "" ? "00:00" : metadata.stringValue(QMediaMetaData::Duration);
 
-        library.append(song(url, cover, title, artist));
+            library.append(song(url, cover, title, artist, duration));
+            emit libraryChanged();
+            tempPlayer->deleteLater();
+        });
+
+        // auto cover = QPixmap(":/image/placeholder.png");
+        // auto title = file;
+        // auto artist = "Unknown Artist";
+        //
+        // library.append(song(url, cover, title, artist));
     }
-    emit libraryChanged();
+    // emit libraryChanged();
 }
+
+//// dumb version without metadata: works at least
+// void libraryManager::loadDirIntoLibrary(const QString &dir)
+// {
+//     const QStringList mp3Files = getMP3FilenamesFromDirectory(dir);
+//     for (const QString &file : mp3Files) {
+//         const QUrl url("file:///" + dir + "/" + file);
+//
+//         // TODO get actual metadata
+//
+//         auto cover = QPixmap(":/image/placeholder.png");
+//         auto title = file;
+//         auto artist = "Unknown Artist";
+//
+//         library.append(song(url, cover, title, artist));
+//     }
+//     emit libraryChanged();
+// }
 
 //// tried loading metadata after sleeping for x msecs, but it didn't work
 // void libraryManager::loadDirIntoLibrary(const QString &dir)
