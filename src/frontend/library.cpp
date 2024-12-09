@@ -22,7 +22,7 @@ library::library(QWidget *parent) :
     auto manager = libraryManager::getInstance();
     renderSongs(manager->getLibrary());
 
-    connect(manager, libraryManager::libraryChanged, this, &library::on_libraryChanged);
+    connect(manager, &libraryManager::libraryChanged, this, &library::on_libraryChanged);
 }
 
 void library::on_libraryChanged() {

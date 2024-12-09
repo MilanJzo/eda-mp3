@@ -19,25 +19,25 @@ controls::controls(QWidget *parent) :
     ui->setupUi(this);
 
     // Player connects
-    connect(player::getInstance(), QMediaPlayer::durationChanged, this, &controls::onDurationChanged);
-    connect(player::getInstance(), QMediaPlayer::playbackStateChanged, this, &controls::onPlaybackStateChanged);
-    connect(player::getInstance(), QMediaPlayer::positionChanged, this, &controls::onPositionChanged);
-    connect(player::getInstance(), QMediaPlayer::metaDataChanged, this, &controls::onMetaDataChanged);
+    connect(player::getInstance(), &QMediaPlayer::durationChanged, this, &controls::onDurationChanged);
+    connect(player::getInstance(), &QMediaPlayer::playbackStateChanged, this, &controls::onPlaybackStateChanged);
+    connect(player::getInstance(), &QMediaPlayer::positionChanged, this, &controls::onPositionChanged);
+    connect(player::getInstance(), &QMediaPlayer::metaDataChanged, this, &controls::onMetaDataChanged);
 
     // Audio output connects
-    connect(player::getInstance()->audioOutput(), QAudioOutput::mutedChanged, this, &controls::onMutedChanged);
+    connect(player::getInstance()->audioOutput(), &QAudioOutput::mutedChanged, this, &controls::onMutedChanged);
 
     // Button connects
-    connect(ui->playPause, QPushButton::clicked, this, &controls::onPlayPauseClicked);
-    connect(ui->volumeButton, QPushButton::clicked, this, &controls::onVolumeButtonClicked);
-    connect(ui->skipForwards, QPushButton::clicked, queueManager::getInstance(), &queueManager::onSkipForward);
-    connect(ui->skipBackwards, QPushButton::clicked, queueManager::getInstance(), &queueManager::onSkipBackward);
-    connect(ui->repeat, QPushButton::clicked, this, &controls::onLoopStateToggled);
+    connect(ui->playPause, &QPushButton::clicked, this, &controls::onPlayPauseClicked);
+    connect(ui->volumeButton, &QPushButton::clicked, this, &controls::onVolumeButtonClicked);
+    connect(ui->skipForwards, &QPushButton::clicked, queueManager::getInstance(), &queueManager::onSkipForward);
+    connect(ui->skipBackwards, &QPushButton::clicked, queueManager::getInstance(), &queueManager::onSkipBackward);
+    connect(ui->repeat, &QPushButton::clicked, this, &controls::onLoopStateToggled);
 
     // Slider connects
-    connect(ui->volumeSlider, QSlider::valueChanged, this, &controls::onVolumeSliderValueChanged);
-    connect(ui->progressSlider, QSlider::sliderReleased, this, &controls::onProgressSliderReleased);
-    connect(ui->progressSlider, QSlider::valueChanged, this, &controls::onProgressSliderValueChanged);
+    connect(ui->volumeSlider, &QSlider::valueChanged, this, &controls::onVolumeSliderValueChanged);
+    connect(ui->progressSlider, &QSlider::sliderReleased, this, &controls::onProgressSliderReleased);
+    connect(ui->progressSlider, &QSlider::valueChanged, this, &controls::onProgressSliderValueChanged);
 
     ui->volumeSlider->setValue(50); // 5% volume
     ui->cover->setPixmap(QPixmap(":image/placeholder.png").scaled(55, 55));

@@ -10,6 +10,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
 
+#include "queuesong.h"
 #include "ui_librarysong.h"
 #include "../backend/player.h"
 #include "../backend/queueManager.h"
@@ -24,11 +25,11 @@ librarysong::librarysong(QWidget *parent, const song &s) :
     ui->title->setText(s.getTitle());
     ui->artist->setText(s.getArtist());
 
-    connect(ui->playDirectly, QPushButton::clicked, this, &librarysong::onPlayDirectlyClicked);
-    connect(this, playDirectly, queueManager::getInstance(), &queueManager::onPlayDirectly);
+    connect(ui->playDirectly, &QPushButton::clicked, this, &librarysong::onPlayDirectlyClicked);
+    connect(this, &librarysong::playDirectly, queueManager::getInstance(), &queueManager::onPlayDirectly);
 
-    connect(ui->addToQueue, QPushButton::clicked, this, &librarysong::onAddToQueueClicked);
-    connect(this, addToQueue, queueManager::getInstance(), &queueManager::onAddToQueue);
+    connect(ui->addToQueue, &QPushButton::clicked, this, &librarysong::onAddToQueueClicked);
+    connect(this, &librarysong::addToQueue, queueManager::getInstance(), &queueManager::onAddToQueue);
 }
 
 void librarysong::onPlayDirectlyClicked() {

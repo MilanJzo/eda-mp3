@@ -15,8 +15,8 @@ queue::queue(QWidget *parent) :
     QWidget(parent), ui(new Ui::queue) {
     ui->setupUi(this);
 
-    connect(queueManager::getInstance(), queueManager::queueChanged, this, &queue::onQueueChanged);
-    connect(ui->clearButton, QPushButton::clicked, queueManager::getInstance(), &queueManager::onClearQueue);
+    connect(queueManager::getInstance(), &queueManager::queueChanged, this, &queue::onQueueChanged);
+    connect(ui->clearButton, &QPushButton::clicked, queueManager::getInstance(), &queueManager::onClearQueue);
 }
 
 void queue::onQueueChanged() {

@@ -8,7 +8,7 @@
 
 metaDataHelper::metaDataHelper(QObject *parent, const player *player) : QObject(parent)
 {
-    connect(player, player::metaDataChanged, this, &metaDataHelper::onMetaDataChanged);
+    connect(player, &player::metaDataChanged, this, &metaDataHelper::onMetaDataChanged);
 }
 
 void metaDataHelper::onMetaDataChanged()

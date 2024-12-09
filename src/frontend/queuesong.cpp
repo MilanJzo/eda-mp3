@@ -5,7 +5,7 @@
 // You may need to build the project (run Qt uic code generator) to get "ui_queueSong.h" resolved
 
 #include "queuesong.h"
-#include "ui_queueSong.h"
+#include "ui_queuesong.h"
 #include "../backend/queueManager.h"
 
 
@@ -17,8 +17,8 @@ queueSong::queueSong(QWidget *parent, const song &s, const int index) :
     ui->title->setText(s.getTitle());
     ui->artist->setText(s.getArtist());
 
-    connect(ui->removeFromQueue, QPushButton::clicked, this, &queueSong::onRemoveFromQueueClicked);
-    connect(this, removeFromQueue, queueManager::getInstance(), &queueManager::onRemoveFromQueue);
+    connect(ui->removeFromQueue, &QPushButton::clicked, this, &queueSong::onRemoveFromQueueClicked);
+    connect(this, &queueSong::removeFromQueue, queueManager::getInstance(), &queueManager::onRemoveFromQueue);
 }
 
 void queueSong::onRemoveFromQueueClicked() {

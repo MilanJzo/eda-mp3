@@ -17,7 +17,7 @@ queueManager *queueManager::getInstance()
 
 queueManager::queueManager() : queue(QVector<song>())
 {
-    connect(player::getInstance(), QMediaPlayer::mediaStatusChanged, this, &queueManager::onMediaStatusChanged);
+    connect(player::getInstance(), &QMediaPlayer::mediaStatusChanged, this, &queueManager::onMediaStatusChanged);
 }
 
 void queueManager::append(const song &s)
