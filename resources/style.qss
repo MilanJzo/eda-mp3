@@ -73,3 +73,12 @@ QSlider::sub-page:horizontal {
 
     background: #e5e5e5;
 }
+
+QSlider::handle:horizontal {
+    height: 8px;
+    width: 8px;
+
+    border-radius: 4px;
+
+    background: #e5e5e5;
+}
