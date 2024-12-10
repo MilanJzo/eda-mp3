@@ -17,6 +17,10 @@ queueSong::queueSong(QWidget *parent, const song &s, const int index) :
     ui->title->setText(s.getTitle());
     ui->artist->setText(s.getArtist());
 
+    if (index == 0) {
+        ui->removeFromQueue->setStyleSheet("#removeFromQueue:hover {background-color: #267B6A;}");
+    }
+
     connect(ui->removeFromQueue, &QPushButton::clicked, this, &queueSong::onRemoveFromQueueClicked);
     connect(this, &queueSong::removeFromQueue, queueManager::getInstance(), &queueManager::onRemoveFromQueue);
 }

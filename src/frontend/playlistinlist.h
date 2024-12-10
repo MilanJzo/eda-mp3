@@ -16,7 +16,7 @@ class playlistinlist : public QWidget {
 Q_OBJECT
 
 public:
-    explicit playlistinlist(QWidget *parent = nullptr, QString name = "??????");
+    explicit playlistinlist(QWidget *parent = nullptr, const QString &name = "??????");
     ~playlistinlist() override;
 
 private:

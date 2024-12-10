@@ -8,11 +8,12 @@
 #include "ui_playlistinlist.h"
 
 
-playlistinlist::playlistinlist(QWidget *parent, QString name) :
+playlistinlist::playlistinlist(QWidget *parent, const QString &name) :
     QWidget(parent), ui(new Ui::playlistinlist) {
     ui->setupUi(this);
 
     ui->name->setText(name);
+    ui->cover->setPixmap(QPixmap(":/image/placeholder.png").scaled(32, 32));
 }
 
 playlistinlist::~playlistinlist() {
