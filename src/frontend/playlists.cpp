@@ -7,6 +7,7 @@
 #include "playlists.h"
 
 #include "createplaylistdialog.h"
+#include "playlistinlist.h"
 #include "ui_playlists.h"
 #include "../backend/playlistManager.h"
 
@@ -21,15 +22,21 @@ playlists::playlists(QWidget *parent) :
     connect(playlistManager::getInstance(), &playlistManager::playlistsChanged, this, &playlists::onPlaylistsChanged);
 }
 
-void playlists::onPlaylistsChanged() const {
+void playlists::onPlaylistsChanged() {
     renderPlaylists();
 }
 
-void playlists::renderPlaylists() const {
+void playlists::renderPlaylists() {
     ui->playlistList->clear();
 
     for (const auto& playlist: playlistManager::getInstance()->getPlaylists()) {
-        ui->playlistList->addItem(playlist.getName());
+        const auto item = new QListWidgetItem(ui->playlistList);
+        const auto playlistWidget = new playlistinlist(this, playlist.getName());
+
+        item->setSizeHint(playlistWidget->sizeHint());
+
+        ui->playlistList->addItem(item);
+        ui->playlistList->setItemWidget(item, playlistWidget);
     }
 }
 

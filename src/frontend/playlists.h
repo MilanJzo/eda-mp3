@@ -19,14 +19,14 @@ public:
     explicit playlists(QWidget *parent = nullptr);
     ~playlists() override;
 
-    void renderPlaylists() const;
-
 public slots:
     void onAddButtonClicked();
-    void onPlaylistsChanged() const;
+    void onPlaylistsChanged();
 
 private:
     Ui::playlists *ui;
+
+    void renderPlaylists();
 };
 
 
