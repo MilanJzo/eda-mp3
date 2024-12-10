@@ -23,7 +23,7 @@ public:
     [[nodiscard]] QString getArtist() const { return artist; }
     [[nodiscard]] QString getDuration() const { return duration; }
     [[nodiscard]] QString toSaveString() const {
-        return url.toString() + ";" + title + ";" + artist;
+        return url.toString();
     }
 
 private:

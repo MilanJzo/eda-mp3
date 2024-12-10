@@ -24,7 +24,7 @@ void createplaylistdialog::onCreateClicked() {
     const auto playlistName = ui->playlistName->text();
 
     if (playlistName.isEmpty()) {
-        qWarning() << "Playlist cant be empty";
+        qWarning() << "Playlist Name cant be empty";
         return;
     }
 

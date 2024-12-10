@@ -39,6 +39,7 @@ set(PROJECT_SOURCES
         src/backend/queueManager.h
         src/backend/playlistManager.cpp
         src/backend/playlistManager.h
+        src/backend/playlist.h
 
         src/frontend/mainwindow.cpp
         src/frontend/mainwindow.h
@@ -61,13 +62,15 @@ set(PROJECT_SOURCES
         src/frontend/queuesong.cpp
         src/frontend/queuesong.h
         src/frontend/queuesong.ui
-        src/backend/playlist.h
         src/frontend/createplaylistdialog.cpp
         src/frontend/createplaylistdialog.h
         src/frontend/createplaylistdialog.ui
         src/frontend/songtoplaylistdialog.cpp
         src/frontend/songtoplaylistdialog.h
         src/frontend/songtoplaylistdialog.ui
+        src/frontend/addtoplaylist.cpp
+        src/frontend/addtoplaylist.h
+        src/frontend/addtoplaylist.ui
 
 )
 

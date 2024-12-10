@@ -16,6 +16,8 @@ public:
 
     [[nodiscard]] QVector<playlist> getPlaylists() const { return playlists; }
 
+    void addTrackToPlaylist(const QString& playlistName, const song& s);
+
     void upsertPlaylist(const playlist& playlist);
 
     void createPlaylist(const QString& name, QUrl url);
@@ -28,6 +30,8 @@ private:
     QVector<playlist> playlists;
 
     playlistManager();
+    void loadPlaylists();
+    song fromSaveString(const QString& saveString);
 };
 
 #endif //PLAYLISTMANAGER_H

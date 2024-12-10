@@ -7,6 +7,8 @@
 
 #include <qdialog.h>
 #include <QWidget>
+
+#include "../backend/playlist.h"
 #include "../backend/song.h"
 
 
@@ -23,13 +25,17 @@ public:
 
 public slots:
     void onAddToPlaylist(const song &s);
+    void onPlaylistChanged();
 
 private:
     Ui::songToPlaylistDialog *ui;
 
+    song &s;
+
     static songToPlaylistDialog *instance;
 
     explicit songToPlaylistDialog(QWidget *parent = nullptr);
+    void renderPlaylists();
 };
 
 

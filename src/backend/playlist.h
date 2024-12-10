@@ -12,6 +12,8 @@ class playlist : public QVector<song>{
 public:
     explicit playlist(QString name) : name(std::move(name)) { id = QUuid::createUuid(); }
 
+    void appendRef(const song &s) { this->append(s); }
+
     [[nodiscard]] QUuid getId() const { return id; }
     [[nodiscard]] QString getName() const { return name; }
 

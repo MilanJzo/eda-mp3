@@ -9,9 +9,14 @@
 #include <QDebug>
 #include <QDir>
 
+#include "libraryManager.h"
+#include "../frontend/songtoplaylistdialog.h"
+
 playlistManager *playlistManager::instance = nullptr;
 
-playlistManager::playlistManager() : playlists(QVector<playlist>()) {}
+playlistManager::playlistManager() : playlists(QVector<playlist>()) {
+    loadPlaylists();
+}
 
 playlistManager* playlistManager::getInstance()
 {
@@ -21,9 +26,11 @@ playlistManager* playlistManager::getInstance()
 
 void playlistManager::upsertPlaylist(const playlist& playlist) {
     QDir dir("./playlists");
-    if (!dir.mkdir(".")) {
-        qWarning() << "Failed to create playlists directory";
-        return;
+    if (!dir.exists()) {
+        if (!dir.mkdir(".")) {
+            qWarning() << "Failed to create playlists directory";
+            return;
+        }
     }
 
     QFile file("./playlists/" + playlist.getName() + ".txt");
@@ -53,7 +60,53 @@ void playlistManager::createPlaylist(const QString& name, QUrl url) {
     // TODO add coverUrl to playlist
     const auto newPlaylist = playlist(name);
 
+    upsertPlaylist(newPlaylist);
     playlists.append(newPlaylist);
     emit playlistsChanged();
-    upsertPlaylist(newPlaylist);
+}
+
+void playlistManager::loadPlaylists() {
+    QDir dir("./playlists");
+    if (!dir.exists()) {
+        if (!dir.mkdir(".")) {
+            qWarning() << "Failed to create playlists directory";
+            return;
+        }
+    }
+
+    for (const auto& file: dir.entryList(QDir::Files)) {
+        QFile playlistFile("./playlists/" + file);
+        if (!playlistFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            qWarning() << QString("Failed to open " + file);
+            return;
+        }
+
+        QTextStream stream(&playlistFile);
+        playlist newPlaylist(file.chopped(4));
+        while (!stream.atEnd()) {
+            const auto line = stream.readLine();
+            newPlaylist.append(fromSaveString(line));
+        }
+
+        playlists.append(newPlaylist);
+        emit playlistsChanged();
+    }
+}
+
+song playlistManager::fromSaveString(const QString& saveString) {
+    for (auto& s: libraryManager::getInstance()->getLibrary()) {
+        if (s.toSaveString() == saveString) {
+            return s;
+        }
+    }
+    return song(QUrl(), QPixmap(":image/placeholder.png"), "Not Found", "Not Found", "Not Found");
+}
+
+void playlistManager::addTrackToPlaylist(const QString& playlistName, const song& s) {
+    for (auto& p: playlists) {
+        if (p.getName() == playlistName) {
+            p.append(s);
+            upsertPlaylist(p);
+        }
+    }
 }
