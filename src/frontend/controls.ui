@@ -330,6 +330,9 @@
                 <property name="styleSheet">
                  <string notr="true"/>
                 </property>
+                <property name="maximum">
+                 <number>100</number>
+                </property>
                 <property name="orientation">
                  <enum>Qt::Orientation::Horizontal</enum>
                 </property>
@@ -451,7 +454,7 @@
                <string notr="true"/>
               </property>
               <property name="maximum">
-               <number>1000</number>
+               <number>100</number>
               </property>
               <property name="singleStep">
                <number>1</number>
