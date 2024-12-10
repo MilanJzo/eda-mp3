@@ -39,7 +39,7 @@ controls::controls(QWidget *parent) :
     connect(ui->progressSlider, &QSlider::sliderReleased, this, &controls::onProgressSliderReleased);
     connect(ui->progressSlider, &QSlider::valueChanged, this, &controls::onProgressSliderValueChanged);
 
-    ui->volumeSlider->setValue(50); // 5% volume
+    ui->volumeSlider->setValue(25); // 25% volume
     ui->cover->setPixmap(QPixmap(":image/placeholder.png").scaled(55, 55));
 }
 
