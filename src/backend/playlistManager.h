@@ -16,7 +16,12 @@ public:
 
     [[nodiscard]] QVector<playlist> getPlaylists() const { return playlists; }
 
-    void upsertPlaylist(QUuid id);
+    void upsertPlaylist(const playlist& playlist);
+
+    void createPlaylist(const QString& name, QUrl url);
+
+signals:
+    void playistsChanged();
 
 private:
     static playlistManager *instance;

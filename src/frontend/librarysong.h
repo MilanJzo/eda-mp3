@@ -21,6 +21,8 @@ public:
     explicit librarysong(QWidget *parent = nullptr, const song &s = song(QUrl(), QPixmap(), "Unknown", "Unknown", "00:00"));
     ~librarysong() override;
 
+    [[nodiscard]] const song &getSong() const { return thisSong; }
+
 private slots:
     void onPlayDirectlyClicked();
     void onAddToQueueClicked();

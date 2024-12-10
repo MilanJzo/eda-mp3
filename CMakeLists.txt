@@ -61,8 +61,10 @@ set(PROJECT_SOURCES
         src/frontend/queuesong.cpp
         src/frontend/queuesong.h
         src/frontend/queuesong.ui
-        src/backend/playlist.cpp
         src/backend/playlist.h
+        src/frontend/createplaylistdialog.cpp
+        src/frontend/createplaylistdialog.h
+        src/frontend/createplaylistdialog.ui
 
 )
 

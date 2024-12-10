@@ -4,13 +4,14 @@
 
 #ifndef PLAYLIST_H
 #define PLAYLIST_H
-#include <qcontainerfwd.h>
 
 #include "song.h"
+#include <QVector>
 
 class playlist : public QVector<song>{
 public:
-    playlist();
+    explicit playlist(QString name) : name(std::move(name)) { id = QUuid::createUuid(); }
+
     [[nodiscard]] QUuid getId() const { return id; }
     [[nodiscard]] QString getName() const { return name; }
 

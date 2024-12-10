@@ -145,6 +145,9 @@
       </item>
       <item>
        <widget class="QListWidget" name="songList">
+        <property name="contextMenuPolicy">
+         <enum>Qt::ContextMenuPolicy::CustomContextMenu</enum>
+        </property>
         <property name="lineWidth">
          <number>0</number>
         </property>

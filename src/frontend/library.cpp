@@ -7,12 +7,12 @@
 #include "library.h"
 #include "librarysong.h"
 
-#include <QMediaPlayer>
 #include <QMediaMetaData>
 
+#include <QMenu>
 #include "ui_library.h"
 #include "../backend/libraryManager.h"
-
+#include "../backend/playlistManager.h"
 
 
 library::library(QWidget *parent) :
@@ -21,10 +21,11 @@ library::library(QWidget *parent) :
 
     renderSongs();
 
-    connect(libraryManager::getInstance(), &libraryManager::libraryChanged, this, &library::on_libraryChanged);
+    connect(libraryManager::getInstance(), &libraryManager::libraryChanged, this, &library::onLibraryChanged);
+    connect(ui->addButton, &QPushButton::clicked, this, &library::onAddButtonClicked);
 }
 
-void library::on_libraryChanged() {
+void library::onLibraryChanged() {
     renderSongs();
 }
 
@@ -44,7 +45,7 @@ void library::renderSongs() {
     qDebug() << "Rendered Library";
 }
 
-void library::on_addButton_clicked() const
+void library::onAddButtonClicked() const
 {
     libraryManager::getInstance()->addDirectory();
 }

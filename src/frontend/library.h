@@ -23,8 +23,8 @@ public:
     ~library() override;
 
 private slots:
-    void on_addButton_clicked() const;
-    void on_libraryChanged();
+    void onAddButtonClicked() const;
+    void onLibraryChanged();
 
 private:
     Ui::library *ui;
