@@ -10,7 +10,6 @@
 #include <QDir>
 
 #include "libraryManager.h"
-#include "../frontend/songtoplaylistdialog.h"
 
 playlistManager *playlistManager::instance = nullptr;
 
