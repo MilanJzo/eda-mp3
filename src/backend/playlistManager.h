@@ -21,7 +21,7 @@ public:
     void createPlaylist(const QString& name, QUrl url);
 
 signals:
-    void playistsChanged();
+    void playlistsChanged();
 
 private:
     static playlistManager *instance;

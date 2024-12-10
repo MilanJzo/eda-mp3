@@ -54,6 +54,6 @@ void playlistManager::createPlaylist(const QString& name, QUrl url) {
     const auto newPlaylist = playlist(name);
 
     playlists.append(newPlaylist);
-    emit playistsChanged();
+    emit playlistsChanged();
     upsertPlaylist(newPlaylist);
 }

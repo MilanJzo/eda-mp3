@@ -24,12 +24,14 @@ public:
     [[nodiscard]] const song &getSong() const { return thisSong; }
 
 private slots:
-    void onPlayDirectlyClicked();
-    void onAddToQueueClicked();
+    void onPlayDirectlyClicked() const;
+    void onAddToQueueClicked() const;
+    void onAddToPlaylistClicked() const;
 
 signals:
     void playDirectly(const song &s) const;
     void addToQueue(const song &s) const;
+    void addToPlaylist(const song &s) const;
 
 private:
     Ui::librarysong *ui;

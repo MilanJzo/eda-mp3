@@ -18,14 +18,14 @@ playlists::playlists(QWidget *parent) :
     renderPlaylists();
 
     connect(ui->addButton, &QPushButton::clicked, this, &playlists::onAddButtonClicked);
-    connect(playlistManager::getInstance(), &playlistManager::playistsChanged, this, &playlists::onPlaylistsChanged);
+    connect(playlistManager::getInstance(), &playlistManager::playlistsChanged, this, &playlists::onPlaylistsChanged);
 }
 
-void playlists::onPlaylistsChanged() {
+void playlists::onPlaylistsChanged() const {
     renderPlaylists();
 }
 
-void playlists::renderPlaylists() {
+void playlists::renderPlaylists() const {
     ui->playlistList->clear();
 
     for (const auto& playlist: playlistManager::getInstance()->getPlaylists()) {

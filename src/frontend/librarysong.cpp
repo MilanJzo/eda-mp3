@@ -11,8 +11,10 @@
 #include <QGraphicsPixmapItem>
 
 #include "queuesong.h"
+#include "songtoplaylistdialog.h"
 #include "ui_librarysong.h"
 #include "../backend/player.h"
+#include "../backend/playlistManager.h"
 #include "../backend/queueManager.h"
 
 
@@ -31,14 +33,21 @@ librarysong::librarysong(QWidget *parent, const song &s) :
 
     connect(ui->addToQueue, &QPushButton::clicked, this, &librarysong::onAddToQueueClicked);
     connect(this, &librarysong::addToQueue, queueManager::getInstance(), &queueManager::onAddToQueue);
+
+    connect(ui->addToPlaylist, &QPushButton::clicked, this, &librarysong::onAddToPlaylistClicked);
+    connect(this, &librarysong::addToPlaylist, songToPlaylistDialog::getInstance(), &songToPlaylistDialog::onAddToPlaylist);
 }
 
-void librarysong::onPlayDirectlyClicked() {
+void librarysong::onPlayDirectlyClicked() const {
     emit playDirectly(thisSong);
 }
 
-void librarysong::onAddToQueueClicked() {
+void librarysong::onAddToQueueClicked() const {
     emit addToQueue(thisSong);
+}
+
+void librarysong::onAddToPlaylistClicked() const {
+    emit addToPlaylist(thisSong);
 }
 
 librarysong::~librarysong() {
