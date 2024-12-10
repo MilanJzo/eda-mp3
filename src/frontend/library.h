@@ -29,7 +29,7 @@ private slots:
 private:
     Ui::library *ui;
 
-    void renderSongs(QVector<song> songs);
+    void renderSongs();
 };
 
 

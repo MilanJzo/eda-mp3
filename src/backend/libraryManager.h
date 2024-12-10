@@ -11,7 +11,6 @@
 
 #include "song.h"
 
-
 class libraryManager final : public QObject {
     Q_OBJECT
 public:
@@ -32,7 +31,5 @@ private:
     void loadDirIntoLibrary(const QString &dir);
 
 };
-
-
 
 #endif //LIBRARYMANAGER_H

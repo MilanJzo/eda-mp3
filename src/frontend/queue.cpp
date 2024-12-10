@@ -26,7 +26,7 @@ void queue::onQueueChanged() {
 void queue::renderSongs() {
     ui->listWidget->clear();
 
-    auto queue = queueManager::getInstance()->getQueue();
+    const auto queue = queueManager::getInstance()->getQueue();
     for (int i = 0; i < queue.size(); i++) {
         const auto item = new QListWidgetItem(ui->listWidget);
         const auto songWidget = new queueSong(this, queue.at(i), i);
@@ -47,7 +47,7 @@ void queue::renderSongs() {
         ui->listWidget->addItem(item);
         ui->listWidget->setItemWidget(item, songWidget);
     }
-    qDebug() << "Rendered songs";
+    qDebug() << "Rendered Queue";
 }
 
 queue::~queue() {

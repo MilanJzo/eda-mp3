@@ -33,6 +33,12 @@ set(PROJECT_SOURCES
         src/backend/player.h
         src/backend/libraryManager.cpp
         src/backend/libraryManager.h
+        src/backend/song.cpp
+        src/backend/song.h
+        src/backend/queueManager.cpp
+        src/backend/queueManager.h
+        src/backend/playlistManager.cpp
+        src/backend/playlistManager.h
 
         src/frontend/mainwindow.cpp
         src/frontend/mainwindow.h
@@ -52,15 +58,12 @@ set(PROJECT_SOURCES
         src/frontend/librarysong.cpp
         src/frontend/librarysong.h
         src/frontend/librarysong.ui
-        src/backend/song.cpp
-        src/backend/song.h
-        src/backend/queueManager.cpp
-        src/backend/queueManager.h
         src/frontend/queuesong.cpp
         src/frontend/queuesong.h
         src/frontend/queuesong.ui
-        src/backend/playlistManager.cpp
-        src/backend/playlistManager.h
+        src/backend/playlist.cpp
+        src/backend/playlist.h
+
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
