@@ -36,6 +36,11 @@ QMainWindow {
 }
 
 /* styles by element */
+QDialog {
+    border-radius: 15px;
+    background-color: #353535;
+}
+
 QListWidget {
     border: 0px;
     border-radius: 15px;
