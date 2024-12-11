@@ -27,7 +27,7 @@ switcher::switcher(QWidget *parent) :
 void switcher::onEditPlaylist(const playlist &p) {
     if (currentPlaylist != p.getName())
     {
-        delete edit;
+        if (!edit) delete edit;  // erster Kommentar ;), das hier war der Absturzgrund während der Präsetation, weil das if()-statement fehlte.
         currentPlaylist = p.getName();
         lib->close();
         edit = new editor(this, p);
@@ -37,6 +37,7 @@ void switcher::onEditPlaylist(const playlist &p) {
 
 void switcher::onBackButtonClicked() {
     delete edit;
+    currentPlaylist = "";
     lib->show();
 }
 
