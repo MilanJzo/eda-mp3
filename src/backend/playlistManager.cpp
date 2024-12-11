@@ -114,6 +114,7 @@ void playlistManager::addTrackToPlaylist(const QString& playlistName, const song
         if (p.getName() == playlistName) {
             p.append(s);
             upsertPlaylist(p);
+            emit playlistsChanged();
         }
     }
 }
