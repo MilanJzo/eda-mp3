@@ -30,7 +30,11 @@
     <number>10</number>
    </property>
    <item>
-    <widget class="QListWidget" name="listWidget"/>
+    <widget class="QListWidget" name="listWidget">
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SelectionMode::NoSelection</enum>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

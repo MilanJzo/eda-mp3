@@ -44,8 +44,10 @@ void librarysong::onAddToQueueClicked() const {
     emit addToQueue(thisSong);
 }
 
-void librarysong::onAddToPlaylistClicked() const {
-    emit addToPlaylist(thisSong);
+void librarysong::onAddToPlaylistClicked() {
+    const auto addDialog = new addtoplaylistdialog(this);
+
+    addDialog->exec();
 }
 
 librarysong::~librarysong() {

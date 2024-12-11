@@ -71,6 +71,9 @@ set(PROJECT_SOURCES
         src/frontend/addtoplaylistdialog.cpp
         src/frontend/addtoplaylistdialog.h
         src/frontend/addtoplaylistdialog.ui
+        src/frontend/addtoplaylist.cpp
+        src/frontend/addtoplaylist.h
+        src/frontend/addtoplaylist.ui
 
 )
 

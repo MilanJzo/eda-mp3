@@ -7,6 +7,7 @@
 
 #include <QWidget>
 
+#include "addtoplaylistdialog.h"
 #include "../backend/song.h"
 
 
@@ -26,7 +27,7 @@ public:
 private slots:
     void onPlayDirectlyClicked() const;
     void onAddToQueueClicked() const;
-    void onAddToPlaylistClicked() const;
+    void onAddToPlaylistClicked();
 
 signals:
     void playDirectly(const song &s) const;
