@@ -13,7 +13,7 @@ playlistinlist::playlistinlist(QWidget *parent, const QString &name) :
     ui->setupUi(this);
 
     ui->name->setText(name);
-    ui->cover->setPixmap(QPixmap(":/image/placeholder.png").scaled(32, 32));
+    ui->cover->setPixmap(QPixmap(":/image/placeholder.png").scaled(48, 48));
 }
 
 playlistinlist::~playlistinlist() {
