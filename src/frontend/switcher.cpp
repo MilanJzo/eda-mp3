@@ -17,7 +17,7 @@ switcher* switcher::getInstance() {
 }
 
 switcher::switcher(QWidget *parent) :
-    QWidget(parent), ui(new Ui::switcher) {
+    QWidget(parent), ui(new Ui::switcher), currentPlaylist("") {
     ui->setupUi(this);
 
     lib = new library(this);
@@ -25,8 +25,10 @@ switcher::switcher(QWidget *parent) :
 }
 
 void switcher::onEditPlaylist(const playlist &p) {
-    if (!lib->isHidden())
+    if (currentPlaylist != p.getName())
     {
+        delete edit;
+        currentPlaylist = p.getName();
         lib->close();
         edit = new editor(this, p);
         ui->verticalLayout->addWidget(edit);

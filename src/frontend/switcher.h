@@ -32,6 +32,7 @@ private:
     Ui::switcher *ui;
     library* lib;
     editor* edit{};
+    QString currentPlaylist;
 
     explicit switcher(QWidget *parent = nullptr);
 };
