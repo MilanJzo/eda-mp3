@@ -82,7 +82,6 @@ void playlistManager::loadPlaylists() {
 
     for (const auto& file: dir.entryList(QDir::Files)) {
         QFile playlistFile("./playlists/" + file);
-        qDebug() << "Loading playlist from file: " << file;
         if (!playlistFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
             qWarning() << QString("Failed to open " + file);
             return;
@@ -94,8 +93,6 @@ void playlistManager::loadPlaylists() {
             const auto line = stream.readLine();
             auto song = fromSaveString(line);
             newPlaylist.append(song);
-            qDebug() << "Loaded song: " << line;
-            qDebug() << "Found: " << song.getTitle();
         }
 
         playlists.append(newPlaylist);
@@ -104,10 +101,7 @@ void playlistManager::loadPlaylists() {
 }
 
 song playlistManager::fromSaveString(const QString& saveString) {
-    qDebug() << "Loading song from: " << saveString;
-    qDebug() << "Library size: " << libraryManager::getInstance()->getLibrary().size();
     for (auto& s: libraryManager::getInstance()->getLibrary()) {
-        qDebug() << "Comparing: " << s.getUrl() << " with: " << QUrl(saveString);
         if (s.getUrl() == QUrl(saveString)) {
             return s;
         }

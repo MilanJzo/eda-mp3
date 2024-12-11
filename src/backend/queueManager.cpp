@@ -4,6 +4,8 @@
 
 #include "queueManager.h"
 
+#include "playlistManager.h"
+
 queueManager *queueManager::instance = nullptr;
 
 queueManager *queueManager::getInstance()
@@ -149,6 +151,19 @@ void queueManager::onClearQueue()
     player::getInstance()->stop();
     player::getInstance()->setSource(QUrl());
     emit queueChanged();
+}
+
+void queueManager::onPlayPlaylistDirectly(const playlist &p)
+{
+    if (!p.isEmpty())
+    {
+        queue.clear();
+        history.clear();
+        append(p);
+
+        player::getInstance()->setSource(queue.first().getUrl());
+        player::getInstance()->play();
+    }
 }
 
 void queueManager::onRemoveFromQueue(const int index)

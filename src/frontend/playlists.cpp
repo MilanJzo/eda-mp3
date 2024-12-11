@@ -31,7 +31,7 @@ void playlists::renderPlaylists() {
 
     for (const auto& playlist: playlistManager::getInstance()->getPlaylists()) {
         const auto item = new QListWidgetItem(ui->playlistList);
-        const auto playlistWidget = new playlistinlist(this, playlist.getName());
+        const auto playlistWidget = new playlistinlist(this, playlist);
 
         item->setSizeHint(playlistWidget->sizeHint());
 

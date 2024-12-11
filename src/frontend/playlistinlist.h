@@ -7,6 +7,8 @@
 
 #include <QWidget>
 
+#include "../backend/playlist.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class playlistinlist; }
@@ -16,11 +18,18 @@ class playlistinlist : public QWidget {
 Q_OBJECT
 
 public:
-    explicit playlistinlist(QWidget *parent = nullptr, const QString &name = "??????");
+    explicit playlistinlist(QWidget *parent = nullptr, const playlist &p = playlist("???"));
     ~playlistinlist() override;
+
+private slots:
+    void onPlayDirectlyClicked();
+
+signals:
+    void playPlaylistDirectly(const playlist &p);
 
 private:
     Ui::playlistinlist *ui;
+    playlist thisPlaylist;
 };
 
 

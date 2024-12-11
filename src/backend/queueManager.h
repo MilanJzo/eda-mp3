@@ -8,6 +8,7 @@
 #include <QObject>
 
 #include "player.h"
+#include "playlist.h"
 #include "song.h"
 
 
@@ -41,6 +42,7 @@ public slots:
     void onSkipBackward();
     void onClearQueue();
     void onRemoveFromQueue(int index);
+    void onPlayPlaylistDirectly(const playlist &p);
 
 signals:
     void queueChanged();
