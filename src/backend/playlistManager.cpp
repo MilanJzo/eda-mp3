@@ -26,7 +26,7 @@ playlistManager* playlistManager::getInstance()
 void playlistManager::upsertPlaylist(const playlist& playlist) {
     QDir dir("./playlists");
     if (!dir.exists()) {
-        if (!dir.mkdir(".")) {
+        if (!dir.mkpath(".")) {
             qWarning() << "Failed to create playlists directory";
             return;
         }
@@ -67,7 +67,7 @@ void playlistManager::createPlaylist(const QString& name, QUrl url) {
 void playlistManager::loadPlaylists() {
     QDir dir("./playlists");
     if (!dir.exists()) {
-        if (!dir.mkdir(".")) {
+        if (!dir.mkpath(".")) {
             qWarning() << "Failed to create playlists directory";
             return;
         }
