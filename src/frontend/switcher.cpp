@@ -25,9 +25,12 @@ switcher::switcher(QWidget *parent) :
 }
 
 void switcher::onEditPlaylist(const playlist &p) {
-    lib->close();
-    edit = new editor(this, p);
-    ui->verticalLayout->addWidget(edit);
+    if (!lib->isHidden())
+    {
+        lib->close();
+        edit = new editor(this, p);
+        ui->verticalLayout->addWidget(edit);
+    }
 }
 
 void switcher::onBackButtonClicked() {
