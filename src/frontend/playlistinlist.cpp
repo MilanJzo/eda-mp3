@@ -5,6 +5,9 @@
 // You may need to build the project (run Qt uic code generator) to get "ui_playlistinlist.h" resolved
 
 #include "playlistinlist.h"
+
+#include "mainwindow.h"
+#include "switcher.h"
 #include "ui_playlistinlist.h"
 #include "../backend/queueManager.h"
 
@@ -22,6 +25,9 @@ playlistinlist::playlistinlist(QWidget *parent, const playlist &p) :
 
     connect(ui->addToQueue, &QPushButton::clicked, this, &playlistinlist::onQueuePlaylistClicked);
     connect(this, &playlistinlist::queuePlaylist, queueManager::getInstance(), &queueManager::onQueuePlaylist);
+
+    connect(ui->edit, &QPushButton::clicked, this, &playlistinlist::onEditPlaylistClicked);
+    connect(this, &playlistinlist::editPlaylist, switcher::getInstance(), &switcher::onEditPlaylist);
 }
 
 void playlistinlist::onPlayDirectlyClicked() {
@@ -30,6 +36,10 @@ void playlistinlist::onPlayDirectlyClicked() {
 
 void playlistinlist::onQueuePlaylistClicked() {
     emit queuePlaylist(thisPlaylist);
+}
+
+void playlistinlist::onEditPlaylistClicked() {
+    emit editPlaylist(thisPlaylist);
 }
 
 playlistinlist::~playlistinlist() {

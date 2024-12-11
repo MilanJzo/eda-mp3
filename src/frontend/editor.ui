@@ -195,6 +195,9 @@
         <property name="resizeMode">
          <enum>QListView::ResizeMode::Adjust</enum>
         </property>
+        <property name="spacing">
+         <number>2</number>
+        </property>
        </widget>
       </item>
      </layout>

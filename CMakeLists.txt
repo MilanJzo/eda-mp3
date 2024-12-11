@@ -80,6 +80,9 @@ set(PROJECT_SOURCES
         src/frontend/editorsong.cpp
         src/frontend/editorsong.h
         src/frontend/editorsong.ui
+        src/frontend/switcher.cpp
+        src/frontend/switcher.h
+        src/frontend/switcher.ui
 
 )
 

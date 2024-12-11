@@ -8,9 +8,13 @@
 #include "ui_editorsong.h"
 
 
-editorsong::editorsong(QWidget *parent) :
-    QWidget(parent), ui(new Ui::editorsong) {
+editorsong::editorsong(QWidget *parent, const song &s) :
+    QWidget(parent), ui(new Ui::editorsong), thisSong(s) {
     ui->setupUi(this);
+
+    ui->cover->setPixmap(s.getCover());
+    ui->title->setText(s.getTitle());
+    ui->artist->setText(s.getArtist());
 }
 
 editorsong::~editorsong() {

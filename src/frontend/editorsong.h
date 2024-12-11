@@ -7,6 +7,8 @@
 
 #include <QWidget>
 
+#include "../backend/song.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class editorsong; }
@@ -16,11 +18,12 @@ class editorsong : public QWidget {
 Q_OBJECT
 
 public:
-    explicit editorsong(QWidget *parent = nullptr);
+    explicit editorsong(QWidget *parent = nullptr, const song &s = song(QUrl(), QPixmap(), "Unknown", "Unknown", "00:00"));
     ~editorsong() override;
 
 private:
     Ui::editorsong *ui;
+    song thisSong;
 };
 
 
