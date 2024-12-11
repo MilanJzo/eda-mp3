@@ -15,12 +15,17 @@ playlistManager *playlistManager::instance = nullptr;
 
 playlistManager::playlistManager() : playlists(QVector<playlist>()) {
     loadPlaylists();
+    connect(libraryManager::getInstance(), &libraryManager::libraryChanged, this, &playlistManager::onLibraryChanged);
 }
 
 playlistManager* playlistManager::getInstance()
 {
     if (instance == nullptr) { instance = new playlistManager(); }
     return instance;
+}
+
+void playlistManager::onLibraryChanged() {
+    loadPlaylists();
 }
 
 void playlistManager::upsertPlaylist(const playlist& playlist) {
@@ -65,6 +70,8 @@ void playlistManager::createPlaylist(const QString& name, QUrl url) {
 }
 
 void playlistManager::loadPlaylists() {
+    playlists.clear();
+
     QDir dir("./playlists");
     if (!dir.exists()) {
         if (!dir.mkpath(".")) {
@@ -75,6 +82,7 @@ void playlistManager::loadPlaylists() {
 
     for (const auto& file: dir.entryList(QDir::Files)) {
         QFile playlistFile("./playlists/" + file);
+        qDebug() << "Loading playlist from file: " << file;
         if (!playlistFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
             qWarning() << QString("Failed to open " + file);
             return;
@@ -84,7 +92,10 @@ void playlistManager::loadPlaylists() {
         playlist newPlaylist(file.chopped(4));
         while (!stream.atEnd()) {
             const auto line = stream.readLine();
-            newPlaylist.append(fromSaveString(line));
+            auto song = fromSaveString(line);
+            newPlaylist.append(song);
+            qDebug() << "Loaded song: " << line;
+            qDebug() << "Found: " << song.getTitle();
         }
 
         playlists.append(newPlaylist);
@@ -93,8 +104,11 @@ void playlistManager::loadPlaylists() {
 }
 
 song playlistManager::fromSaveString(const QString& saveString) {
+    qDebug() << "Loading song from: " << saveString;
+    qDebug() << "Library size: " << libraryManager::getInstance()->getLibrary().size();
     for (auto& s: libraryManager::getInstance()->getLibrary()) {
-        if (s.toSaveString() == saveString) {
+        qDebug() << "Comparing: " << s.getUrl() << " with: " << QUrl(saveString);
+        if (s.getUrl() == QUrl(saveString)) {
             return s;
         }
     }
@@ -102,13 +116,10 @@ song playlistManager::fromSaveString(const QString& saveString) {
 }
 
 void playlistManager::addTrackToPlaylist(const QString& playlistName, const song& s) {
-    qDebug() << "Adding song to " << playlistName + ": " << s.getTitle();
     for (auto& p: playlists) {
         if (p.getName() == playlistName) {
-            qDebug() << "found playlist";
             p.append(s);
             upsertPlaylist(p);
-            qDebug() << "added song";
         }
     }
 }

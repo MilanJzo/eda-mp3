@@ -22,15 +22,20 @@ public:
 
     void createPlaylist(const QString& name, QUrl url);
 
+    void loadPlaylists();
+
+
 signals:
     void playlistsChanged();
+
+private slots:
+    void onLibraryChanged();
 
 private:
     static playlistManager *instance;
     QVector<playlist> playlists;
 
     playlistManager();
-    void loadPlaylists();
     song fromSaveString(const QString& saveString);
 };
 

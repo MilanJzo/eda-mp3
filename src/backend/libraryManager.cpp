@@ -13,6 +13,7 @@
 
 
 #include "player.h"
+#include "playlistManager.h"
 #include "../frontend/library.h"
 
 libraryManager *libraryManager::instance = nullptr;
