@@ -232,7 +232,7 @@
            </property>
            <property name="icon">
             <iconset resource="../../resources/resources.qrc">
-             <normaloff>:/icon/list-music.svg</normaloff>:/icon/list-music.svg</iconset>
+             <normaloff>:/icon/disc.svg</normaloff>:/icon/disc.svg</iconset>
            </property>
           </widget>
          </item>
@@ -243,7 +243,7 @@
            </property>
            <property name="icon">
             <iconset resource="../../resources/resources.qrc">
-             <normaloff>:/icon/disc.svg</normaloff>:/icon/disc.svg</iconset>
+             <normaloff>:/icon/list-music.svg</normaloff>:/icon/list-music.svg</iconset>
            </property>
           </widget>
          </item>
