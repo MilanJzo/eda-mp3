@@ -102,10 +102,13 @@ song playlistManager::fromSaveString(const QString& saveString) {
 }
 
 void playlistManager::addTrackToPlaylist(const QString& playlistName, const song& s) {
+    qDebug() << "Adding song to " << playlistName + ": " << s.getTitle();
     for (auto& p: playlists) {
         if (p.getName() == playlistName) {
+            qDebug() << "found playlist";
             p.append(s);
             upsertPlaylist(p);
+            qDebug() << "added song";
         }
     }
 }

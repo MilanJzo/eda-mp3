@@ -12,13 +12,13 @@
 
 
 addtoplaylistdialog::addtoplaylistdialog(QWidget *parent, const song &s) :
-    QDialog(parent), ui(new Ui::addtoplaylistdialog), thisSong(s)
+    QDialog(parent), ui(new Ui::addtoplaylistdialog)
 {
     ui->setupUi(this);
 
     for (const auto& playlist : playlistManager::getInstance()->getPlaylists()) {
         const auto item = new QListWidgetItem(ui->listWidget);
-        const auto playlistWidget = new addtoplaylist(this, playlist.getName());
+        const auto playlistWidget = new addtoplaylist(this, playlist.getName(), s);
 
         item->setSizeHint(playlistWidget->sizeHint());
 

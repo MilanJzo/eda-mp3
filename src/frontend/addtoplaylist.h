@@ -7,6 +7,8 @@
 
 #include <QWidget>
 
+#include "../backend/song.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class addtoplaylist; }
@@ -16,11 +18,15 @@ class addtoplaylist : public QWidget {
 Q_OBJECT
 
 public:
-    explicit addtoplaylist(QWidget *parent = nullptr, QString name = "Name Not Found");
+    explicit addtoplaylist(QWidget *parent = nullptr, QString name = "Name Not Found", const song &s = song(QUrl(), QPixmap(), "Unknown", "Unknown", "00:00"));
     ~addtoplaylist() override;
+
+private slots:
+    void onAddClicked();
 
 private:
     Ui::addtoplaylist *ui;
+    song thisSong;
 };
 
 

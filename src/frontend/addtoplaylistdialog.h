@@ -25,7 +25,6 @@ public:
 
 private:
     Ui::addtoplaylistdialog *ui;
-    song thisSong;
 };
 
 

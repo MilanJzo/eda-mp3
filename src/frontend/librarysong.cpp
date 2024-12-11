@@ -45,7 +45,7 @@ void librarysong::onAddToQueueClicked() const {
 }
 
 void librarysong::onAddToPlaylistClicked() {
-    const auto addDialog = new addtoplaylistdialog(this);
+    const auto addDialog = new addtoplaylistdialog(this, thisSong);
 
     addDialog->exec();
 }
