@@ -74,6 +74,12 @@ set(PROJECT_SOURCES
         src/frontend/addtoplaylist.cpp
         src/frontend/addtoplaylist.h
         src/frontend/addtoplaylist.ui
+        src/frontend/editor.cpp
+        src/frontend/editor.h
+        src/frontend/editor.ui
+        src/frontend/editorsong.cpp
+        src/frontend/editorsong.h
+        src/frontend/editorsong.ui
 
 )
 
