@@ -19,10 +19,17 @@ playlistinlist::playlistinlist(QWidget *parent, const playlist &p) :
 
     connect(ui->playDirectly, &QPushButton::clicked, this, &playlistinlist::onPlayDirectlyClicked);
     connect(this, &playlistinlist::playPlaylistDirectly, queueManager::getInstance(), &queueManager::onPlayPlaylistDirectly);
+
+    connect(ui->addToQueue, &QPushButton::clicked, this, &playlistinlist::onQueuePlaylistClicked);
+    connect(this, &playlistinlist::queuePlaylist, queueManager::getInstance(), &queueManager::onQueuePlaylist);
 }
 
 void playlistinlist::onPlayDirectlyClicked() {
     emit playPlaylistDirectly(thisPlaylist);
+}
+
+void playlistinlist::onQueuePlaylistClicked() {
+    emit queuePlaylist(thisPlaylist);
 }
 
 playlistinlist::~playlistinlist() {

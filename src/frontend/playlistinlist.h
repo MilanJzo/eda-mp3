@@ -23,9 +23,11 @@ public:
 
 private slots:
     void onPlayDirectlyClicked();
+    void onQueuePlaylistClicked();
 
 signals:
     void playPlaylistDirectly(const playlist &p);
+    void queuePlaylist(const playlist &p);
 
 private:
     Ui::playlistinlist *ui;

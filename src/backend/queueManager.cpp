@@ -166,6 +166,19 @@ void queueManager::onPlayPlaylistDirectly(const playlist &p)
     }
 }
 
+void queueManager::onQueuePlaylist(const playlist &p)
+{
+    if (!p.isEmpty())
+    {
+        if (queue.isEmpty())
+        {
+            append(p);
+            player::getInstance()->setSource(queue.first().getUrl());
+            player::getInstance()->play();
+        } else append(p);
+    }
+}
+
 void queueManager::onRemoveFromQueue(const int index)
 {
     remove(index);

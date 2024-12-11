@@ -43,6 +43,7 @@ public slots:
     void onClearQueue();
     void onRemoveFromQueue(int index);
     void onPlayPlaylistDirectly(const playlist &p);
+    void onQueuePlaylist(const playlist &p);
 
 signals:
     void queueChanged();
