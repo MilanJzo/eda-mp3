@@ -2,6 +2,8 @@
 
 A simple GUI based MP3-player. Built with Qt6 and C++. This has been created as part of the EDA module within the media technology course at the Technological University of Cologne.
 
+**Please note that this project is by no means professional!**
+
 ## Features
 
 - Play MP3 files
