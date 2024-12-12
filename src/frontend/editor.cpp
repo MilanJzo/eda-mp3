@@ -9,17 +9,21 @@
 #include "editorsong.h"
 #include "switcher.h"
 #include "ui_editor.h"
+#include "../backend/playlistManager.h"
 
 
-editor::editor(QWidget *parent, const playlist &p) :
-    QWidget(parent), ui(new Ui::editor) {
+editor::editor(QWidget *parent, const playlist &p, const int index) :
+    QWidget(parent), ui(new Ui::editor), index(index), thisPlaylist(p){
     ui->setupUi(this);
 
     ui->editorTitle->setText(p.getName());
 
     connect(ui->backButton, &QPushButton::clicked, switcher::getInstance(), &switcher::onBackButtonClicked);
+    connect(ui->deleteButton, &QPushButton::clicked, this, &editor::onDeleteClicked);
 
-    for (const song &s : p)
+    connect(this, &editor::deletePlaylist, playlistManager::getInstance(), &playlistManager::onDeletePlaylist);
+
+    for (const song &s : thisPlaylist)
     {
         const auto item = new QListWidgetItem(ui->songList);
         const auto songWidget = new editorsong(this, s);
@@ -29,6 +33,11 @@ editor::editor(QWidget *parent, const playlist &p) :
         ui->songList->addItem(item);
         ui->songList->setItemWidget(item, songWidget);
     }
+}
+
+void editor::onDeleteClicked() {
+    emit deletePlaylist(index);
+    ui->backButton->click();
 }
 
 editor::~editor() {

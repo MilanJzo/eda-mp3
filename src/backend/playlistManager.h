@@ -24,9 +24,14 @@ public:
 
     void loadPlaylists();
 
+    void deletePlaylist(int index);
 
 signals:
     void playlistsChanged();
+
+public slots:
+    void onDeletePlaylist(int index);
+
 
 private slots:
     void onLibraryChanged();

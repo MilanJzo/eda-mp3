@@ -29,14 +29,16 @@ void playlists::onPlaylistsChanged() {
 void playlists::renderPlaylists() {
     ui->playlistList->clear();
 
+    int index = 0;
     for (const auto& playlist: playlistManager::getInstance()->getPlaylists()) {
         const auto item = new QListWidgetItem(ui->playlistList);
-        const auto playlistWidget = new playlistinlist(this, playlist);
+        const auto playlistWidget = new playlistinlist(this, playlist, index);
 
         item->setSizeHint(playlistWidget->sizeHint());
 
         ui->playlistList->addItem(item);
         ui->playlistList->setItemWidget(item, playlistWidget);
+        index++;
     }
 }
 

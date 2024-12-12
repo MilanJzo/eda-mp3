@@ -24,7 +24,7 @@ public:
     ~switcher() override;
 
 public slots:
-    void onEditPlaylist(const playlist &p);
+    void onEditPlaylist(const playlist &p, int index);
     void onBackButtonClicked();
 
 private:

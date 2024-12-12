@@ -18,11 +18,19 @@ class editor : public QWidget {
 Q_OBJECT
 
 public:
-    explicit editor(QWidget *parent = nullptr, const playlist &p = playlist("???"));
+    explicit editor(QWidget *parent = nullptr, const playlist &p = playlist("???"), int index = 0);
     ~editor() override;
+
+private slots:
+    void onDeleteClicked();
+
+signals:
+    void deletePlaylist(int index);
 
 private:
     Ui::editor *ui;
+    int index;
+    playlist thisPlaylist;
 };
 
 

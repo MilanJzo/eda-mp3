@@ -12,8 +12,8 @@
 #include "../backend/queueManager.h"
 
 
-playlistinlist::playlistinlist(QWidget *parent, const playlist &p) :
-    QWidget(parent), ui(new Ui::playlistinlist), thisPlaylist(p)
+playlistinlist::playlistinlist(QWidget *parent, const playlist &p, const int index) :
+    QWidget(parent), ui(new Ui::playlistinlist), thisPlaylist(p), index(index)
 {
     ui->setupUi(this);
 
@@ -39,7 +39,7 @@ void playlistinlist::onQueuePlaylistClicked() {
 }
 
 void playlistinlist::onEditPlaylistClicked() {
-    emit editPlaylist(thisPlaylist);
+    emit editPlaylist(thisPlaylist, index);
 }
 
 playlistinlist::~playlistinlist() {

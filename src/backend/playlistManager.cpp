@@ -118,3 +118,18 @@ void playlistManager::addTrackToPlaylist(const QString& playlistName, const song
         }
     }
 }
+
+void playlistManager::deletePlaylist(int index) {
+    QFile file("./playlists/" + playlists[index].getName() + ".txt");
+    if (!file.remove()) {
+        qWarning() << "Failed to delete " + playlists[index].getName() + ".txt";
+        return;
+    }
+
+    playlists.remove(index);
+    emit playlistsChanged();
+}
+
+void playlistManager::onDeletePlaylist(const int index) {
+    deletePlaylist(index);
+}

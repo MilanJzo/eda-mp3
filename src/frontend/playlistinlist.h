@@ -18,7 +18,7 @@ class playlistinlist : public QWidget {
 Q_OBJECT
 
 public:
-    explicit playlistinlist(QWidget *parent = nullptr, const playlist &p = playlist("???"));
+    explicit playlistinlist(QWidget *parent = nullptr, const playlist &p = playlist("???"), int index = 0);
     ~playlistinlist() override;
 
 private slots:
@@ -29,11 +29,12 @@ private slots:
 signals:
     void playPlaylistDirectly(const playlist &p);
     void queuePlaylist(const playlist &p);
-    void editPlaylist(const playlist &p);
+    void editPlaylist(const playlist &p, int index);
 
 private:
     Ui::playlistinlist *ui;
     playlist thisPlaylist;
+    int index;
 };
 
 
