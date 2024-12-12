@@ -25,8 +25,8 @@ A simple GUI based MP3-player. Built with Qt6 and C++. This has been created as 
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/EDA-MP3.git
-    cd EDA-MP3
+    git clone https://github.com/MilanJzo/eda-mp3.git
+    cd eda-mp3
     ```
 
 2. Build the project:
