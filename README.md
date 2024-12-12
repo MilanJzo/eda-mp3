@@ -53,4 +53,4 @@ No contributions are accepted at this time. Thanks for your interest!
 
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+We are currently considering what license to use.
