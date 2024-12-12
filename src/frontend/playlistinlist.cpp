@@ -11,7 +11,6 @@
 #include "ui_playlistinlist.h"
 #include "../backend/queueManager.h"
 
-
 playlistinlist::playlistinlist(QWidget *parent, const playlist &p, const int index) :
     QWidget(parent), ui(new Ui::playlistinlist), thisPlaylist(p), index(index)
 {
