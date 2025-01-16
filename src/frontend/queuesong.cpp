@@ -8,6 +8,7 @@
 #include "ui_queuesong.h"
 #include "../backend/queueManager.h"
 
+
 queueSong::queueSong(QWidget *parent, const song &s, const int index) :
     QWidget(parent), ui(new Ui::queueSong), thisSong(s), index(index) {
     ui->setupUi(this);
