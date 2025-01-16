@@ -12,8 +12,8 @@
 #include "../backend/playlistManager.h"
 
 
-editor::editor(QWidget *parent, const playlist &p, const int index) :
-    QWidget(parent), ui(new Ui::editor), index(index), thisPlaylist(p){
+editor::editor(QWidget *parent, const playlist &p, const int playlistIndex) :
+    QWidget(parent), ui(new Ui::editor), playlistIndex(playlistIndex), thisPlaylist(p){
     ui->setupUi(this);
 
     ui->editorTitle->setText(p.getName());
@@ -23,6 +23,10 @@ editor::editor(QWidget *parent, const playlist &p, const int index) :
 
     connect(this, &editor::deletePlaylist, playlistManager::getInstance(), &playlistManager::onDeletePlaylist);
 
+    renderSongs();
+}
+
+void editor::renderSongs() {
     for (const song &s : thisPlaylist)
     {
         const auto item = new QListWidgetItem(ui->songList);
@@ -36,7 +40,7 @@ editor::editor(QWidget *parent, const playlist &p, const int index) :
 }
 
 void editor::onDeleteClicked() {
-    emit deletePlaylist(index);
+    emit deletePlaylist(playlistIndex);
     ui->backButton->click();
 }
 

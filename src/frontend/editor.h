@@ -18,7 +18,7 @@ class editor : public QWidget {
 Q_OBJECT
 
 public:
-    explicit editor(QWidget *parent = nullptr, const playlist &p = playlist("???"), int index = 0);
+    explicit editor(QWidget *parent = nullptr, const playlist &p = playlist("???"), int playlistIndex = 0);
     ~editor() override;
 
 private slots:
@@ -29,8 +29,10 @@ signals:
 
 private:
     Ui::editor *ui;
-    int index;
+    int playlistIndex;
     playlist thisPlaylist;
+
+    void renderSongs();
 };
 
 
