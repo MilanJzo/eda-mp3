@@ -20,6 +20,7 @@ addtoplaylist::addtoplaylist(QWidget *parent, QString name, const song &s) :
 
 void addtoplaylist::onAddClicked()
 {
+    qDebug() << "Adding song to " << ui->name->text();
     playlistManager::getInstance()->addTrackToPlaylist(ui->name->text(), thisSong);
 }
 
