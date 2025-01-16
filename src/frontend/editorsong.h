@@ -7,6 +7,7 @@
 
 #include <QWidget>
 
+#include "editor.h"
 #include "../backend/song.h"
 
 
@@ -18,12 +19,19 @@ class editorsong : public QWidget {
 Q_OBJECT
 
 public:
-    explicit editorsong(QWidget *parent = nullptr, const song &s = song(QUrl(), QPixmap(), "Unknown", "Unknown", "00:00"));
+    explicit editorsong(editor *parent = nullptr, const song &s = song(QUrl(), QPixmap(), "Unknown", "Unknown", "00:00"), int index = 0);
     ~editorsong() override;
+
+public slots:
+    void onDeleteFromPlaylistClicked();
+
+signals:
+    void deleteSongFromPlaylist(int songIndex);
 
 private:
     Ui::editorsong *ui;
     song thisSong;
+    int index;
 };
 
 

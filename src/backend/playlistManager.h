@@ -32,6 +32,8 @@ signals:
 public slots:
     void onDeletePlaylist(int index);
 
+    void onDeleteSongFromPlaylist(int playlistIndex, int songIndex);
+
 
 private slots:
     void onLibraryChanged();
