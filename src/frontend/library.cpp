@@ -42,6 +42,7 @@ void library::renderSongs() {
         ui->songList->addItem(item);
         ui->songList->setItemWidget(item, songWidget);
     }
+    qDebug() << "Rendered Library";
 }
 
 void library::onAddButtonClicked() const

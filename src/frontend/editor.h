@@ -21,11 +21,16 @@ public:
     explicit editor(QWidget *parent = nullptr, const playlist &p = playlist("???"), int playlistIndex = 0);
     ~editor() override;
 
+public slots:
+    void onDeleteSongFromPlaylistClicked(int songIndex);
+
 private slots:
     void onDeleteClicked();
+    void onPlaylistsChanged();
 
 signals:
     void deletePlaylist(int index);
+    void deleteSongFromPlaylist(int playlistIndex, int songIndex);
 
 private:
     Ui::editor *ui;

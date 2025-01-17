@@ -47,6 +47,7 @@ void queue::renderSongs() {
         ui->listWidget->addItem(item);
         ui->listWidget->setItemWidget(item, songWidget);
     }
+    qDebug() << "Rendered Queue";
 }
 
 queue::~queue() {

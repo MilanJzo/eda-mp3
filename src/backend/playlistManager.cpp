@@ -129,6 +129,14 @@ void playlistManager::deletePlaylist(const int index) {
     emit playlistsChanged();
 }
 
+void playlistManager::onDeleteSongFromPlaylist(const int playlistIndex, const int songIndex) {
+    qDebug() << "Deleting song" + playlists[playlistIndex][songIndex].getTitle() + "from playlist" + playlists[playlistIndex].getName();
+    playlists[playlistIndex].remove(songIndex);
+    upsertPlaylist(playlists[playlistIndex]);
+    emit playlistsChanged();
+    qDebug() << "Song deleted";
+}
+
 void playlistManager::onDeletePlaylist(const int index) {
     qDebug() << "playlistmanager -> onDeletePlaylist: " + std::to_string(index);
     deletePlaylist(index);

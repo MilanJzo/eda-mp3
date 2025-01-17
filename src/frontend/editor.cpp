@@ -22,6 +22,8 @@ editor::editor(QWidget *parent, const playlist &p, const int playlistIndex) :
     connect(ui->deleteButton, &QPushButton::clicked, this, &editor::onDeleteClicked);
 
     connect(this, &editor::deletePlaylist, playlistManager::getInstance(), &playlistManager::onDeletePlaylist);
+    connect(this, &editor::deleteSongFromPlaylist, playlistManager::getInstance(), &playlistManager::onDeleteSongFromPlaylist);
+    connect(playlistManager::getInstance(), &playlistManager::playlistsChanged, this, &editor::onPlaylistsChanged);
 
     renderSongs();
 }
@@ -30,13 +32,24 @@ void editor::renderSongs() {
     for (const song &s : thisPlaylist)
     {
         const auto item = new QListWidgetItem(ui->songList);
-        const auto songWidget = new editorsong(this, s);
+        const auto songWidget = new editorsong(this, s, index);
 
         item->setSizeHint(songWidget->sizeHint());
 
         ui->songList->addItem(item);
         ui->songList->setItemWidget(item, songWidget);
+        index++;
     }
+}
+
+void editor::onPlaylistsChanged() {
+    renderSongs();
+    qDebug() << "editor rendered";
+}
+
+void editor::onDeleteSongFromPlaylistClicked(const int songIndex) {
+    emit deleteSongFromPlaylist(index, songIndex);
+    qDebug() << "deleteSongFromPlaylist with songIndex and playlistIndex emitted";
 }
 
 void editor::onDeleteClicked() {

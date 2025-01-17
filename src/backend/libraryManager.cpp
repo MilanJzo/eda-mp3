@@ -90,6 +90,7 @@ void libraryManager::addDirectory() {
 
     loadDirIntoLibrary(dir);
     emit libraryChanged();
+    qDebug() << "Added directory to library";
 }
 
 QStringList libraryManager::getMP3FilenamesFromDirectory(const QString& pathToDir)
