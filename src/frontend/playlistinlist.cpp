@@ -39,6 +39,8 @@ void playlistinlist::onQueuePlaylistClicked() {
 }
 
 void playlistinlist::onEditPlaylistClicked() {
+    // qDebug() << "Edit Playlist clicked " + index;
+    qDebug() << " playlistinlist -> Edit Playlist clicked " + std::to_string(index);
     emit editPlaylist(thisPlaylist, index);
 }
 
