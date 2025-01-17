@@ -124,11 +124,12 @@ void playlistManager::deletePlaylist(const int index) {
         qWarning() << "Failed to delete " + playlists[index].getName() + ".txt";
         return;
     }
-
+    qDebug() << "playlistmanager -> deletePlaylist: " + std::to_string(index);
     playlists.remove(index);
     emit playlistsChanged();
 }
 
 void playlistManager::onDeletePlaylist(const int index) {
+    qDebug() << "playlistmanager -> onDeletePlaylist: " + std::to_string(index);
     deletePlaylist(index);
 }

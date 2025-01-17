@@ -40,6 +40,7 @@ void editor::renderSongs() {
 }
 
 void editor::onDeleteClicked() {
+    qDebug() << "editor -> onDeleteClicked: " + std::to_string(playlistIndex);
     emit deletePlaylist(playlistIndex);
     ui->backButton->click();
 }

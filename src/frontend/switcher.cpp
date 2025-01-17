@@ -24,13 +24,13 @@ switcher::switcher(QWidget *parent) :
     ui->verticalLayout->addWidget(lib);
 }
 
-void switcher::onEditPlaylist(const playlist &p, int index) {
+void switcher::onEditPlaylist(const playlist &p, const int index) {
     if (currentPlaylist != p.getName())
     {
         if (currentPlaylist != "") { delete edit; } // Erster Kommentar ;), das hier war der Absturzgrund während der Präsetation, weil das if()-statement fehlte. Behoben am 11.12.24 um 16:43uhr.
         currentPlaylist = p.getName();
         lib->close();
-        edit = new editor(this, p);
+        edit = new editor(this, p, index);
         ui->verticalLayout->addWidget(edit);
     }
 }
