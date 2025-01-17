@@ -29,10 +29,11 @@ editor::editor(QWidget *parent, const playlist &p, const int playlistIndex) :
 }
 
 void editor::renderSongs() {
+    int index = 0;
     for (const song &s : thisPlaylist)
     {
         const auto item = new QListWidgetItem(ui->songList);
-        const auto songWidget = new editorsong(this, s, index);
+        const auto songWidget = new editorsong(this, s);
 
         item->setSizeHint(songWidget->sizeHint());
 
@@ -48,7 +49,7 @@ void editor::onPlaylistsChanged() {
 }
 
 void editor::onDeleteSongFromPlaylistClicked(const int songIndex) {
-    emit deleteSongFromPlaylist(index, songIndex);
+    // emit deleteSongFromPlaylist(index, songIndex);
     qDebug() << "deleteSongFromPlaylist with songIndex and playlistIndex emitted";
 }
 
