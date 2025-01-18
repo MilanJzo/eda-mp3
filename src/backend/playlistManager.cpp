@@ -24,10 +24,12 @@ playlistManager* playlistManager::getInstance()
     return instance;
 }
 
+//calls the loadPlaylists function
 void playlistManager::onLibraryChanged() {
     loadPlaylists();
 }
 
+//updates and inserts a playlist
 void playlistManager::upsertPlaylist(const playlist& playlist) {
     QDir dir("./playlists");
     if (!dir.exists()) {
@@ -53,6 +55,7 @@ void playlistManager::upsertPlaylist(const playlist& playlist) {
     file.close();
 }
 
+//creates a new playlist and adds it to the playlists vector
 void playlistManager::createPlaylist(const QString& name, QUrl url) {
     for (const auto& currPlaylist: playlists) {
         if (currPlaylist.getName() == name) {
@@ -69,6 +72,7 @@ void playlistManager::createPlaylist(const QString& name, QUrl url) {
     emit playlistsChanged();
 }
 
+//loads all playlists from the playlists directory into the playlists vector
 void playlistManager::loadPlaylists() {
     playlists.clear();
 
@@ -100,6 +104,7 @@ void playlistManager::loadPlaylists() {
     }
 }
 
+//returns a song object from a save string so it can be added to a playlist for example
 song playlistManager::fromSaveString(const QString& saveString) {
     for (auto& s: libraryManager::getInstance()->getLibrary()) {
         if (s.getUrl() == QUrl(saveString)) {
@@ -109,6 +114,7 @@ song playlistManager::fromSaveString(const QString& saveString) {
     return song(QUrl(), QPixmap(":image/placeholder.png"), "Not Found", "Not Found", "Not Found");
 }
 
+//adds a song to a playlist
 void playlistManager::addTrackToPlaylist(const QString& playlistName, const song& s) {
     for (auto& p: playlists) {
         if (p.getName() == playlistName) {
@@ -119,25 +125,24 @@ void playlistManager::addTrackToPlaylist(const QString& playlistName, const song
     }
 }
 
+//deletes a playlist and removes it from the playlists vector
 void playlistManager::deletePlaylist(const int index) {
     if (QFile file("./playlists/" + playlists[index].getName() + ".txt"); !file.remove()) {
         qWarning() << "Failed to delete " + playlists[index].getName() + ".txt";
         return;
     }
-    qDebug() << "playlistmanager -> deletePlaylist: " + std::to_string(index);
     playlists.remove(index);
     emit playlistsChanged();
 }
 
+//removes a song from a playlist
 void playlistManager::onDeleteSongFromPlaylist(const int playlistIndex, const int songIndex) {
-    qDebug() << "Deleting song" + playlists[playlistIndex][songIndex].getTitle() + "from playlist" + playlists[playlistIndex].getName();
     playlists[playlistIndex].remove(songIndex);
     upsertPlaylist(playlists[playlistIndex]);
     emit playlistsChanged();
-    qDebug() << "Song deleted";
 }
 
+//calls the deletePlaylist function
 void playlistManager::onDeletePlaylist(const int index) {
-    qDebug() << "playlistmanager -> onDeletePlaylist: " + std::to_string(index);
     deletePlaylist(index);
 }

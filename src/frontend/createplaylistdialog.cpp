@@ -20,6 +20,7 @@ createplaylistdialog::createplaylistdialog(QWidget *parent) :
     connect(ui->chooseCover, &QPushButton::clicked, this, &createplaylistdialog::onChooseCoverClicked);
 }
 
+//creates a new playlist when the create button in createPlaylist dialog is clicked and closes the dialog
 void createplaylistdialog::onCreateClicked() {
     const auto playlistName = ui->playlistName->text();
 
@@ -33,6 +34,7 @@ void createplaylistdialog::onCreateClicked() {
     close();
 }
 
+//opens a file dialog to choose a cover for the playlist
 void createplaylistdialog::onChooseCoverClicked() {
     const auto coverPath = QFileDialog::getOpenFileName(this, "Choose cover", QDir::homePath(), "Images (*.png *.jpg)");
     ui->coverUrl->setText(coverPath);

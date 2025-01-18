@@ -28,6 +28,7 @@ editor::editor(QWidget *parent, const playlist &p, const int playlistIndex) :
     renderSongs();
 }
 
+//renders all song widgets in the editor window
 void editor::renderSongs() {
     int index = 0;
     for (const song &s : thisPlaylist)
@@ -43,18 +44,19 @@ void editor::renderSongs() {
     }
 }
 
+//calls renderSongs function when playlist changed
 void editor::onPlaylistsChanged() {
     renderSongs();
-    qDebug() << "editor rendered";
 }
 
+//TODO: implement deleteSongFromPlaylistClicked
 void editor::onDeleteSongFromPlaylistClicked(const int songIndex) {
     // emit deleteSongFromPlaylist(index, songIndex);
     qDebug() << "deleteSongFromPlaylist with songIndex and playlistIndex emitted";
 }
 
+//deletes the playlist and switches back to the library window
 void editor::onDeleteClicked() {
-    qDebug() << "editor -> onDeleteClicked: " + std::to_string(playlistIndex);
     emit deletePlaylist(playlistIndex);
     ui->backButton->click();
 }

@@ -14,7 +14,7 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class addtoplaylist; }
 QT_END_NAMESPACE
 
-class addtoplaylist : public QWidget {
+class addtoplaylist final : public QWidget {
 Q_OBJECT
 
 public:

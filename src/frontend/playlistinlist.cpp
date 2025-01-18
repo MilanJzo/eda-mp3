@@ -30,17 +30,19 @@ playlistinlist::playlistinlist(QWidget *parent, const playlist &p, const int ind
     connect(this, &playlistinlist::editPlaylist, switcher::getInstance(), &switcher::onEditPlaylist);
 }
 
+//emits playPlaylistDirectly with the playlist object when the play button is clicked
 void playlistinlist::onPlayDirectlyClicked() {
     emit playPlaylistDirectly(thisPlaylist);
 }
 
+//emits queuePlaylist with the playlist object when the add to queue button is clicked
 void playlistinlist::onQueuePlaylistClicked() {
     emit queuePlaylist(thisPlaylist);
 }
 
+//emits editPlaylist with the playlist object when the edit button is clicked
 void playlistinlist::onEditPlaylistClicked() {
     // qDebug() << "Edit Playlist clicked " + index;
-    qDebug() << " playlistinlist -> Edit Playlist clicked " + std::to_string(index);
     emit editPlaylist(thisPlaylist, index);
 }
 

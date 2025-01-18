@@ -28,6 +28,7 @@ libraryManager* libraryManager::getInstance()
     return instance;
 }
 
+//adds metadata to song object and appends it to library
 void libraryManager::loadDirIntoLibrary(const QString &dir)
 {
     const QStringList mp3Files = getMP3FilenamesFromDirectory(dir);
@@ -51,6 +52,7 @@ void libraryManager::loadDirIntoLibrary(const QString &dir)
     }
 }
 
+//loads library from libraryDirectories.txt
 void libraryManager::loadLibrary()
 {
     QFile file("./libraryDirectories.txt");
@@ -67,6 +69,7 @@ void libraryManager::loadLibrary()
     file.close();
 }
 
+//adds new directory so all songs in it will be added to library
 void libraryManager::addDirectory() {
     const QString dir = QFileDialog::getExistingDirectory(nullptr, "Select Directory", QDir::homePath());
 
@@ -90,9 +93,9 @@ void libraryManager::addDirectory() {
 
     loadDirIntoLibrary(dir);
     emit libraryChanged();
-    qDebug() << "Added directory to library";
 }
 
+//searches for mp3 files in directory
 QStringList libraryManager::getMP3FilenamesFromDirectory(const QString& pathToDir)
 {
     const QDir dir(pathToDir);

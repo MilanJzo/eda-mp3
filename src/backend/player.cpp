@@ -18,6 +18,7 @@ player *player::getInstance() {
     return instance;
 }
 
+// mute or unmute media player
 void player::toggleMute() const {
     audioOutput()->setMuted(!audioOutput()->isMuted());
 }

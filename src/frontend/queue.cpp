@@ -19,10 +19,12 @@ queue::queue(QWidget *parent) :
     connect(ui->clearButton, &QPushButton::clicked, queueManager::getInstance(), &queueManager::onClearQueue);
 }
 
+//calls renderSongs function when queue changed
 void queue::onQueueChanged() {
     renderSongs();
 }
 
+//renders all song widgets in the queue window
 void queue::renderSongs() {
     ui->listWidget->clear();
 
@@ -47,7 +49,6 @@ void queue::renderSongs() {
         ui->listWidget->addItem(item);
         ui->listWidget->setItemWidget(item, songWidget);
     }
-    qDebug() << "Rendered Queue";
 }
 
 queue::~queue() {

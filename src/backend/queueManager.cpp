@@ -22,18 +22,21 @@ queueManager::queueManager() : queue(QVector<song>())
     connect(player::getInstance(), &QMediaPlayer::mediaStatusChanged, this, &queueManager::onMediaStatusChanged);
 }
 
+//adds a song to the end of the queue
 void queueManager::append(const song &s)
 {
     queue.append(s);
     emit queueChanged();
 }
 
+//adds a vector of songs to the end of the queue
 void queueManager::append(const QVector<song> &s)
 {
     queue.append(s);
     emit queueChanged();
 }
 
+//adds a song to the beginning of the queue
 void queueManager::prepend(const song &s)
 {
     if (queue.isEmpty()) queue.append(s);
@@ -41,6 +44,7 @@ void queueManager::prepend(const song &s)
     emit queueChanged();
 }
 
+//adds a vector of songs to the beginning of the queue
 void queueManager::prepend(const QVector<song> &s)
 {
     if (queue.isEmpty()) queue.append(s);
@@ -53,6 +57,7 @@ void queueManager::prepend(const QVector<song> &s)
     emit queueChanged();
 }
 
+//removes a song from the queue
 void queueManager::remove(const int index)
 {
     queue.remove(index);
@@ -68,6 +73,7 @@ void queueManager::remove(const int index)
     emit queueChanged();
 }
 
+//skips to the next song in the queue
 void queueManager::skipForward()
 {
     if (queue.size() > 1)
@@ -80,6 +86,7 @@ void queueManager::skipForward()
     }
 }
 
+//skips to the previous song in the queue
 void queueManager::skipBackward()
 {
     if (!history.isEmpty())
@@ -92,6 +99,7 @@ void queueManager::skipBackward()
     }
 }
 
+//manages what happens when a song ends and checks if the queue is looping
 void queueManager::onMediaStatusChanged(const QMediaPlayer::MediaStatus status)
 {
     if (status == QMediaPlayer::MediaStatus::EndOfMedia && isLooping() && queue.size() == 1) {
@@ -107,6 +115,7 @@ void queueManager::onMediaStatusChanged(const QMediaPlayer::MediaStatus status)
     }
 }
 
+//plays the clicked song instantly
 void queueManager::onPlayDirectly(const song &s)
 {
     prepend(s);
@@ -119,6 +128,7 @@ void queueManager::onPlayDirectly(const song &s)
     skipForward();
 }
 
+//calls the append function and starts playing the first song if the queue is empty
 void queueManager::onAddToQueue(const song &s)
 {
     append(s);
@@ -128,6 +138,7 @@ void queueManager::onAddToQueue(const song &s)
     }
 }
 
+//calls the skip function if queue is not empty or looping
 void queueManager::onSkipForward() {
     if (isLooping() && queue.size() == 1) {
         history.append(queue.first());
@@ -140,10 +151,12 @@ void queueManager::onSkipForward() {
     } else skipForward();
 }
 
+//calls the skip backward function
 void queueManager::onSkipBackward() {
     skipBackward();
 }
 
+//removes all songs from the queue
 void queueManager::onClearQueue()
 {
     queue.clear();
@@ -153,6 +166,7 @@ void queueManager::onClearQueue()
     emit queueChanged();
 }
 
+//clears the queue, appends the playlist and plays the first song
 void queueManager::onPlayPlaylistDirectly(const playlist &p)
 {
     if (!p.isEmpty())
@@ -166,6 +180,7 @@ void queueManager::onPlayPlaylistDirectly(const playlist &p)
     }
 }
 
+//appends the playlist to the queue and starts playing the first song if the queue is empty
 void queueManager::onQueuePlaylist(const playlist &p)
 {
     if (!p.isEmpty())
@@ -179,6 +194,7 @@ void queueManager::onQueuePlaylist(const playlist &p)
     }
 }
 
+//removes a song from the queue
 void queueManager::onRemoveFromQueue(const int index)
 {
     remove(index);

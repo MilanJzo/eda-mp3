@@ -25,10 +25,12 @@ library::library(QWidget *parent) :
     connect(ui->addButton, &QPushButton::clicked, this, &library::onAddButtonClicked);
 }
 
+//calls renderSongs function when library changed
 void library::onLibraryChanged() {
     renderSongs();
 }
 
+//renders all song widgets in the library window
 void library::renderSongs() {
     ui->songList->clear();
 
@@ -42,9 +44,9 @@ void library::renderSongs() {
         ui->songList->addItem(item);
         ui->songList->setItemWidget(item, songWidget);
     }
-    qDebug() << "Rendered Library";
 }
 
+//opens a file dialog when the addButton is clicked to add a directory to the library
 void library::onAddButtonClicked() const
 {
     libraryManager::getInstance()->addDirectory();

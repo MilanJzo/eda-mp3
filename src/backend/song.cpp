@@ -6,6 +6,7 @@
 
 #include <utility>
 
+//defines a song object
 song::song(
     QUrl url,
     const QPixmap& cover,

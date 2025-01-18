@@ -25,6 +25,7 @@ queueSong::queueSong(QWidget *parent, const song &s, const int index) :
     connect(this, &queueSong::removeFromQueue, queueManager::getInstance(), &queueManager::onRemoveFromQueue);
 }
 
+//emits removeFromQueue with the index when the remove button is clicked in the queue window for a song
 void queueSong::onRemoveFromQueueClicked() {
     emit removeFromQueue(index);
 }

@@ -18,9 +18,9 @@ addtoplaylist::addtoplaylist(QWidget *parent, QString name, const song &s) :
     connect(ui->add, &QPushButton::clicked, this, &addtoplaylist::onAddClicked);
 }
 
+//button click event in song popup to add song to playlist
 void addtoplaylist::onAddClicked()
 {
-    qDebug() << "Adding song to " << ui->name->text();
     playlistManager::getInstance()->addTrackToPlaylist(ui->name->text(), thisSong);
 }
 

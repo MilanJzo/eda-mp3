@@ -43,6 +43,7 @@ controls::controls(QWidget *parent) :
     ui->cover->setPixmap(QPixmap(":image/placeholder.png").scaled(55, 55));
 }
 
+//manages the duration display and the progress slider range
 void controls::onDurationChanged(const qint64 duration) const
 {
     ui->progressSlider->setMaximum(static_cast<int>(duration));
@@ -51,6 +52,7 @@ void controls::onDurationChanged(const qint64 duration) const
     ui->totalTime->setText(QTime(0, 0).addMSecs(static_cast<int>(duration)).toString(format));
 }
 
+//manages the play/pause button icon
 void controls::onPlaybackStateChanged(const QMediaPlayer::PlaybackState state) const
 {
     if (state == QMediaPlayer::PlayingState)
@@ -63,6 +65,7 @@ void controls::onPlaybackStateChanged(const QMediaPlayer::PlaybackState state) c
     }
 }
 
+//manages the progress slider position
 void controls::onPositionChanged(const qint64 progress) const
 {
     if (!ui->progressSlider->isSliderDown())
@@ -71,6 +74,7 @@ void controls::onPositionChanged(const qint64 progress) const
     }
 }
 
+//manages the mute button icon
 void controls::onMutedChanged(const bool muted) const
 {
     if (muted)
@@ -83,6 +87,7 @@ void controls::onMutedChanged(const bool muted) const
     }
 }
 
+//plays/pauses the media player when the play/pause button is clicked
 void controls::onPlayPauseClicked() const
 {
     auto Player = player::getInstance();
@@ -93,27 +98,32 @@ void controls::onPlayPauseClicked() const
     }
 }
 
+//mutes/unmutes the media player when the volume button is clicked by calling the toggleMute function
 void controls::onVolumeButtonClicked() const
 {
     player::getInstance()->toggleMute();
 }
 
+//sets the volume of the media player (song) to the value of the volume slider
 void controls::onVolumeSliderValueChanged(const int value) const
 {
     player::getInstance()->audioOutput()->setVolume(static_cast<float>(value / 1000.0));
 }
 
+//sets the position of the media player (song) to the value of the progress slider
 void controls::onProgressSliderReleased() const
 {
     player::getInstance()->setPosition(ui->progressSlider->value());
 }
 
+//manages the current time display of the song
 void controls::onProgressSliderValueChanged(const int value) const
 {
     const QString format = value > 3600000 ? "hh:mm:ss" : "mm:ss";
     ui->currentTime->setText(QTime(0, 0).addMSecs(static_cast<int>(value)).toString(format));
 }
 
+//manages the metadata display of the song
 void controls::onMetaDataChanged() const
 {
     if (player::getInstance()->source() == QUrl()) {
@@ -137,6 +147,7 @@ void controls::onMetaDataChanged() const
     ui->artist->setText(artist != "" ? artist : "Unknown Artist");
 }
 
+//sets the icon to the corresponding loop state
 void controls::onLoopStateToggled() {
     if (loopState == LoopingState::None)
     {

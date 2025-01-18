@@ -24,10 +24,11 @@ switcher::switcher(QWidget *parent) :
     ui->verticalLayout->addWidget(lib);
 }
 
+//exchanges the library window with the editor window when the edit button is clicked in the playlist window
 void switcher::onEditPlaylist(const playlist &p, const int index) {
     if (currentPlaylist != p.getName())
     {
-        if (currentPlaylist != "") { delete edit; } // Erster Kommentar ;), das hier war der Absturzgrund während der Präsentation, weil das if()-statement fehlte. Behoben am 11.12.24 um 16:43uhr.
+        if (currentPlaylist != "") { delete edit; }
         currentPlaylist = p.getName();
         lib->close();
         edit = new editor(this, p, index);
@@ -35,6 +36,7 @@ void switcher::onEditPlaylist(const playlist &p, const int index) {
     }
 }
 
+//switches back to the library window when the back button is clicked in the editor window
 void switcher::onBackButtonClicked() {
     delete edit;
     currentPlaylist = "";

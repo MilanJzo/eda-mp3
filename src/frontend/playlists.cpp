@@ -22,10 +22,12 @@ playlists::playlists(QWidget *parent) :
     connect(playlistManager::getInstance(), &playlistManager::playlistsChanged, this, &playlists::onPlaylistsChanged);
 }
 
+//calls renderPlaylists function when playlists changed
 void playlists::onPlaylistsChanged() {
     renderPlaylists();
 }
 
+//renders all playlist widgets in the playlist window
 void playlists::renderPlaylists() {
     ui->playlistList->clear();
 
@@ -42,7 +44,7 @@ void playlists::renderPlaylists() {
     }
 }
 
-
+//opens a dialog window to create a new playlist
 void playlists::onAddButtonClicked() {
     const auto createDialog = new createplaylistdialog(this);
 

@@ -36,14 +36,17 @@ librarysong::librarysong(QWidget *parent, const song &s) :
     connect(ui->addToPlaylist, &QPushButton::clicked, this, &librarysong::onAddToPlaylistClicked);
 }
 
+//emits playDirectly with the song object when the play button is clicked
 void librarysong::onPlayDirectlyClicked() const {
     emit playDirectly(thisSong);
 }
 
+//emits addToQueue with the song object when the add to queue button is clicked
 void librarysong::onAddToQueueClicked() const {
     emit addToQueue(thisSong);
 }
 
+//opens a dialog window to add the song to a playlist when the add to playlist button is clicked
 void librarysong::onAddToPlaylistClicked() {
     const auto addDialog = new addtoplaylistdialog(this, thisSong);
 

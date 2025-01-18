@@ -10,7 +10,7 @@
 #include "ui_addtoplaylistdialog.h"
 #include "../backend/playlistManager.h"
 
-
+//creates a dialog window to add a song to a playlist
 addtoplaylistdialog::addtoplaylistdialog(QWidget *parent, const song &s) :
     QDialog(parent), ui(new Ui::addtoplaylistdialog)
 {
