@@ -117,7 +117,7 @@ void libraryManager::loadSongIntoLibrary(const QUrl &url)
         const auto artist = metadata.stringValue(QMediaMetaData::ContributingArtist) == "" ? "Unknown Artist" : metadata.stringValue(QMediaMetaData::ContributingArtist);
         const auto duration = metadata.stringValue(QMediaMetaData::Duration) == "" ? "00:00" : metadata.stringValue(QMediaMetaData::Duration);
 
-        library.append(song(url, cover, title, artist, duration));
+        library.prepend(song(url, cover, title, artist, duration));
         emit libraryChanged();
         tempPlayer->deleteLater();
     });
@@ -126,10 +126,9 @@ void libraryManager::loadSongIntoLibrary(const QUrl &url)
 //downloads song from url
 void libraryManager::onSongDownloadRequested(const QString &url)
 {
-
-
     auto ytdlp = new QProcess(this);
-    ytdlp->start("yt-dlp", QStringList() << "-x" << "--audio-format" << "mp3" << "-o" << QDir::currentPath().append("/yt-dlp/%(title)s by %(uploader)s") << url);
+    ytdlp->start("yt-dlp", QStringList() << "-x" << "--audio-format" << "mp3" << "-o" << QDir::currentPath().append("/yt-dlp/%(title)s by %(uploader)s") << url); // << "--m-time" << QDateTime::currentDateTime().toString()
+    qDebug() << QDateTime::currentDateTime().toString();
 
     connect(ytdlp , &QProcess::finished, this, [this, ytdlp](){
         ytdlp->deleteLater();
@@ -140,6 +139,6 @@ void libraryManager::onSongDownloadRequested(const QString &url)
 
         const QUrl newestSong = QUrl::fromLocalFile("file:///" + dir.path() + "/" + dir.entryList().first());
         loadSongIntoLibrary(newestSong);
-        
+
     });
 }
