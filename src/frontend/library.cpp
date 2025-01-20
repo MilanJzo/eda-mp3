@@ -62,6 +62,7 @@ void library::onAddButtonClicked() const
 
 void library::onDownloadButtonClicked() {
     const auto url = ui->searchInput->text();
+    ui->searchInput->clear();
     emit songDownloadRequest(url);
 }
 
