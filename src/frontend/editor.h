@@ -14,11 +14,11 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class editor; }
 QT_END_NAMESPACE
 
-class editor : public QWidget {
+class editor final : public QWidget {
 Q_OBJECT
 
 public:
-    explicit editor(QWidget *parent = nullptr, const playlist &p = playlist("???"), int playlistIndex = 0);
+    explicit editor(QWidget *parent = nullptr, int playlistIndex = 0);
     ~editor() override;
 
 public slots:
@@ -35,7 +35,7 @@ signals:
 private:
     Ui::editor *ui;
     int playlistIndex;
-    playlist thisPlaylist;
+    bool isPlaylistDeleted = false;
 
     void renderSongs();
 };

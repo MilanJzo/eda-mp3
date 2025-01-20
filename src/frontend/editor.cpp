@@ -12,11 +12,11 @@
 #include "../backend/playlistManager.h"
 
 
-editor::editor(QWidget *parent, const playlist &p, const int playlistIndex) :
-    QWidget(parent), ui(new Ui::editor), playlistIndex(playlistIndex), thisPlaylist(p){
+editor::editor(QWidget *parent, const int playlistIndex):
+    QWidget(parent), ui(new Ui::editor), playlistIndex(playlistIndex) {
     ui->setupUi(this);
 
-    ui->editorTitle->setText(p.getName());
+    ui->editorTitle->setText(playlistManager::getInstance()->getPlaylists()[playlistIndex].getName());
 
     connect(ui->backButton, &QPushButton::clicked, switcher::getInstance(), &switcher::onBackButtonClicked);
     connect(ui->deleteButton, &QPushButton::clicked, this, &editor::onDeleteClicked);
@@ -30,11 +30,20 @@ editor::editor(QWidget *parent, const playlist &p, const int playlistIndex) :
 
 //renders all song widgets in the editor window
 void editor::renderSongs() {
+    ui->songList->clear();
+
+    if (isPlaylistDeleted)
+    {
+        return;
+    }
+    auto playlist = playlistManager::getInstance()->getPlaylists()[playlistIndex];
+
+
     int index = 0;
-    for (const song &s : thisPlaylist)
+    for (const song &s : playlist)
     {
         const auto item = new QListWidgetItem(ui->songList);
-        const auto songWidget = new editorsong(this, s);
+        const auto songWidget = new editorsong(this, s, index);
 
         item->setSizeHint(songWidget->sizeHint());
 
@@ -49,14 +58,14 @@ void editor::onPlaylistsChanged() {
     renderSongs();
 }
 
-//TODO: implement deleteSongFromPlaylistClicked
+//emits deleteSongFromPlaylist with the song index when the delete button is clicked
 void editor::onDeleteSongFromPlaylistClicked(const int songIndex) {
-    // emit deleteSongFromPlaylist(index, songIndex);
-    qDebug() << "deleteSongFromPlaylist with songIndex and playlistIndex emitted";
+    emit deleteSongFromPlaylist(playlistIndex, songIndex);
 }
 
-//deletes the playlist and switches back to the library window
+//deletes the playlist, changes existing status of playlist and switches back to the library window
 void editor::onDeleteClicked() {
+    isPlaylistDeleted = true;
     emit deletePlaylist(playlistIndex);
     ui->backButton->click();
 }

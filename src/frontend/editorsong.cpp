@@ -28,7 +28,6 @@ editorsong::editorsong(editor *parent, const song &s, const int index) :
 //emits deleteSongFromPlaylist with songIndex when the remove button is clicked in the editor window for a song
 void editorsong::onDeleteFromPlaylistClicked() {
     emit deleteSongFromPlaylist(index);
-    qDebug() << "deleteSongFromPlaylist with songIndex emitted";
 }
 
 editorsong::~editorsong() {

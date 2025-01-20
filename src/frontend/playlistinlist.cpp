@@ -42,8 +42,7 @@ void playlistinlist::onQueuePlaylistClicked() {
 
 //emits editPlaylist with the playlist object when the edit button is clicked
 void playlistinlist::onEditPlaylistClicked() {
-    // qDebug() << "Edit Playlist clicked " + index;
-    emit editPlaylist(thisPlaylist, index);
+    emit editPlaylist(index);
 }
 
 playlistinlist::~playlistinlist() {

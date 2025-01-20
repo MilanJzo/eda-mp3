@@ -29,7 +29,7 @@ private slots:
 signals:
     void playPlaylistDirectly(const playlist &p);
     void queuePlaylist(const playlist &p);
-    void editPlaylist(const playlist &p, int index);
+    void editPlaylist(int index);
 
 private:
     Ui::playlistinlist *ui;

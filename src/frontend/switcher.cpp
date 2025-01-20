@@ -8,6 +8,7 @@
 
 #include "editor.h"
 #include "ui_switcher.h"
+#include "../backend/playlistManager.h"
 
 switcher* switcher::instance = nullptr;
 
@@ -25,13 +26,15 @@ switcher::switcher(QWidget *parent) :
 }
 
 //exchanges the library window with the editor window when the edit button is clicked in the playlist window
-void switcher::onEditPlaylist(const playlist &p, const int index) {
+void switcher::onEditPlaylist(const int playlistIndex) {
+    auto p = playlistManager::getInstance()->getPlaylists()[playlistIndex];
+
     if (currentPlaylist != p.getName())
     {
         if (currentPlaylist != "") { delete edit; }
         currentPlaylist = p.getName();
         lib->close();
-        edit = new editor(this, p, index);
+        edit = new editor(this, playlistIndex);
         ui->verticalLayout->addWidget(edit);
     }
 }
