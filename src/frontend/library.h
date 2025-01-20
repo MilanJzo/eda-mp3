@@ -23,8 +23,12 @@ public:
     ~library() override;
 
 private slots:
+    void onDownloadButtonClicked();
     void onAddButtonClicked() const;
     void onLibraryChanged();
+
+signals:
+    QString songDownloadRequest(const QString &url);
 
 private:
     Ui::library *ui;

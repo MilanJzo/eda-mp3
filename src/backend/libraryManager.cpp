@@ -6,6 +6,7 @@
 #include <QFileDialog>
 #include <QTextStream>
 #include <QDebug>
+#include <QProcess>
 #include <QFile>
 #include <QDir>
 #include <QMediaMetaData>
@@ -102,4 +103,43 @@ QStringList libraryManager::getMP3FilenamesFromDirectory(const QString& pathToDi
     QStringList filters;
     filters<< "*.mp3";
     return dir.entryList(filters, QDir::Files);
+}
+
+void libraryManager::loadSongIntoLibrary(const QUrl &url)
+{
+    auto tempPlayer = new QMediaPlayer();
+    tempPlayer->setSource(url);
+
+    connect(tempPlayer, &QMediaPlayer::metaDataChanged, this, [this, tempPlayer, url](){
+        const auto metadata = tempPlayer->metaData();
+        const auto cover = metadata.value(QMediaMetaData::ThumbnailImage).value<QPixmap>().isNull() ? QPixmap(":/image/placeholder.png") : metadata.value(QMediaMetaData::ThumbnailImage).value<QPixmap>();
+        const auto title = metadata.stringValue(QMediaMetaData::Title) == "" ? url.fileName().chopped(4) : metadata.stringValue(QMediaMetaData::Title);
+        const auto artist = metadata.stringValue(QMediaMetaData::ContributingArtist) == "" ? "Unknown Artist" : metadata.stringValue(QMediaMetaData::ContributingArtist);
+        const auto duration = metadata.stringValue(QMediaMetaData::Duration) == "" ? "00:00" : metadata.stringValue(QMediaMetaData::Duration);
+
+        library.append(song(url, cover, title, artist, duration));
+        emit libraryChanged();
+        tempPlayer->deleteLater();
+    });
+}
+
+//downloads song from url
+void libraryManager::onSongDownloadRequested(const QString &url)
+{
+
+
+    auto ytdlp = new QProcess(this);
+    ytdlp->start("yt-dlp", QStringList() << "-x" << "--audio-format" << "mp3" << "-o" << QDir::currentPath().append("/yt-dlp/%(title)s by %(uploader)s") << url);
+
+    connect(ytdlp , &QProcess::finished, this, [this, ytdlp](){
+        ytdlp->deleteLater();
+
+        QDir dir(QDir::currentPath().append("/yt-dlp"));
+        dir.setNameFilters(QStringList() << "*.mp3");
+        dir.setSorting(QDir::Time);
+
+        const QUrl newestSong = QUrl::fromLocalFile("file:///" + dir.path() + "/" + dir.entryList().first());
+        loadSongIntoLibrary(newestSong);
+        
+    });
 }

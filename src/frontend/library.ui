@@ -105,7 +105,7 @@
         </property>
         <layout class="QHBoxLayout" name="searchLayout">
          <property name="spacing">
-          <number>10</number>
+          <number>0</number>
          </property>
          <property name="leftMargin">
           <number>5</number>
@@ -137,6 +137,17 @@
            <property name="icon">
             <iconset resource="../../resources/resources.qrc">
              <normaloff>:/icon/search.svg</normaloff>:/icon/search.svg</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="downloadButton">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../../resources/resources.qrc">
+             <normaloff>:/icon/arrow-download.svg</normaloff>:/icon/arrow-download.svg</iconset>
            </property>
           </widget>
          </item>

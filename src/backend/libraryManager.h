@@ -22,12 +22,16 @@ public:
 signals:
     void libraryChanged();
 
+public slots:
+    void onSongDownloadRequested(const QString &url);
+
 private:
     static libraryManager* instance;
     QVector<song> library;
 
     libraryManager();
     void loadLibrary();
+    void loadSongIntoLibrary(const QUrl &url);
     void loadDirIntoLibrary(const QString &dir);
 
 };

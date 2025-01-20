@@ -23,6 +23,8 @@ library::library(QWidget *parent) :
 
     connect(libraryManager::getInstance(), &libraryManager::libraryChanged, this, &library::onLibraryChanged);
     connect(ui->addButton, &QPushButton::clicked, this, &library::onAddButtonClicked);
+    connect(ui->downloadButton, &QPushButton::clicked, this, &library::onDownloadButtonClicked);
+    connect(this, &library::songDownloadRequest, libraryManager::getInstance(), &libraryManager::onSongDownloadRequested);
 }
 
 //calls renderSongs function when library changed
@@ -50,6 +52,11 @@ void library::renderSongs() {
 void library::onAddButtonClicked() const
 {
     libraryManager::getInstance()->addDirectory();
+}
+
+void library::onDownloadButtonClicked() {
+    const auto url = ui->searchInput->text();
+    emit songDownloadRequest(url);
 }
 
 library::~library() {
