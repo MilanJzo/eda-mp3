@@ -56,6 +56,8 @@ void libraryManager::loadDirIntoLibrary(const QString &dir)
 //loads library from libraryDirectories.txt
 void libraryManager::loadLibrary()
 {
+    library.clear();
+
     QFile file("./libraryDirectories.txt");
     if (!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
         qWarning() << "Failed to open libraryDirectories.txt";

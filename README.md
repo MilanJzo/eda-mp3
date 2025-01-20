@@ -6,6 +6,7 @@ A simple GUI based MP3-player. Built with Qt6 and C++. This has been created as 
 
 ## Features
 
+- yt-dlp integration
 - Play MP3 files
 - Queue MP3 files
 - Create playlists
@@ -23,13 +24,16 @@ A simple GUI based MP3-player. Built with Qt6 and C++. This has been created as 
 0. Install the required dependencies:
     Qt6-Core, Qt6-Gui, Qt6-Widgets, Qt6-Multimedia
 
-1. Clone the repository:
+1. Install optional dependencies:
+    yt-dlp (for downloading MP3 files from YouTube), ffmpeg (recommended by yt-dlp)
+
+2. Clone the repository:
     ```sh
     git clone https://github.com/MilanJzo/eda-mp3.git
     cd eda-mp3
     ```
 
-2. Build the project:
+3. Build the project:
     ```sh
     mkdir build
     cd build
@@ -37,7 +41,7 @@ A simple GUI based MP3-player. Built with Qt6 and C++. This has been created as 
     make
     ```
 
-3. Run the application:
+4. Run the application:
     ```sh
     ./EDA-MP3
     ```
