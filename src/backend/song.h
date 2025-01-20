@@ -26,6 +26,11 @@ public:
         return url.toString();
     }
 
+    bool operator==(const song& other) const
+    {
+        return getUrl() == other.getUrl();
+    }
+
 private:
     QUuid id;
     QUrl url;

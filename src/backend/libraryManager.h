@@ -15,6 +15,7 @@ class libraryManager final : public QObject {
     Q_OBJECT
 public:
     void addDirectory();
+    void addDirectoryFromUrl(const QString &dir);
     static libraryManager* getInstance();
     static QStringList  getMP3FilenamesFromDirectory(const QString &pathToDir);
     [[nodiscard]] QVector<song> getLibrary() const { return library; };

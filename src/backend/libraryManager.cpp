@@ -46,7 +46,7 @@ void libraryManager::loadDirIntoLibrary(const QString &dir)
             const auto artist = metadata.stringValue(QMediaMetaData::ContributingArtist) == "" ? "Unknown Artist" : metadata.stringValue(QMediaMetaData::ContributingArtist);
             const auto duration = metadata.stringValue(QMediaMetaData::Duration) == "" ? "00:00" : metadata.stringValue(QMediaMetaData::Duration);
 
-            library.append(song(url, cover, title, artist, duration));
+            library.prepend(song(url, cover, title, artist, duration));
             emit libraryChanged();
             tempPlayer->deleteLater();
         });
@@ -70,10 +70,14 @@ void libraryManager::loadLibrary()
     file.close();
 }
 
-//adds new directory so all songs in it will be added to library
-void libraryManager::addDirectory() {
+void libraryManager::addDirectory()
+{
     const QString dir = QFileDialog::getExistingDirectory(nullptr, "Select Directory", QDir::homePath());
+    addDirectoryFromUrl(dir);
+}
 
+//adds new directory so all songs in it will be added to library
+void libraryManager::addDirectoryFromUrl(const QString &dir) {
     QFile file("./libraryDirectories.txt");
     if (!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
         qWarning() << "Failed to open libraryDirectories.txt";
@@ -126,19 +130,20 @@ void libraryManager::loadSongIntoLibrary(const QUrl &url)
 //downloads song from url
 void libraryManager::onSongDownloadRequested(const QString &url)
 {
-    auto ytdlp = new QProcess(this);
-    ytdlp->start("yt-dlp", QStringList() << "-x" << "--audio-format" << "mp3" << "-o" << QDir::currentPath().append("/yt-dlp/%(title)s by %(uploader)s") << url); // << "--m-time" << QDateTime::currentDateTime().toString()
-    qDebug() << QDateTime::currentDateTime().toString();
 
+    auto ytdlp = new QProcess(this);
+    ytdlp->start("yt-dlp", QStringList() << "-x" << "--audio-format" << "mp3" << "-o" << QDir::currentPath().append("/yt-dlp/%(title)s by %(uploader)s") << "--no-mtime" << url);
+
+    addDirectoryFromUrl(QDir::currentPath().append("/yt-dlp"));
     connect(ytdlp , &QProcess::finished, this, [this, ytdlp](){
         ytdlp->deleteLater();
 
-        QDir dir(QDir::currentPath().append("/yt-dlp"));
-        dir.setNameFilters(QStringList() << "*.mp3");
-        dir.setSorting(QDir::Time);
-
-        const QUrl newestSong = QUrl::fromLocalFile("file:///" + dir.path() + "/" + dir.entryList().first());
-        loadSongIntoLibrary(newestSong);
-
+        loadLibrary();
+        // QDir dir(QDir::currentPath().append("/yt-dlp"));
+        // dir.setNameFilters(QStringList() << "*.mp3");
+        // dir.setSorting(QDir::Time);
+        //
+        // const QUrl newestSong = QUrl::fromLocalFile("file:///" + dir.path() + "/" + dir.entryList().first());
+        // loadSongIntoLibrary(newestSong);
     });
 }
