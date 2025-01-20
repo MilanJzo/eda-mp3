@@ -25,7 +25,7 @@ A simple GUI based MP3-player. Built with Qt6 and C++. This has been created as 
     Qt6-Core, Qt6-Gui, Qt6-Widgets, Qt6-Multimedia
 
 1. Install optional dependencies:
-    yt-dlp (for downloading MP3 files from YouTube), ffmpeg (recommended by yt-dlp)
+    yt-dlp (for downloading MP3 files from YouTube), ffmpeg (recommended by yt-dlp) and ffprobe (recommended by yt-dlp)
 
 2. Clone the repository:
     ```sh
