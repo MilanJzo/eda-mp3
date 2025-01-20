@@ -26,6 +26,7 @@ private slots:
     void onDownloadButtonClicked();
     void onAddButtonClicked() const;
     void onLibraryChanged();
+    void onSetStatusText(const QString& statusText) const;
 
 signals:
     QString songDownloadRequest(const QString &url);

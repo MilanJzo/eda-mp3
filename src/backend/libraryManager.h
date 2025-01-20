@@ -22,6 +22,7 @@ public:
 
 signals:
     void libraryChanged();
+    void setStatusText(const QString &statusText);
 
 public slots:
     void onSongDownloadRequested(const QString &url);

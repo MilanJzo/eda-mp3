@@ -11,6 +11,8 @@
 #include <QDir>
 #include <QMediaMetaData>
 #include <thread>
+#include <QThread>
+#include <QTimer>
 
 
 #include "player.h"
@@ -132,15 +134,16 @@ void libraryManager::loadSongIntoLibrary(const QUrl &url)
 //downloads song from url
 void libraryManager::onSongDownloadRequested(const QString &url)
 {
-
+    emit setStatusText("Downloading...");
     auto ytdlp = new QProcess(this);
     ytdlp->start("yt-dlp", QStringList() << "-x" << "--audio-format" << "mp3" << "-o" << QDir::currentPath().append("/yt-dlp/%(title)s by %(uploader)s") << "--no-mtime" << url);
 
     addDirectoryFromUrl(QDir::currentPath().append("/yt-dlp"));
     connect(ytdlp , &QProcess::finished, this, [this, ytdlp](){
         ytdlp->deleteLater();
-
         loadLibrary();
+        emit setStatusText("");
+
         // QDir dir(QDir::currentPath().append("/yt-dlp"));
         // dir.setNameFilters(QStringList() << "*.mp3");
         // dir.setSorting(QDir::Time);

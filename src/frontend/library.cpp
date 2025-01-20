@@ -25,11 +25,17 @@ library::library(QWidget *parent) :
     connect(ui->addButton, &QPushButton::clicked, this, &library::onAddButtonClicked);
     connect(ui->downloadButton, &QPushButton::clicked, this, &library::onDownloadButtonClicked);
     connect(this, &library::songDownloadRequest, libraryManager::getInstance(), &libraryManager::onSongDownloadRequested);
+    connect(libraryManager::getInstance(), &libraryManager::setStatusText, this, &library::onSetStatusText);
+
 }
 
 //calls renderSongs function when library changed
 void library::onLibraryChanged() {
     renderSongs();
+}
+
+void library::onSetStatusText(const QString& statusText) const {
+    ui->downloadStatus->setText(statusText);
 }
 
 //renders all song widgets in the library window

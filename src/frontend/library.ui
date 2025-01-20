@@ -68,6 +68,13 @@
          </widget>
         </item>
         <item>
+         <widget class="QLabel" name="downloadStatus">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QPushButton" name="addButton">
           <property name="minimumSize">
            <size>
