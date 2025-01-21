@@ -3,8 +3,9 @@
 //
 
 #include "queueManager.h"
-
 #include "playlistManager.h"
+#include <algorithm>
+#include <random>
 
 queueManager *queueManager::instance = nullptr;
 
@@ -17,7 +18,7 @@ queueManager *queueManager::getInstance()
     return instance;
 }
 
-queueManager::queueManager() : queue(QVector<song>())
+queueManager::queueManager() : queue(QVector<song>()), originalQueue(QVector<song>())
 {
     connect(player::getInstance(), &QMediaPlayer::mediaStatusChanged, this, &queueManager::onMediaStatusChanged);
 }
@@ -198,4 +199,21 @@ void queueManager::onQueuePlaylist(const playlist &p)
 void queueManager::onRemoveFromQueue(const int index)
 {
     remove(index);
+}
+
+//sets the shuffle state of the queue, also makes a backup of the original queue if state changed to active
+void queueManager::onShuffleStateChanged(const bool shuffle)
+{
+    std::random_device rd;
+    std::mt19937 g(rd());
+
+    if (shuffle)
+    {
+        originalQueue = queue;
+        std::shuffle(queue.begin().operator++(), queue.end(), g);
+
+    } else {
+        queue = originalQueue;
+    }
+    emit queueChanged();
 }

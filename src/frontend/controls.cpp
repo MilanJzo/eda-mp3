@@ -40,6 +40,9 @@ controls::controls(QWidget *parent) :
     connect(ui->progressSlider, &QSlider::sliderReleased, this, &controls::onProgressSliderReleased);
     connect(ui->progressSlider, &QSlider::valueChanged, this, &controls::onProgressSliderValueChanged);
 
+    // Signal connects
+    connect(this, &controls::shuffleStateChanged, queueManager::getInstance(), &queueManager::onShuffleStateChanged);
+
     ui->volumeSlider->setValue(25); // 25% volume
     ui->cover->setPixmap(QPixmap(":image/placeholder.png").scaled(55, 55));
 }
@@ -173,8 +176,15 @@ void controls::onLoopStateToggled() {
 
 //sets the icon to the corresponding shuffle state
 void controls::onShuffleStateToggled() {
-    ui->shuffle->setIcon(QIcon("icon/shuffle.svg"));
-
+    if (!shuffleState) {
+        shuffleState = true;
+        emit shuffleStateChanged(shuffleState);
+        ui->shuffle->setIcon(QIcon(":icon/shuffle-active.svg"));
+    } else {
+        shuffleState = false;
+        emit shuffleStateChanged(shuffleState);
+        ui->shuffle->setIcon(QIcon(":icon/shuffle.svg"));
+    }
 }
 
 controls::~controls() {

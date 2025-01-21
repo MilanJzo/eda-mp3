@@ -41,13 +41,16 @@ private slots:
 private:
     Ui::controls *ui;
 
-
     enum class LoopingState {
         None,
         Loop,
         LoopOne
     };
     LoopingState loopState = LoopingState::None;
+    bool shuffleState = false;
+
+signals:
+    void shuffleStateChanged(bool state);
 };
 
 
