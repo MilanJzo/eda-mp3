@@ -30,6 +30,7 @@ public slots:
 private:
     static libraryManager* instance;
     QVector<song> library;
+    QString status = "Downloading: 000/000   0.0%";
 
     libraryManager();
     void loadLibrary();

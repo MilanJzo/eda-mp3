@@ -134,11 +134,31 @@ void libraryManager::loadSongIntoLibrary(const QUrl &url)
 //downloads song from url
 void libraryManager::onSongDownloadRequested(const QString &url)
 {
-    emit setStatusText("Downloading...");
     auto ytdlp = new QProcess(this);
     ytdlp->start("yt-dlp", QStringList() << "-x" << "--audio-format" << "mp3" << "-o" << QDir::currentPath().append("/yt-dlp/%(title)s by %(uploader)s") << "--no-mtime" << url);
 
     addDirectoryFromUrl(QDir::currentPath().append("/yt-dlp"));
+
+
+    connect(ytdlp, &QProcess::readyReadStandardOutput, this, [this, ytdlp](){
+        const QString pOutput = ytdlp->readAllStandardOutput();
+        qDebug() << pOutput;
+
+        if (pOutput.contains("download") && pOutput.contains("item")) {
+            const QString current = pOutput.split(" item ")[1].split("\n")[0].split(" of ")[0].rightJustified(3, '0');
+            const QString total = pOutput.split(" item ")[1].split("\n")[0].split(" of ")[1].rightJustified(3, '0');
+
+            status = status.replace(21, 6, "  0.0%");
+            status = status.replace(13, 3, current);
+            status = status.replace(17, 3, total);
+        } else if (pOutput.contains("download") && pOutput.contains("ETA")) {
+            const QString percentage = pOutput.split(" of ")[0].split("] ")[1];
+            status = status.replace(21, 6, percentage);
+        }
+
+        emit setStatusText(status);
+    });
+
     connect(ytdlp , &QProcess::finished, this, [this, ytdlp](){
         ytdlp->deleteLater();
         loadLibrary();
