@@ -142,7 +142,6 @@ void libraryManager::onSongDownloadRequested(const QString &url)
 
     connect(ytdlp, &QProcess::readyReadStandardOutput, this, [this, ytdlp](){
         const QString pOutput = ytdlp->readAllStandardOutput();
-        qDebug() << pOutput;
 
         if (pOutput.contains("download") && pOutput.contains("item")) {
             const QString current = pOutput.split(" item ")[1].split("\n")[0].split(" of ")[0].rightJustified(3, '0');
@@ -163,5 +162,6 @@ void libraryManager::onSongDownloadRequested(const QString &url)
         ytdlp->deleteLater();
         loadLibrary();
         emit setStatusText("");
+        status = "Downloading: 000/000   0.0%";
     });
 }
