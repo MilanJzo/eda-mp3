@@ -143,12 +143,5 @@ void libraryManager::onSongDownloadRequested(const QString &url)
         ytdlp->deleteLater();
         loadLibrary();
         emit setStatusText("");
-
-        // QDir dir(QDir::currentPath().append("/yt-dlp"));
-        // dir.setNameFilters(QStringList() << "*.mp3");
-        // dir.setSorting(QDir::Time);
-        //
-        // const QUrl newestSong = QUrl::fromLocalFile("file:///" + dir.path() + "/" + dir.entryList().first());
-        // loadSongIntoLibrary(newestSong);
     });
 }
