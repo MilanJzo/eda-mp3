@@ -74,7 +74,6 @@ void queueManager::prepend(const QVector<song> &s)
 //removes a song from the queue
 void queueManager::remove(const int index)
 {
-    //TODO:: test if this removes the correct song
     if (shuffle) originalQueue.remove(originalQueue.indexOf(queue.at(index)));
 
     queue.remove(index);
@@ -93,7 +92,6 @@ void queueManager::remove(const int index)
 //skips to the next song in the queue
 void queueManager::skipForward()
 {
-    //TODO:: test if this removes the correct song
     if (shuffle && originalQueue.size() > 1) originalQueue.remove(originalQueue.indexOf(queue.first()));
 
     if (queue.size() > 1)
@@ -109,7 +107,6 @@ void queueManager::skipForward()
 //skips to the previous song in the queue
 void queueManager::skipBackward()
 {
-    //TODO:: test if working
     if (shuffle && !history.isEmpty()) originalQueue.prepend(history.last());
     if (!history.isEmpty())
     {
@@ -126,7 +123,6 @@ void queueManager::onMediaStatusChanged(const QMediaPlayer::MediaStatus status)
 {
     if (status == QMediaPlayer::MediaStatus::EndOfMedia && isLooping() && queue.size() == 1) {
 
-        //TODO:: test if this removes the correct song
         if (shuffle && originalQueue.size() > 1) originalQueue.remove(originalQueue.indexOf(queue.first()));
 
         history.append(queue.first());
@@ -168,7 +164,6 @@ void queueManager::onAddToQueue(const song &s)
 void queueManager::onSkipForward() {
     if (isLooping() && queue.size() == 1) {
 
-        //TODO:: test if this removes the correct song
         if (shuffle && originalQueue.size() > 1) originalQueue.remove(originalQueue.indexOf(queue.first()));
 
         history.append(queue.first());
