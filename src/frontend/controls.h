@@ -50,7 +50,7 @@ private:
     bool shuffleState = false;
 
 signals:
-    void shuffleStateChanged(bool state);
+    void shuffleStateChanged();
 };
 
 

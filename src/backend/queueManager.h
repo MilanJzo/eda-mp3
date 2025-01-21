@@ -44,7 +44,7 @@ public slots:
     void onRemoveFromQueue(int index);
     void onPlayPlaylistDirectly(const playlist &p);
     void onQueuePlaylist(const playlist &p);
-    void onShuffleStateChanged(bool shuffle);
+    void onShuffleStateChanged();
 
 signals:
     void queueChanged();
@@ -57,6 +57,7 @@ private:
     QVector<song> queue;
     QVector<song> history;
     QVector<song> originalQueue;
+    bool shuffle = false;
 };
 
 

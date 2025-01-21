@@ -178,13 +178,12 @@ void controls::onLoopStateToggled() {
 void controls::onShuffleStateToggled() {
     if (!shuffleState) {
         shuffleState = true;
-        emit shuffleStateChanged(shuffleState);
         ui->shuffle->setIcon(QIcon(":icon/shuffle-active.svg"));
     } else {
         shuffleState = false;
-        emit shuffleStateChanged(shuffleState);
         ui->shuffle->setIcon(QIcon(":icon/shuffle.svg"));
     }
+    emit shuffleStateChanged();
 }
 
 controls::~controls() {

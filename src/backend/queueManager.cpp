@@ -26,6 +26,7 @@ queueManager::queueManager() : queue(QVector<song>()), originalQueue(QVector<son
 //adds a song to the end of the queue
 void queueManager::append(const song &s)
 {
+    if (shuffle) originalQueue.append(s);
     queue.append(s);
     emit queueChanged();
 }
@@ -33,6 +34,7 @@ void queueManager::append(const song &s)
 //adds a vector of songs to the end of the queue
 void queueManager::append(const QVector<song> &s)
 {
+    if (shuffle) originalQueue.append(s);
     queue.append(s);
     emit queueChanged();
 }
@@ -40,18 +42,29 @@ void queueManager::append(const QVector<song> &s)
 //adds a song to the beginning of the queue
 void queueManager::prepend(const song &s)
 {
-    if (queue.isEmpty()) queue.append(s);
-    else queue.insert(1, s);
+    if (queue.isEmpty())
+    {
+        if (shuffle) originalQueue.append(s);
+        queue.append(s);
+    } else
+    {
+        if (shuffle) originalQueue.insert(1, s);
+        queue.insert(1, s);
+    }
     emit queueChanged();
 }
 
 //adds a vector of songs to the beginning of the queue
 void queueManager::prepend(const QVector<song> &s)
 {
-    if (queue.isEmpty()) queue.append(s);
-    else {
+    if (queue.isEmpty())
+    {
+        if (shuffle) originalQueue.append(s);
+        queue.append(s);
+    } else {
         for (int i = 0; i < s.size(); i++)
         {
+            if (shuffle) originalQueue.insert(i + 1, s.at(i));
             queue.insert(i + 1, s.at(i));
         }
     }
@@ -61,6 +74,9 @@ void queueManager::prepend(const QVector<song> &s)
 //removes a song from the queue
 void queueManager::remove(const int index)
 {
+    //TODO:: test if this removes the correct song
+    if (shuffle) originalQueue.remove(originalQueue.indexOf(queue.at(index)));
+
     queue.remove(index);
     if (index == 0 && !queue.isEmpty())
     {
@@ -77,6 +93,9 @@ void queueManager::remove(const int index)
 //skips to the next song in the queue
 void queueManager::skipForward()
 {
+    //TODO:: test if this removes the correct song
+    if (shuffle && originalQueue.size() > 1) originalQueue.remove(originalQueue.indexOf(queue.first()));
+
     if (queue.size() > 1)
     {
         history.append(queue.first());
@@ -90,6 +109,7 @@ void queueManager::skipForward()
 //skips to the previous song in the queue
 void queueManager::skipBackward()
 {
+    if (shuffle && !history.isEmpty()) originalQueue.prepend(history.last());
     if (!history.isEmpty())
     {
         queue.prepend(history.last());
@@ -202,8 +222,9 @@ void queueManager::onRemoveFromQueue(const int index)
 }
 
 //sets the shuffle state of the queue, also makes a backup of the original queue if state changed to active
-void queueManager::onShuffleStateChanged(const bool shuffle)
+void queueManager::onShuffleStateChanged()
 {
+    shuffle = !shuffle;
     std::random_device rd;
     std::mt19937 g(rd());
 
@@ -214,6 +235,7 @@ void queueManager::onShuffleStateChanged(const bool shuffle)
 
     } else {
         queue = originalQueue;
+        originalQueue.clear();
     }
     emit queueChanged();
 }
