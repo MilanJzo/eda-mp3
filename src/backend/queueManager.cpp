@@ -109,6 +109,7 @@ void queueManager::skipForward()
 //skips to the previous song in the queue
 void queueManager::skipBackward()
 {
+    //TODO:: test if working
     if (shuffle && !history.isEmpty()) originalQueue.prepend(history.last());
     if (!history.isEmpty())
     {
@@ -124,6 +125,10 @@ void queueManager::skipBackward()
 void queueManager::onMediaStatusChanged(const QMediaPlayer::MediaStatus status)
 {
     if (status == QMediaPlayer::MediaStatus::EndOfMedia && isLooping() && queue.size() == 1) {
+
+        //TODO:: test if this removes the correct song
+        if (shuffle && originalQueue.size() > 1) originalQueue.remove(originalQueue.indexOf(queue.first()));
+
         history.append(queue.first());
         prepend(history);
         history.clear();
@@ -162,6 +167,10 @@ void queueManager::onAddToQueue(const song &s)
 //calls the skip function if queue is not empty or looping
 void queueManager::onSkipForward() {
     if (isLooping() && queue.size() == 1) {
+
+        //TODO:: test if this removes the correct song
+        if (shuffle && originalQueue.size() > 1) originalQueue.remove(originalQueue.indexOf(queue.first()));
+
         history.append(queue.first());
         prepend(history);
         history.clear();
@@ -180,6 +189,7 @@ void queueManager::onSkipBackward() {
 //removes all songs from the queue
 void queueManager::onClearQueue()
 {
+    if (shuffle) originalQueue.clear();
     queue.clear();
     history.clear();
     player::getInstance()->stop();
@@ -192,6 +202,7 @@ void queueManager::onPlayPlaylistDirectly(const playlist &p)
 {
     if (!p.isEmpty())
     {
+        if (shuffle) originalQueue.clear();
         queue.clear();
         history.clear();
         append(p);
