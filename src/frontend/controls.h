@@ -29,6 +29,7 @@ private slots:
 
     void onMutedChanged(bool muted) const;
     void onLoopStateToggled();
+    void onShuffleStateToggled();
 
     void onPlayPauseClicked() const;
     void onVolumeButtonClicked() const;

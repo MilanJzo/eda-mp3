@@ -33,6 +33,7 @@ controls::controls(QWidget *parent) :
     connect(ui->skipForwards, &QPushButton::clicked, queueManager::getInstance(), &queueManager::onSkipForward);
     connect(ui->skipBackwards, &QPushButton::clicked, queueManager::getInstance(), &queueManager::onSkipBackward);
     connect(ui->repeat, &QPushButton::clicked, this, &controls::onLoopStateToggled);
+    connect(ui->shuffle, &QPushButton::clicked, this, &controls::onShuffleStateToggled);
 
     // Slider connects
     connect(ui->volumeSlider, &QSlider::valueChanged, this, &controls::onVolumeSliderValueChanged);
@@ -168,6 +169,12 @@ void controls::onLoopStateToggled() {
         player::getInstance()->setLoops(1);
         ui->repeat->setIcon(QIcon(":icon/list.svg"));
     }
+}
+
+//sets the icon to the corresponding shuffle state
+void controls::onShuffleStateToggled() {
+    ui->shuffle->setIcon(QIcon("icon/shuffle.svg"));
+
 }
 
 controls::~controls() {

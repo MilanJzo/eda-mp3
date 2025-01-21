@@ -24,6 +24,7 @@
 
         <file>repeat.svg</file>
         <file>shuffle.svg</file>
+        <file>shuffle-active.svg</file>
 
         <file>skip-forward.svg</file>
         <file>skip-back.svg</file>
