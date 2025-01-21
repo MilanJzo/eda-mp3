@@ -23,16 +23,21 @@ public:
     ~library() override;
 
 private slots:
-    void onDownloadButtonClicked();
-    void onAddButtonClicked() const;
-    void onLibraryChanged();
     void onSetStatusText(const QString& statusText) const;
+    void onSearch(const QString &searchTerm);
+    void onAddButtonClicked() const;
+    void onDownloadButtonClicked();
+    void onSearchInitiated();
+    void onLibraryChanged();
 
 signals:
     QString songDownloadRequest(const QString &url);
 
 private:
     Ui::library *ui;
+
+    QVector<song> searchResults;
+    bool noResults = false;
 
     void renderSongs();
 };
