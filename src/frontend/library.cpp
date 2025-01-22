@@ -29,6 +29,8 @@ library::library(QWidget *parent) :
     connect(ui->searchButton, &QPushButton::clicked, this, &library::onSearchInitiated);
     connect(ui->searchInput, &QLineEdit::returnPressed, this, &library::onSearchInitiated);
     connect(ui->searchInput, &QLineEdit::textEdited, this, &library::onSearch);
+    connect(ui->refresh, &QPushButton::clicked, libraryManager::getInstance(), &libraryManager::onReloadLibrary);
+    connect(libraryManager::getInstance(), &libraryManager::libraryChanged, this, &library::onSearchInitiated);
 
 }
 

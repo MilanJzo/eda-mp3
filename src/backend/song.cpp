@@ -15,7 +15,7 @@ song::song(
     QString duration
     ) :
 url(std::move(url)),
-cover(std::move(cover.scaled(55, 55))),
+cover(std::move(cover.scaled(55, 55, Qt::IgnoreAspectRatio, Qt::SmoothTransformation))),
 title(std::move(title)),
 artist(std::move(artist)),
 duration(std::move(duration)){

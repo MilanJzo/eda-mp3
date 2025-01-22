@@ -26,6 +26,7 @@ signals:
 
 public slots:
     void onSongDownloadRequested(const QString &url);
+    void onReloadLibrary();
 
 private:
     static libraryManager* instance;

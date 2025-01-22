@@ -74,6 +74,11 @@ void libraryManager::loadLibrary()
     file.close();
 }
 
+void libraryManager::onReloadLibrary()
+{
+    loadLibrary();
+}
+
 void libraryManager::addDirectory()
 {
     const QString dir = QFileDialog::getExistingDirectory(nullptr, "Select Directory", QDir::homePath());
@@ -161,7 +166,6 @@ void libraryManager::onSongDownloadRequested(const QString &url)
     connect(ytdlp , &QProcess::finished, this, [this, ytdlp](){
         ytdlp->deleteLater();
         loadLibrary();
-        emit setStatusText("");
         status = "Downloading: 000/000   0.0%";
     });
 }
