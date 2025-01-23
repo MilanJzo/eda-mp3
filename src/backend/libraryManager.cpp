@@ -166,6 +166,7 @@ void libraryManager::onSongDownloadRequested(const QString &url)
     connect(ytdlp , &QProcess::finished, this, [this, ytdlp](){
         ytdlp->deleteLater();
         loadLibrary();
+        emit setStatusText("");
         status = "Downloading: 000/000   0.0%";
     });
 }
